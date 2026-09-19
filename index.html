@@ -230,19 +230,20 @@
         /* NSFW / Gore Section */
         .nsfw-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
             margin-top: 15px;
         }
 
         .nsfw-thumb {
             position: relative;
             width: 100%;
-            padding-bottom: 100%; /* Square */
+            padding-bottom: 100%;
             background: #eee;
             border: 1px solid #ddd;
             overflow: hidden;
             cursor: pointer;
+            border-radius: 4px;
         }
 
         .nsfw-thumb img {
@@ -253,7 +254,7 @@
             height: 100%;
             object-fit: cover;
             filter: blur(15px);
-            transition: filter 0.3s;
+            transition: filter 0.3s ease;
         }
 
         .nsfw-thumb img.unblurred {
