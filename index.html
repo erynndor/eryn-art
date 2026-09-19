@@ -589,3 +589,164 @@
             <p><strong>Terms Summary</strong></p>
             <ul class="commission-list">
                 <li>Before requesting, please include clear references, intended usage, budget range, and any deadline.</li>
+                <li>I may decline requests that do not fit my work or comfort zone (Though I have a very broad range).</li>
+                <li>Clear references are required.</li>
+                <li>Commercial use must be discussed upfront.</li>
+                <li>Major revisions after final approval may cost extra.</li>
+                <li>Final artwork may be posted in my portfolio unless privacy is requested.</li>
+                <li>I retain commercial rights unless privately discussed.</li>
+                <li>Timelapse of Artwork needs to be requested prior.</li>
+                <li>If work is urgent and No contact has been made after Request, an Email attempt is recommended.</li>
+            </ul>
+        </div>
+
+        <!-- THE COMMISSION FORM -->
+        <!-- The form sends the calculation directly to your Gmail via FormSubmit.co -->
+        <form action="https://formsubmit.co/eryndorcontact@gmail.com" method="POST" id="commissionForm">
+            <input type="hidden" name="_subject" value="New Commission Request from Website!">
+            <input type="hidden" name="_captcha" value="false">
+            <!-- Redirects to home page after submission -->
+            <input type="hidden" name="_next" value="https://your-website-url.com"> 
+
+            <h3>Request Form</h3>
+
+            <!-- Base Type -->
+            <div class="form-group">
+                <label>Base Type (Base Price: $150)</label>
+                <select name="Base Type" required>
+                    <option value="">Select a base...</option>
+                    <option value="Bust Up">Bust Up</option>
+                    <option value="Half Body">Half Body</option>
+                    <option value="Full Body">Full Body</option>
+                </select>
+            </div>
+
+            <!-- Style -->
+            <div class="form-group">
+                <label>Style</label>
+                <select name="Style" required>
+                    <option value="">Select a style...</option>
+                    <option value="Lineart">Lineart</option>
+                    <option value="Flat Colors">Flat Colors</option>
+                    <option value="Rendered">Rendered</option>
+                </select>
+            </div>
+
+            <!-- Background Options -->
+            <div class="form-group">
+                <label>Background</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="Background" value="None (No extra charge)" required> None (No extra charge)</label>
+                    <label><input type="radio" name="Background" value="Simple (+10%)"> Simple (+10%)</label>
+                    <label><input type="radio" name="Background" value="Complex (+50%)"> Complex (+50%)</label>
+                </div>
+                <div class="pricing-note">Complex backgrounds will significantly increase the final price.</div>
+            </div>
+
+            <!-- Add-ons (Checkboxes) -->
+            <div class="form-group">
+                <label>Add-ons (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="Addons" value="Extra Character (+50%)"> Extra Character(s) (+50% per person)</label>
+                    <label><input type="checkbox" name="Addons" value="Gore (+50%)"> Gore (+50%)</label>
+                    <label><input type="checkbox" name="Addons" value="NSFW (+50%)"> NSFW (+50%)</label>
+                </div>
+            </div>
+
+            <!-- SINGLE DESCRIPTION BOX -->
+            <div class="form-group">
+                <label for="description">Character Description & Details</label>
+                <textarea id="description" name="Description" placeholder="Describe your character(s), scene, mood, personality, and any specific details. Please paste any reference links here." required></textarea>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%;">Submit Request</button>
+        </form>
+
+        <br>
+        <button class="back-btn" onclick="showPage('home')">&larr; Back to Home</button>
+    </div>
+
+</div>
+
+<!-- LIGHTBOX OVERLAY -->
+<div id="lightbox" class="lightbox">
+    <img id="lightbox-img" src="" alt="Zoomed Artwork">
+    <button class="close-btn" onclick="closeLightbox()">Back to Gallery</button>
+</div>
+
+<script>
+    // --- PAGE NAVIGATION LOGIC ---
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        document.getElementById(pageId).classList.add('active');
+        window.scrollTo(0, 0);
+    }
+
+    // --- SLIDESHOW LOGIC ---
+    let slideIndex = 0;
+    let slideInterval;
+
+    function showSlides() {
+        let slides = document.querySelectorAll(".slide");
+        if (slides.length === 0) return;
+        
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove("active");
+        }
+        
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        
+        slides[slideIndex - 1].classList.add("active");
+    }
+
+    function initSlideshow() {
+        let slides = document.querySelectorAll(".slide");
+        if (slides.length > 0) {
+            slides[0].classList.add("active");
+            slideIndex = 1;
+            // Change image every 6 seconds
+            slideInterval = setInterval(showSlides, 6000);
+        }
+    }
+
+    // --- LIGHTBOX (ZOOM) LOGIC ---
+    function openLightbox(src) {
+        if (!src) return;
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox').style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+        document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+
+    // --- NSFW UNBLUR LOGIC ---
+    function unblurImage(element) {
+        element.classList.add('unblurred');
+    }
+
+    // Initialize on load
+    window.onload = function() {
+        initSlideshow();
+    };
+
+    // Allow closing lightbox with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeLightbox();
+        }
+    });
+
+    // Handle form submission (Optional: Prevent double clicks)
+    document.getElementById('commissionForm').addEventListener('submit', function(e) {
+        // You can add a loading spinner here
+    });
+</script>
+
+</body>
+</html>
