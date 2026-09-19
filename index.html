@@ -38,7 +38,7 @@
         .container {
             background-color: var(--card-bg);
             width: 100%;
-            max-width: 700px;
+            max-width: 800px; /* Wider for gallery */
             padding: 40px 30px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             min-height: 80vh;
@@ -68,11 +68,9 @@
 
         h3 {
             font-family: var(--font-serif);
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            margin-top: 25px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-align: left;
         }
 
         p.subtitle {
@@ -140,13 +138,17 @@
             color: #fff;
         }
 
-        /* --- GALLERY --- */
+        /* --- GALLERY GENERAL --- */
+        .gallery-section {
+            margin-bottom: 40px;
+        }
+
         .section-title {
-            text-align: center;
             font-family: var(--font-serif);
             font-size: 1.5rem;
-            margin: 40px 0 20px 0;
-            border-bottom: 1px solid #eee;
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
             padding-bottom: 10px;
         }
 
@@ -154,30 +156,29 @@
         .slideshow-container {
             position: relative;
             max-width: 100%;
-            margin: 0 auto 30px auto;
+            margin: 20px auto;
             overflow: hidden;
             border: 1px solid #ddd;
-            cursor: zoom-in;
+            cursor: pointer;
             background: #f9f9f9;
-            aspect-ratio: 16 / 9; /* Video size */
         }
 
         .slide {
             display: none;
             width: 100%;
-            height: 100%;
         }
 
         .slide img {
             width: 100%;
-            height: 100%;
+            height: auto;
             display: block;
             object-fit: contain;
+            max-height: 500px;
         }
 
         .slide.active {
             display: block;
-            animation: fade 2s ease-in-out;
+            animation: fade 1.5s ease-in-out;
         }
 
         @keyframes fade {
@@ -185,143 +186,129 @@
             to { opacity: 1; }
         }
 
-        /* Video Containers (Half Body, Full Body) */
+        /* Video Sized Containers */
         .video-container {
+            position: relative;
             width: 100%;
-            aspect-ratio: 16 / 9;
-            border: 1px solid #ddd;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             margin-bottom: 20px;
-            background: #f9f9f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: zoom-in;
+            background: #eee;
+            border: 1px solid #ddd;
+            cursor: pointer;
             overflow: hidden;
         }
 
         .video-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-        }
-
-        /* Grid for Rest of 15 */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .gallery-grid .img-wrapper {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            overflow: hidden;
-            border: 1px solid #ddd;
-            cursor: zoom-in;
-            background: #f9f9f9;
-        }
-
-        .gallery-grid .img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s;
-        }
-
-        .gallery-grid .img-wrapper:hover img {
-            transform: scale(1.05);
-        }
-
-        /* NSFW / GORE Section */
-        .nsfw-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .nsfw-item {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            overflow: hidden;
-            border: 1px solid #ddd;
-            cursor: pointer;
-            background: #f9f9f9;
-        }
-
-        .nsfw-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            filter: blur(15px);
-            transition: filter 0.5s ease;
-        }
-
-        .nsfw-item.unblurred img {
-            filter: blur(0);
-        }
-
-        .nsfw-item .overlay-text {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 5px 10px;
-            font-size: 0.8rem;
-            pointer-events: none;
-            border-radius: 4px;
-            transition: opacity 0.3s;
-        }
-
-        .nsfw-item.unblurred .overlay-text {
-            opacity: 0;
-        }
-
-        /* Lightbox / Zoom Overlay */
-        .lightbox {
-            display: none;
-            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 1000;
+            object-fit: cover;
+        }
+
+        /* Standard Grid */
+        .grid-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .grid-gallery img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .grid-gallery img:hover {
+            transform: scale(1.03);
+        }
+
+        /* NSFW / Gore Section */
+        .nsfw-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .nsfw-thumb {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%; /* Square */
+            background: #eee;
+            border: 1px solid #ddd;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .nsfw-thumb img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(15px);
+            transition: filter 0.3s;
+        }
+
+        .nsfw-thumb img.unblurred {
+            filter: blur(0);
+        }
+
+        .nsfw-warning {
+            font-size: 0.8rem;
+            text-align: center;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        /* --- LIGHTBOX (ZOOM) --- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
             justify-content: center;
             align-items: center;
             flex-direction: column;
             padding: 20px;
         }
 
+        .lightbox.active {
+            display: flex;
+        }
+
         .lightbox img {
-            max-width: 90%;
+            max-width: 95%;
             max-height: 80vh;
             object-fit: contain;
             border: 2px solid #fff;
         }
 
-        .lightbox .close-btn {
+        .lightbox-close {
             margin-top: 20px;
-            padding: 12px 30px;
+            padding: 10px 30px;
             background: #fff;
             color: #000;
             border: none;
-            font-family: var(--font-serif);
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
-            border-radius: 4px;
-            transition: background 0.3s;
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .lightbox .close-btn:hover {
-            background: #ddd;
+        .lightbox-close:hover {
+            background: #ccc;
         }
 
         /* --- COMMISSION PAGE --- */
@@ -360,7 +347,6 @@
             font-weight: bold;
             margin-bottom: 8px;
             font-family: var(--font-serif);
-            font-size: 0.95rem;
         }
 
         .form-group select, 
@@ -379,34 +365,31 @@
             min-height: 120px;
         }
 
-        .radio-group, .checkbox-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 5px;
+        /* Price Calculator Box */
+        .price-estimator {
+            background: #f4f4f4;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
         }
 
-        .radio-group label, .checkbox-group label {
-            font-weight: normal;
-            font-family: var(--font-sans);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
+        .price-estimator h4 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
         }
 
-        .radio-group input[type="radio"], 
-        .checkbox-group input[type="checkbox"] {
-            width: auto;
-            transform: scale(1.2);
-            margin: 0;
+        .price-total {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #111;
         }
 
-        .pricing-note {
+        .price-breakdown {
             font-size: 0.85rem;
-            color: #666;
+            color: #555;
             margin-top: 5px;
-            font-style: italic;
         }
 
         /* Back Button */
@@ -436,13 +419,10 @@
             display: block;
         }
 
-        /* Responsive */
-        @media (max-width: 500px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 1.8rem; }
-            .container { padding: 20px 15px; }
-            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
-            .nsfw-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+        .divider {
+            border: 0;
+            border-top: 1px solid #ddd;
+            margin: 30px 0;
         }
     </style>
 </head>
@@ -458,14 +438,14 @@
         <!-- Social Icons -->
         <div class="social-icons">
             <a href="https://x.com/eryndor_0" target="_blank" title="Twitter/X"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-            <a href="https://www.tiktok.com/@eryndor__0?_r=1&_t=ZS-99rZc0lJjfD" target="_blank" title="TikTok"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
-            <a href="https://www.instagram.com/eryndor_01?stkn=MWxwMDB5NG4zM3BlaA==" target="_blank" title="Instagram"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-            <a href="https://www.patreon.com/Eryndor_01?utm_campaign=creatorshare_creator" target="_blank" title="Patreon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.386 3.252c-4.356 0-7.892 3.536-7.892 7.892 0 4.356 3.536 7.892 7.892 7.892 4.356 0 7.892-3.536 7.892-7.892 0-4.356-3.536-7.892-7.892-7.892zm-10.55.748v16h3v-16h-3z"/></svg></a>
+            <a href="https://www.tiktok.com/@eryndor__0" target="_blank" title="TikTok"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+            <a href="https://www.instagram.com/eryndor_01" target="_blank" title="Instagram"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="https://www.patreon.com/Eryndor_01" target="_blank" title="Patreon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.386 3.252c-4.356 0-7.892 3.536-7.892 7.892 0 4.356 3.536 7.892 7.892 7.892 4.356 0 7.892-3.536 7.892-7.892 0-4.356-3.536-7.892-7.892-7.892zm-10.55.748v16h3v-16h-3z"/></svg></a>
             <a href="https://jannapaypal6.artstation.com/" target="_blank" title="ArtStation"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2 18.5l2.5-4.3h5.1L7 18.5H2zM21.5 18.5h-6.8l-3.4-5.9 3.4-5.9h6.8l-3.4 5.9 3.4 5.9zM12.5 2L2 20h4.5l6.5-11.2L19.5 20H24L12.5 2z"/></svg></a>
             <a href="https://www.facebook.com/share/1behpyvBWH/" target="_blank" title="Facebook"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
             <a href="https://www.pixiv.net/users/87870114" target="_blank" title="Pixiv"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2zm4 8h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></a>
-            <a href="https://www.tumblr.com/eryndor00?source=share" target="_blank" title="Tumblr"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M14.5 2v3.5h3.5v4h-3.5v5.5c0 1.5.5 2 2 2h1.5v4h-3.5c-4 0-6-2-6-6V9.5H5.5v-4H8V2h6.5z"/></svg></a>
-            <a href="https://youtube.com/@eryndor_0?si=2BaymauSGDOSluEE" target="_blank" title="YouTube"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <a href="https://www.tumblr.com/eryndor00" target="_blank" title="Tumblr"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M14.5 2v3.5h3.5v4h-3.5v5.5c0 1.5.5 2 2 2h1.5v4h-3.5c-4 0-6-2-6-6V9.5H5.5v-4H8V2h6.5z"/></svg></a>
+            <a href="https://youtube.com/@eryndor_0" target="_blank" title="YouTube"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
             <a href="mailto:eryndorcontact@gmail.com" title="Email"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
         </div>
 
@@ -480,73 +460,93 @@
     <div id="gallery" class="page">
         <h2>Gallery</h2>
         <p class="subtitle">Selected character art, illustrations, and concept work.</p>
-        
-        <!-- FEATURED SLIDESHOW (5 images) -->
-        <h3>Featured Work</h3>
-        <div class="slideshow-container" onclick="openLightbox(document.querySelector('.slide.active img').src)">
-            <!-- Replace src with your Imgur links -->
-            <div class="slide active"><img src="https://via.placeholder.com/800x450/cccccc/666666?text=Featured+Artwork+1" alt="Featured 1"></div>
-            <div class="slide"><img src="https://via.placeholder.com/800x450/cccccc/666666?text=Featured+Artwork+2" alt="Featured 2"></div>
-            <div class="slide"><img src="https://via.placeholder.com/800x450/cccccc/666666?text=Featured+Artwork+3" alt="Featured 3"></div>
-            <div class="slide"><img src="https://via.placeholder.com/800x450/cccccc/666666?text=Featured+Artwork+4" alt="Featured 4"></div>
-            <div class="slide"><img src="https://via.placeholder.com/800x450/cccccc/666666?text=Featured+Artwork+5" alt="Featured 5"></div>
-        </div>
 
-        <!-- HALF BODY SECTION -->
-        <h3>Half Body</h3>
-        <div class="video-container" onclick="openLightbox(this.querySelector('img').src)">
-            <!-- Replace src with your Imgur link -->
-            <img src="https://via.placeholder.com/800x450/aaa/fff?text=Half+Body+Artwork" alt="Half Body">
-        </div>
-
-        <!-- FULL BODY SECTION -->
-        <h3>Full Body</h3>
-        <div class="video-container" onclick="openLightbox(this.querySelector('img').src)">
-            <!-- Replace src with your Imgur link -->
-            <img src="https://via.placeholder.com/800x450/aaa/fff?text=Full+Body+Artwork" alt="Full Body">
-        </div>
-
-        <!-- REST OF 15 IMAGES -->
-        <h3>More Artwork</h3>
-        <div class="gallery-grid">
-            <!-- Replace src with your Imgur links. Add up to 15 items -->
-            <div class="img-wrapper" onclick="openLightbox(this.querySelector('img').src)"><img src="https://via.placeholder.com/300x300/cccccc/666666?text=Art+1" alt="Art 1"></div>
-            <div class="img-wrapper" onclick="openLightbox(this.querySelector('img').src)"><img src="https://via.placeholder.com/300x300/cccccc/666666?text=Art+2" alt="Art 2"></div>
-            <div class="img-wrapper" onclick="openLightbox(this.querySelector('img').src)"><img src="https://via.placeholder.com/300x300/cccccc/666666?text=Art+3" alt="Art 3"></div>
-            <div class="img-wrapper" onclick="openLightbox(this.querySelector('img').src)"><img src="https://via.placeholder.com/300x300/cccccc/666666?text=Art+4" alt="Art 4"></div>
-            <div class="img-wrapper" onclick="openLightbox(this.querySelector('img').src)"><img src="https://via.placeholder.com/300x300/cccccc/666666?text=Art+5" alt="Art 5"></div>
-            <div class="img-wrapper" onclick="openLightbox(this.querySelector('img').src)"><img src="https://via.placeholder.com/300x300/cccccc/666666?text=Art+6" alt="Art 6"></div>
-            <div class="img-wrapper" onclick="openLightbox(this.querySelector('img').src)"><img src="https://via.placeholder.com/300x300/cccccc/666666?text=Art+7" alt="Art 7"></div>
-            <div class="img-wrapper" onclick="openLightbox(this.querySelector('img').src)"><img src="https://via.placeholder.com/300x300/cccccc/666666?text=Art+8" alt="Art 8"></div>
-            <div class="img-wrapper" onclick="openLightbox(this.querySelector('img').src)"><img src="https://via.placeholder.com/300x300/cccccc/666666?text=Art+9" alt="Art 9"></div>
-            <div class="img-wrapper" onclick="openLightbox(this.querySelector('img').src)"><img src="https://via.placeholder.com/300x300/cccccc/666666?text=Art+10" alt="Art 10"></div>
-            <div class="img-wrapper" onclick="openLightbox(this.querySelector('img').src)"><img src="https://via.placeholder.com/300x300/cccccc/666666?text=Art+11" alt="Art 11"></div>
-            <div class="img-wrapper" onclick="openLightbox(this.querySelector('img').src)"><img src="https://via.placeholder.com/300x300/cccccc/666666?text=Art+12" alt="Art 12"></div>
-            <div class="img-wrapper" onclick="openLightbox(this.querySelector('img').src)"><img src="https://via.placeholder.com/300x300/cccccc/666666?text=Art+13" alt="Art 13"></div>
-            <div class="img-wrapper" onclick="openLightbox(this.querySelector('img').src)"><img src="https://via.placeholder.com/300x300/cccccc/666666?text=Art+14" alt="Art 14"></div>
-            <div class="img-wrapper" onclick="openLightbox(this.querySelector('img').src)"><img src="https://via.placeholder.com/300x300/cccccc/666666?text=Art+15" alt="Art 15"></div>
-        </div>
-
-        <!-- NSFW / GORE SECTION -->
-        <h3>NSFW / Gore / Themes</h3>
-        <p style="font-size: 0.9rem; margin-bottom: 10px; color: #666;">Click to unblur and view.</p>
-        <div class="nsfw-grid">
-            <!-- Replace src with your Imgur links -->
-            <div class="nsfw-item" onclick="unblurImage(this)">
-                <img src="https://via.placeholder.com/300x300/333/fff?text=NSFW+1" alt="NSFW 1">
-                <span class="overlay-text">Click to View</span>
+        <!-- 1. FEATURED SLIDESHOW -->
+        <div class="gallery-section">
+            <div class="section-title">Featured Works</div>
+            <div class="slideshow-container" onclick="openLightbox(this.querySelector('.slide.active img').src)">
+                <div class="slide active">
+                    <img src="https://i.imgur.com/8Q8Q8Q8.jpg" alt="Featured 1"> <!-- REPLACE WITH IMGUR LINK -->
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/7R7R7R7.jpg" alt="Featured 2"> <!-- REPLACE WITH IMGUR LINK -->
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/6Q6Q6Q6.jpg" alt="Featured 3"> <!-- REPLACE WITH IMGUR LINK -->
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/5P5P5P5.jpg" alt="Featured 4"> <!-- REPLACE WITH IMGUR LINK -->
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/4O4O4O4.jpg" alt="Featured 5"> <!-- REPLACE WITH IMGUR LINK -->
+                </div>
             </div>
-            <div class="nsfw-item" onclick="unblurImage(this)">
-                <img src="https://via.placeholder.com/300x300/333/fff?text=Gore+2" alt="Gore 2">
-                <span class="overlay-text">Click to View</span>
+        </div>
+
+        <hr class="divider">
+
+        <!-- 2. HALF BODY CONTAINER -->
+        <div class="gallery-section">
+            <div class="section-title">Half Body</div>
+            <div class="video-container" onclick="openLightbox('https://i.imgur.com/3N3N3N3.jpg')">
+                <img src="https://i.imgur.com/3N3N3N3.jpg" alt="Half Body Showcase"> <!-- REPLACE WITH IMGUR LINK -->
             </div>
-            <div class="nsfw-item" onclick="unblurImage(this)">
-                <img src="https://via.placeholder.com/300x300/333/fff?text=NSFW+3" alt="NSFW 3">
-                <span class="overlay-text">Click to View</span>
+        </div>
+
+        <!-- 3. FULL BODY CONTAINER -->
+        <div class="gallery-section">
+            <div class="section-title">Full Body</div>
+            <div class="video-container" onclick="openLightbox('https://i.imgur.com/2M2M2M2.jpg')">
+                <img src="https://i.imgur.com/2M2M2M2.jpg" alt="Full Body Showcase"> <!-- REPLACE WITH IMGUR LINK -->
             </div>
-            <div class="nsfw-item" onclick="unblurImage(this)">
-                <img src="https://via.placeholder.com/300x300/333/fff?text=Gore+4" alt="Gore 4">
-                <span class="overlay-text">Click to View</span>
+        </div>
+
+        <hr class="divider">
+
+        <!-- 4. REST OF 15 IMAGES GRID -->
+        <div class="gallery-section">
+            <div class="section-title">More Art</div>
+            <div class="grid-gallery">
+                <img src="https://i.imgur.com/1L1L1L1.jpg" alt="Art 1" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/2M2M2M2.jpg" alt="Art 2" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/3N3N3N3.jpg" alt="Art 3" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/4O4O4O4.jpg" alt="Art 4" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/5P5P5P5.jpg" alt="Art 5" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/6Q6Q6Q6.jpg" alt="Art 6" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/7R7R7R7.jpg" alt="Art 7" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/8Q8Q8Q8.jpg" alt="Art 8" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/9R9R9R9.jpg" alt="Art 9" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/0S0S0S0.jpg" alt="Art 10" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/1T1T1T1.jpg" alt="Art 11" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/2U2U2U2.jpg" alt="Art 12" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/3V3V3V3.jpg" alt="Art 13" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/4W4W4W4.jpg" alt="Art 14" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/5X5X5X5.jpg" alt="Art 15" onclick="openLightbox(this.src)">
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- 5. NSFW / GORE / THEMES SECTION -->
+        <div class="gallery-section">
+            <div class="section-title">NSFW / Gore / Themes</div>
+            <p class="nsfw-warning">Click to reveal. Content is blurred by default.</p>
+            <div class="nsfw-gallery">
+                <div class="nsfw-thumb" onclick="toggleBlur(this)">
+                    <img src="https://i.imgur.com/6Y6Y6Y6.jpg" alt="NSFW 1"> <!-- REPLACE WITH IMGUR LINK -->
+                </div>
+                <div class="nsfw-thumb" onclick="toggleBlur(this)">
+                    <img src="https://i.imgur.com/7Z7Z7Z7.jpg" alt="NSFW 2"> <!-- REPLACE WITH IMGUR LINK -->
+                </div>
+                <div class="nsfw-thumb" onclick="toggleBlur(this)">
+                    <img src="https://i.imgur.com/8A8A8A8.jpg" alt="NSFW 3"> <!-- REPLACE WITH IMGUR LINK -->
+                </div>
+                <div class="nsfw-thumb" onclick="toggleBlur(this)">
+                    <img src="https://i.imgur.com/9B9B9B9.jpg" alt="NSFW 4"> <!-- REPLACE WITH IMGUR LINK -->
+                </div>
+                <div class="nsfw-thumb" onclick="toggleBlur(this)">
+                    <img src="https://i.imgur.com/0C0C0C0.jpg" alt="NSFW 5"> <!-- REPLACE WITH IMGUR LINK -->
+                </div>
             </div>
         </div>
 
@@ -574,6 +574,12 @@
             </ul>
 
             <br>
+            <p><strong>Pricing</strong></p>
+            <p>Base price: from $150 USD</p>
+            <p>Larger or more complex work is quoted individually.</p>
+            <p>Commercial use, multiple characters, detailed backgrounds, tight deadlines, or complex designs may increase the price.</p>
+            
+            <br>
             <p><strong>Process</strong></p>
             <ol style="padding-left: 20px; margin-bottom: 20px;">
                 <li>Send a request through the form.</li>
@@ -589,7 +595,7 @@
             <p><strong>Terms Summary</strong></p>
             <ul class="commission-list">
                 <li>Before requesting, please include clear references, intended usage, budget range, and any deadline.</li>
-                <li>I may decline requests that do not fit my work or comfort zone (Though I have a very broad range).</li>
+                <li>I may decline requests that do not fit my work or comfort zone.</li>
                 <li>Clear references are required.</li>
                 <li>Commercial use must be discussed upfront.</li>
                 <li>Major revisions after final approval may cost extra.</li>
@@ -601,62 +607,88 @@
         </div>
 
         <!-- THE COMMISSION FORM -->
-        <!-- The form sends the calculation directly to your Gmail via FormSubmit.co -->
         <form action="https://formsubmit.co/eryndorcontact@gmail.com" method="POST" id="commissionForm">
             <input type="hidden" name="_subject" value="New Commission Request from Website!">
             <input type="hidden" name="_captcha" value="false">
-            <!-- Redirects to home page after submission -->
-            <input type="hidden" name="_next" value="https://your-website-url.com"> 
+            <!-- This hidden field will be populated by JavaScript with the calculated total -->
+            <input type="hidden" name="Calculated Total Price" id="hiddenTotalPrice" value="150">
 
-            <h3>Request Form</h3>
+            <h3 style="margin-bottom: 15px;">Commission Request Form</h3>
 
-            <!-- Base Type -->
+            <!-- BASE TYPE -->
             <div class="form-group">
-                <label>Base Type (Base Price: $150)</label>
-                <select name="Base Type" required>
-                    <option value="">Select a base...</option>
-                    <option value="Bust Up">Bust Up</option>
-                    <option value="Half Body">Half Body</option>
-                    <option value="Full Body">Full Body</option>
+                <label>Base Type</label>
+                <select name="Base Type" id="baseType" required onchange="calculatePrice()">
+                    <option value="Bust Up" data-price="150">Bust Up - $150</option>
+                    <option value="Half Body" data-price="200">Half Body - $200</option>
+                    <option value="Full Body" data-price="250">Full Body - $250</option>
                 </select>
             </div>
 
-            <!-- Style -->
+            <!-- STYLE -->
             <div class="form-group">
                 <label>Style</label>
                 <select name="Style" required>
-                    <option value="">Select a style...</option>
-                    <option value="Lineart">Lineart</option>
-                    <option value="Flat Colors">Flat Colors</option>
-                    <option value="Rendered">Rendered</option>
+                    <option value="Anime">Anime</option>
+                    <option value="Furry">Furry</option>
                 </select>
             </div>
 
-            <!-- Background Options -->
+            <!-- LINEART / FLAT / RENDERED -->
+            <div class="form-group">
+                <label>Finish</label>
+                <select name="Finish" id="finishType" required onchange="calculatePrice()">
+                    <option value="Lineart" data-price="1.0">Lineart (Standard Price)</option>
+                    <option value="Flat Color" data-price="1.2">Flat Color (+20%)</option>
+                    <option value="Rendered" data-price="1.5">Rendered (+50%)</option>
+                </select>
+            </div>
+
+            <!-- BACKGROUND -->
             <div class="form-group">
                 <label>Background</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="Background" value="None (No extra charge)" required> None (No extra charge)</label>
-                    <label><input type="radio" name="Background" value="Simple (+10%)"> Simple (+10%)</label>
-                    <label><input type="radio" name="Background" value="Complex (+50%)"> Complex (+50%)</label>
-                </div>
-                <div class="pricing-note">Complex backgrounds will significantly increase the final price.</div>
+                <select name="Background" id="bgType" required onchange="calculatePrice()">
+                    <option value="None" data-price="0">No Background (+$0)</option>
+                    <option value="Simple" data-price="10">Simple Background (+10%)</option>
+                    <option value="Complex" data-price="50">Complex Background (+50%)</option>
+                </select>
             </div>
 
-            <!-- Add-ons (Checkboxes) -->
+            <!-- ADD-ONS / THEMES -->
             <div class="form-group">
-                <label>Add-ons (Select all that apply)</label>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="Addons" value="Extra Character (+50%)"> Extra Character(s) (+50% per person)</label>
-                    <label><input type="checkbox" name="Addons" value="Gore (+50%)"> Gore (+50%)</label>
-                    <label><input type="checkbox" name="Addons" value="NSFW (+50%)"> NSFW (+50%)</label>
+                <label>Add-ons & Themes (Select all that apply)</label>
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 5px;">
+                    <label style="font-weight: normal; display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="Addons" value="Extra Character (+50%)" id="addChar" onchange="calculatePrice()" style="width: auto; transform: scale(1.2);"> 
+                        Extra Character (+50%)
+                    </label>
+                    <label style="font-weight: normal; display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="Addons" value="Gore (+50%)" id="addGore" onchange="calculatePrice()" style="width: auto; transform: scale(1.2);"> 
+                        Gore (+50%)
+                    </label>
+                    <label style="font-weight: normal; display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="Addons" value="NSFW (+50%)" id="addNsfw" onchange="calculatePrice()" style="width: auto; transform: scale(1.2);"> 
+                        NSFW (+50%)
+                    </label>
                 </div>
             </div>
 
-            <!-- SINGLE DESCRIPTION BOX -->
+            <!-- DYNAMIC PRICE ESTIMATOR -->
+            <div class="price-estimator">
+                <h4>Estimated Total</h4>
+                <div class="price-total" id="displayPrice">$150.00</div>
+                <div class="price-breakdown" id="priceBreakdown">Base: $150</div>
+            </div>
+
+            <!-- DESCRIPTION BOX -->
             <div class="form-group">
                 <label for="description">Character Description & Details</label>
-                <textarea id="description" name="Description" placeholder="Describe your character(s), scene, mood, personality, and any specific details. Please paste any reference links here." required></textarea>
+                <textarea id="description" name="Character Description" placeholder="Describe your character, scene, preferred mood, references (links to Pinterest/Google Drive are fine here), and any specific details." required></textarea>
+            </div>
+
+            <!-- PAYMENT NOTE -->
+            <div class="form-group" style="background: #f9f9f9; padding: 15px; border: 1px solid #eee;">
+                <p><strong>Payment Note:</strong> Payments are currently processed via PayPal (Invoicing). If PayPal is unavailable, we will arrange an alternative method upon contact.</p>
             </div>
 
             <button type="submit" class="btn" style="width: 100%;">Submit Request</button>
@@ -669,9 +701,9 @@
 </div>
 
 <!-- LIGHTBOX OVERLAY -->
-<div id="lightbox" class="lightbox">
-    <img id="lightbox-img" src="" alt="Zoomed Artwork">
-    <button class="close-btn" onclick="closeLightbox()">Back to Gallery</button>
+<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <img id="lightboxImg" src="" alt="Zoomed Artwork">
+    <button class="lightbox-close" onclick="closeLightbox(event)">Back to Gallery</button>
 </div>
 
 <script>
@@ -698,7 +730,6 @@
         
         slideIndex++;
         if (slideIndex > slides.length) { slideIndex = 1 }
-        
         slides[slideIndex - 1].classList.add("active");
     }
 
@@ -707,45 +738,88 @@
         if (slides.length > 0) {
             slides[0].classList.add("active");
             slideIndex = 1;
-            // Change image every 6 seconds
-            slideInterval = setInterval(showSlides, 6000);
+            slideInterval = setInterval(showSlides, 5000); // 5 seconds
         }
     }
 
-    // --- LIGHTBOX (ZOOM) LOGIC ---
+    // --- LIGHTBOX LOGIC ---
     function openLightbox(src) {
-        if (!src) return;
-        document.getElementById('lightbox-img').src = src;
-        document.getElementById('lightbox').style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        lightboxImg.src = src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
     }
 
-    function closeLightbox() {
-        document.getElementById('lightbox').style.display = 'none';
-        document.body.style.overflow = 'auto'; // Restore scrolling
+    function closeLightbox(event) {
+        // Prevents closing if clicking inside the image itself, but closes if clicking the background or button
+        if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
     }
 
-    // --- NSFW UNBLUR LOGIC ---
-    function unblurImage(element) {
-        element.classList.add('unblurred');
+    // --- NSFW BLUR TOGGLE ---
+    function toggleBlur(element) {
+        const img = element.querySelector('img');
+        if (img.style.filter === 'blur(0px)' || img.classList.contains('unblurred')) {
+            img.style.filter = 'blur(15px)';
+            img.classList.remove('unblurred');
+        } else {
+            img.style.filter = 'blur(0px)';
+            img.classList.add('unblurred');
+        }
+    }
+
+    // --- PRICE CALCULATOR LOGIC ---
+    function calculatePrice() {
+        // Base price from Base Type
+        const baseTypeSelect = document.getElementById('baseType');
+        const basePrice = parseFloat(baseTypeSelect.options[baseTypeSelect.selectedIndex].getAttribute('data-price'));
+        
+        // Finish Multiplier
+        const finishSelect = document.getElementById('finishType');
+        const finishMultiplier = parseFloat(finishSelect.options[finishSelect.selectedIndex].getAttribute('data-price'));
+        
+        // Background Multiplier
+        const bgSelect = document.getElementById('bgType');
+        const bgMultiplier = parseFloat(bgSelect.options[bgSelect.selectedIndex].getAttribute('data-price')) / 100; // Convert to decimal
+        
+        // Add-ons
+        const addChar = document.getElementById('addChar').checked ? 0.5 : 0;
+        const addGore = document.getElementById('addGore').checked ? 0.5 : 0;
+        const addNsfw = document.getElementById('addNsfw').checked ? 0.5 : 0;
+        const totalAddons = addChar + addGore + addNsfw;
+
+        // Calculation Formula: Base * (Finish %) + (Base * BG %) + (Base * Addons %)
+        // Simplified: Base * (FinishMultiplier + bgMultiplier + totalAddons)
+        // Note: The logic assumes finish is a multiplier of base, bg and addons are additive percentages.
+        // If the client wants "Rendered" and "Complex Background", it stacks.
+        
+        let finalPrice = basePrice * finishMultiplier; // Apply finish style
+        finalPrice += basePrice * bgMultiplier; // Add background percentage
+        finalPrice += basePrice * totalAddons; // Add addon percentages
+
+        // Update the UI
+        document.getElementById('displayPrice').innerText = '$' + finalPrice.toFixed(2) + ' USD';
+        
+        // Update Breakdown Text (optional, for clarity)
+        let breakdown = `Base: $${basePrice}`;
+        if(finishMultiplier > 1) breakdown += ` | Finish: x${finishMultiplier}`;
+        if(bgMultiplier > 0) breakdown += ` | BG: +${(bgMultiplier*100).toFixed(0)}%`;
+        if(totalAddons > 0) breakdown += ` | Addons: +${(totalAddons*100).toFixed(0)}%`;
+        document.getElementById('priceBreakdown').innerText = breakdown;
+
+        // Set the hidden input for the email
+        document.getElementById('hiddenTotalPrice').value = finalPrice.toFixed(2);
     }
 
     // Initialize on load
     window.onload = function() {
         initSlideshow();
+        calculatePrice(); // Set initial price
     };
-
-    // Allow closing lightbox with Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeLightbox();
-        }
-    });
-
-    // Handle form submission (Optional: Prevent double clicks)
-    document.getElementById('commissionForm').addEventListener('submit', function(e) {
-        // You can add a loading spinner here
-    });
 </script>
 
 </body>
