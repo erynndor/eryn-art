@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ERYN - Illustration & Character Art</title>
+    <title>ERYN · Commission</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* --- GLOBAL STYLES --- */
+        /* --- GLOBAL STYLES (consistent with main page) --- */
         :root {
             --bg-color: #f4f4f4;
             --card-bg: #ffffff;
@@ -34,7 +34,6 @@
             line-height: 1.6;
         }
 
-        /* --- MAIN CONTAINER --- */
         .container {
             background-color: var(--card-bg);
             width: 100%;
@@ -45,7 +44,6 @@
             position: relative;
         }
 
-        /* --- TYPOGRAPHY --- */
         h1 {
             font-family: var(--font-serif);
             font-size: 3.5rem;
@@ -75,7 +73,6 @@
             line-height: 1.5;
         }
 
-        /* --- SOCIAL ICONS --- */
         .social-icons {
             display: flex;
             justify-content: center;
@@ -97,14 +94,12 @@
             opacity: 0.7;
         }
 
-        /* SVG Icon Styles */
         .icon-svg {
             width: 28px;
             height: 28px;
             fill: currentColor;
         }
 
-        /* --- BUTTONS (HOME) --- */
         .main-buttons {
             display: flex;
             flex-direction: column;
@@ -113,6 +108,662 @@
         }
 
         .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            font-size: 1.1rem;
+            font-family: var(--font-serif);
+            transition: background 0.3s, color 0.3s;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .btn:hover {
+            background-color: var(--border-color);
+            color: #fff;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fade 2s ease-in-out;
+        }
+
+        @keyframes fade {
+            from { opacity: 0.4; }
+            to { opacity: 1; }
+        }
+
+        .gallery-divider {
+            border: 0;
+            border-top: 1px solid var(--border-color);
+            margin: 30px 0;
+        }
+
+        .commission-text {
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .commission-text strong {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+        }
+
+        .commission-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 20px;
+        }
+
+        .commission-list li {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .commission-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-family: var(--font-serif);
+        }
+
+        .form-group select, 
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            background: #fff;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 5px;
+        }
+
+        .checkbox-group label {
+            font-weight: normal;
+            font-family: var(--font-sans);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            transform: scale(1.2);
+        }
+
+        /* Radio group for background */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 5px;
+        }
+
+        .radio-group label {
+            font-weight: normal;
+            font-family: var(--font-sans);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .radio-group input[type="radio"] {
+            width: auto;
+            transform: scale(1.2);
+        }
+
+        /* Price highlight */
+        .price-badge {
+            background: #f0f0f0;
+            padding: 12px 15px;
+            border-left: 4px solid #000;
+            font-family: var(--font-serif);
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        .price-badge span {
+            font-weight: 700;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #666;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: var(--font-sans);
+        }
+
+        .back-btn:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* small note */
+        .note {
+            font-size: 0.85rem;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        /* responsive padding */
+        @media (max-width: 480px) {
+            .container { padding: 25px 20px; }
+            h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ================= PAGE 1: HOME ================= -->
+    <div id="home" class="page active">
+        <h1>ERYN</h1>
+        <p class="subtitle">Illustrations, Character art,<br>and Cinematic worlds by Eryn.</p>
+
+        <!-- Social Icons -->
+        <div class="social-icons">
+            <a href="https://x.com/eryndor_0" target="_blank" title="Twitter/X">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@eryndor__0?_r=1&_t=ZS-99rZc0lJjfD" target="_blank" title="TikTok">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/eryndor_01?stkn=MWxwMDB5NG4zM3BlaA==" target="_blank" title="Instagram">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://www.patreon.com/Eryndor_01?utm_campaign=creatorshare_creator" target="_blank" title="Patreon">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.386 3.252c-4.356 0-7.892 3.536-7.892 7.892 0 4.356 3.536 7.892 7.892 7.892 4.356 0 7.892-3.536 7.892-7.892 0-4.356-3.536-7.892-7.892-7.892zm-10.55.748v16h3v-16h-3z"/></svg>
+            </a>
+            <a href="https://jannapaypal6.artstation.com/" target="_blank" title="ArtStation">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2 18.5l2.5-4.3h5.1L7 18.5H2zM21.5 18.5h-6.8l-3.4-5.9 3.4-5.9h6.8l-3.4 5.9 3.4 5.9zM12.5 2L2 20h4.5l6.5-11.2L19.5 20H24L12.5 2z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/share/1behpyvBWH/" target="_blank" title="Facebook">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.pixiv.net/users/87870114" target="_blank" title="Pixiv">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2zm4 8h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            </a>
+            <a href="https://www.tumblr.com/eryndor00?source=share" target="_blank" title="Tumblr">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M14.5 2v3.5h3.5v4h-3.5v5.5c0 1.5.5 2 2 2h1.5v4h-3.5c-4 0-6-2-6-6V9.5H5.5v-4H8V2h6.5z"/></svg>
+            </a>
+            <a href="https://youtube.com/@eryndor_0?si=2BaymauSGDOSluEE" target="_blank" title="YouTube">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="mailto:eryndorcontact@gmail.com" title="Email">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </a>
+        </div>
+
+        <div class="main-buttons">
+            <a href="#" class="btn" onclick="showPage('gallery')">Gallery</a>
+            <a href="#" class="btn" onclick="showPage('commissions')">Commission</a>
+            <a href="mailto:eryndorcontact@gmail.com" class="btn">Email</a>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 2: GALLERY ================= -->
+    <div id="gallery" class="page">
+        <h2>Gallery</h2>
+        <p class="subtitle">Selected character art, illustrations, and concept work.</p>
+        
+        <div class="slideshow-container">
+            <div class="slide active">
+                <img src="https://via.placeholder.com/600x400/cccccc/666666?text=Artwork+1" alt="Artwork 1">
+            </div>
+            <div class="slide">
+                <img src="https://via.placeholder.com/600x400/cccccc/666666?text=Artwork+2" alt="Artwork 2">
+            </div>
+            <div class="slide">
+                <img src="https://via.placeholder.com/600x400/cccccc/666666?text=Artwork+3" alt="Artwork 3">
+            </div>
+        </div>
+
+        <hr class="gallery-divider">
+        
+        <button class="back-btn" onclick="showPage('home')">&larr; Back to Home</button>
+    </div>
+
+    <!-- ================= PAGE 3: COMMISSIONS (SIMPLIFIED) ================= -->
+    <div id="commissions" class="page">
+        <h2>Commissions</h2>
+        
+        <div class="commission-text">
+            <p>Painterly anime character art, illustration, and project-based artwork. Commissions start at <strong>$150 USD</strong>.</p>
+            <p>Pricing depends on complexity, number of characters, background, and style. Use the form below to estimate your total.</p>
+            
+            <br>
+            <p><strong>What I Offer</strong></p>
+            <ul class="commission-list">
+                <li>Character art</li>
+                <li>Portraits / busts</li>
+                <li>Full-body illustrations</li>
+                <li>Character sheets</li>
+                <li>Promotional or project artwork</li>
+                <li>Dark, surreal, emotional, or cinematic focused pieces</li>
+            </ul>
+
+            <br>
+            <p><strong>Process</strong></p>
+            <ol style="padding-left: 20px; margin-bottom: 20px;">
+                <li>Fill out the request form below.</li>
+                <li>I review the idea and confirm the quote.</li>
+                <li>50% payment confirms your slot.</li>
+                <li>I send sketch updates.</li>
+                <li>Final preview sent, remaining 50% due.</li>
+                <li>High-resolution final artwork delivered.</li>
+            </ol>
+
+            <br>
+            <p><strong>Terms Summary</strong></p>
+            <ul class="commission-list">
+                <li>Clear references are required (links or detailed description).</li>
+                <li>Commercial use must be discussed upfront.</li>
+                <li>Major revisions after final approval may cost extra.</li>
+                <li>I retain rights to post final artwork unless privacy requested.</li>
+                <li>Timelapse requests must be made prior to starting.</li>
+            </ul>
+        </div>
+
+        <!-- THE COMMISSION FORM (SIMPLIFIED + CALCULATOR) -->
+        <form action="https://formsubmit.co/eryndorcontact@gmail.com" method="POST" id="commissionForm">
+            <!-- FormSubmit Config -->
+            <input type="hidden" name="_subject" value="New Commission Request from Website!">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://your-website-url.com/thankyou.html">
+
+            <h3 style="font-family: var(--font-serif); margin-bottom: 15px;">Request Form</h3>
+
+            <!-- Base Type -->
+            <div class="form-group">
+                <label>Base Type</label>
+                <select name="Base Type" id="baseType" required>
+                    <option value="">Select a base...</option>
+                    <option value="Bust Up">Bust Up</option>
+                    <option value="Half Body">Half Body</option>
+                    <option value="Full Body">Full Body</option>
+                </select>
+            </div>
+
+            <!-- Style -->
+            <div class="form-group">
+                <label>Style</label>
+                <select name="Style" id="artStyle" required>
+                    <option value="">Select a style...</option>
+                    <option value="Anime">Anime</option>
+                    <option value="Furry">Furry</option>
+                </select>
+            </div>
+
+            <!-- Art Finish: Lineart / Flat / Rendered -->
+            <div class="form-group">
+                <label>Finish</label>
+                <select name="Finish" id="finish" required>
+                    <option value="">Select finish...</option>
+                    <option value="Lineart">Lineart (base price)</option>
+                    <option value="Flat">Flat (+15%)</option>
+                    <option value="Rendered">Rendered (+30%)</option>
+                </select>
+            </div>
+
+            <!-- Background (radio, no background = 0%) -->
+            <div class="form-group">
+                <label>Background</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="Background" value="No Background" data-mult="0" checked> No Background (+0%)</label>
+                    <label><input type="radio" name="Background" value="Simple Background" data-mult="0.05"> Simple Background (+5%)</label>
+                    <label><input type="radio" name="Background" value="Complex Background" data-mult="0.30"> Complex Background (+30%)</label>
+                </div>
+            </div>
+
+            <!-- Number of Characters -->
+            <div class="form-group">
+                <label>Number of Characters</label>
+                <input type="number" id="charCount" name="Number of Characters" min="1" value="1" required>
+                <div class="note">1 character = base price. Each additional character adds +50% to the base.</div>
+            </div>
+
+            <!-- Extra Content: Gore and NSFW (each +50%) -->
+            <div class="form-group">
+                <label>Content Add-ons</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="goreCheck" name="Content" value="Gore (+50%)"> Gore (+50%)</label>
+                    <label><input type="checkbox" id="nsfwCheck" name="Content" value="NSFW (+50%)"> NSFW (+50%)</label>
+                </div>
+            </div>
+
+            <!-- Mood & Details (single description box) -->
+            <div class="form-group">
+                <label for="description">Mood & Details / Description</label>
+                <textarea id="description" name="Description" placeholder="Describe the mood, character personality, references (you can paste links here), and any specific details." required></textarea>
+            </div>
+
+            <!-- Price Estimate Display -->
+            <div class="price-badge">
+                Estimated total: <span id="priceDisplay">$150</span> USD
+            </div>
+
+            <!-- Payment Note -->
+            <div class="form-group" style="background: #f9f9f9; padding: 15px; border: 1px solid #eee; margin-top: 20px;">
+                <p><strong>Payment Note:</strong> Payments are currently processed via PayPal (Invoicing). If PayPal is unavailable, we will arrange an alternative method upon contact.</p>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%;">Submit</button>
+        </form>
+
+        <br>
+        <button class="back-btn" onclick="showPage('home')">&larr; Back to Home</button>
+    </div>
+
+</div>
+
+<script>
+    // --- PAGE NAVIGATION ---
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        document.getElementById(pageId).classList.add('active');
+        window.scrollTo(0, 0);
+    }
+
+    // --- SLIDESHOW ---
+    let slideIndex = 0;
+    let slideInterval;
+
+    function showSlides() {
+        let slides = document.querySelectorAll(".slide");
+        if (slides.length === 0) return;
+        
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove("active");
+        }
+        
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        
+        slides[slideIndex - 1].classList.add("active");
+    }
+
+    function initSlideshow() {
+        let slides = document.querySelectorAll(".slide");
+        if (slides.length > 0) {
+            slides[0].classList.add("active");
+            slideIndex = 1;
+            slideInterval = setInterval(showSlides, 6000);
+        }
+    }
+
+    // --- PRICE CALCULATOR ---
+    const BASE_PRICE = 150;
+
+    function calculatePrice() {
+        // Base type doesn't change price, but style/finish/background/characters/gore/nsfw do.
+        // Actually base type is just descriptive, but we keep it for form info.
+        
+        // Get finish multiplier
+        const finishSelect = document.getElementById('finish');
+        let finishMult = 0;
+        if (finishSelect.value === 'Lineart') finishMult = 0;
+        else if (finishSelect.value === 'Flat') finishMult = 0.15;
+        else if (finishSelect.value === 'Rendered') finishMult = 0.30;
+
+        // Background multiplier
+        let bgMult = 0;
+        const bgRadios = document.getElementsByName('Background');
+        for (let radio of bgRadios) {
+            if (radio.checked) {
+                bgMult = parseFloat(radio.dataset.mult) || 0;
+                break;
+            }
+        }
+
+        // Number of characters
+        const charInput = document.getElementById('charCount');
+        let charCount = parseInt(charInput.value) || 1;
+        if (charCount < 1) charCount = 1;
+        // Additional characters: +50% per extra character. So base price * (1 + 0.5*(charCount-1))
+        // But we apply to base price before other multipliers? Typically it's additive on base or total? Let's make it simple:
+        // Start with base price, add 50% of base for each extra character.
+        // Then apply finish, background, gore, nsfw as multipliers on the subtotal.
+        let subtotal = BASE_PRICE;
+        if (charCount > 1) {
+            subtotal += BASE_PRICE * 0.5 * (charCount - 1);
+        }
+
+        // Apply finish and background as additive percentages on subtotal? 
+        // The user said "simple background 5%, complex 30%" and "lineart or flat or rendered". 
+        // We'll treat them as multipliers on the subtotal (after character adjustment).
+        // Actually simplest: total = (base * charMultiplier) * (1 + finishMult + bgMult + gore + nsfw)
+        // But the instruction: "If there's 2 or more people additional 50%" and "Gore 50% NSFW 50%".
+        // We'll do additive on base, then apply other multipliers? Let's make it intuitive:
+        // Base price = 150 for 1 char. Each extra char adds 50% of base. Then we add finish%, background%, gore%, nsfw% on the subtotal.
+        // This is simpler and matches "additional 50% to the base" idea.
+        
+        // Recalculate with subtotal = base + extraCharCost
+        subtotal = BASE_PRICE;
+        if (charCount > 1) {
+            subtotal += BASE_PRICE * 0.5 * (charCount - 1);
+        }
+
+        // Now add finish, background, gore, nsfw as percentage of subtotal? 
+        // Or original base? Let's use subtotal to be fair to extra characters.
+        // The user example: "5 family, complex background, rendered, wholesome" 
+        // They want to calculate in gmail. Let's estimate:
+        // 5 family: base + 4*50% = 150 + 300 = 450
+        // complex background 30% of 450? = 135, rendered 30% of 450 = 135, total 720? 
+        // That seems high. Maybe they meant additional percentages on the base price only?
+        // Let's clarify: "Gore 50% NSFW 50%" likely means +50% of base. 
+        // We'll apply all add-ons as percentage of the *base price* (150) to keep it consistent.
+        // So:
+        // base = 150
+        // extraChars = (charCount-1) * 0.5 * 150
+        // finishAdd = finishMult * 150
+        // backgroundAdd = bgMult * 150
+        // goreAdd = gore ? 0.5 * 150 : 0
+        // nsfwAdd = nsfw ? 0.5 * 150 : 0
+        // total = base + extraChars + finishAdd + backgroundAdd + goreAdd + nsfwAdd
+        // This is transparent and easy to understand. 
+        // The "5 family" example: base 150 + 4*75 = 450. complex bg 30% of 150=45, rendered 30% of 150=45, no gore/nsfw = 540.
+        // That feels more reasonable.
+
+        // So we'll implement the percentage-of-base approach.
+        let total = BASE_PRICE;
+
+        // Extra characters
+        if (charCount > 1) {
+            total += (charCount - 1) * BASE_PRICE * 0.5;
+        }
+
+        // Finish
+        total += BASE_PRICE * finishMult;
+
+        // Background
+        total += BASE_PRICE * bgMult;
+
+        // Gore
+        const goreCheck = document.getElementById('goreCheck');
+        if (goreCheck.checked) {
+            total += BASE_PRICE * 0.5;
+        }
+
+        // NSFW
+        const nsfwCheck = document.getElementById('nsfwCheck');
+        if (nsfwCheck.checked) {
+            total += BASE_PRICE * 0.5;
+        }
+
+        // Round to nearest dollar
+        total = Math.round(total);
+
+        // Update display
+        document.getElementById('priceDisplay').textContent = '$' + total;
+        return total;
+    }
+
+    // Attach event listeners to form elements
+    function initPriceCalculator() {
+        const form = document.getElementById('commissionForm');
+        if (!form) return;
+
+        const inputs = form.querySelectorAll('select, input[type="number"], input[type="checkbox"], input[type="radio"]');
+        inputs.forEach(input => {
+            input.addEventListener('change', calculatePrice);
+            input.addEventListener('input', calculatePrice);
+        });
+
+        // Initial calculation
+        calculatePrice();
+    }
+
+    // On window load
+    window.onload = function() {
+        initSlideshow();
+        initPriceCalculator();
+    };
+
+    // Form submission handler (optional)
+    document.getElementById('commissionForm')?.addEventListener('submit', function(e) {
+        // You could add a hidden field with the calculated price if desired
+        const total = calculatePrice();
+        // Append hidden input for total price
+        const hidden = document.createElement('input');
+        hidden.type = 'hidden';
+        hidden.name = 'Estimated Total';
+        hidden.value = '$' + total + ' USD';
+        this.appendChild(hidden);
+    });
+</script>
+
+</body>
+                </html>
+        <br>
+        <button class="back-btn" onclick="showPage('home')">&larr; Back to Home</button>
+    </div>
+
+</div>
+
+<script>
+    // --- PAGE NAVIGATION LOGIC ---
+    function showPage(pageId) {
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        // Show the selected page
+        document.getElementById(pageId).classList.add('active');
+        // Scroll to top
+        window.scrollTo(0, 0);
+    }
+
+    // --- SLIDESHOW LOGIC ---
+    let slideIndex = 0;
+    let slideInterval;
+
+    function showSlides() {
+        let slides = document.querySelectorAll(".slide");
+        if (slides.length === 0) return;
+        
+        // Hide all slides
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove("active");
+        }
+        
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        
+        // Show the current slide
+        slides[slideIndex - 1].classList.add("active");
+    }
+
+    // Initialize slideshow
+    function initSlideshow() {
+        let slides = document.querySelectorAll(".slide");
+        if (slides.length > 0) {
+            slides[0].classList.add("active");
+            slideIndex = 1;
+            // Change image every 6 seconds (slow)
+            slideInterval = setInterval(showSlides, 6000);
+        }
+    }
+
+    // Initialize on load
+    window.onload = initSlideshow;
+
+    // Handle form submission (optional: prevent double submission)
+    document.getElementById('commissionForm').addEventListener('submit', function(e) {
+        // You can add a loading spinner here if you want
+        // alert("Submitting form..."); 
+    });
+</script>
+
+</body>
+</html>        .btn {
             display: block;
             width: 100%;
             padding: 15px;
