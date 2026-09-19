@@ -230,43 +230,23 @@
         /* --- NSFW / GORE SECTION --- */
 .nsfw-gallery {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
     margin-top: 15px;
 }
 
-.nsfw-thumb {
-    position: relative;
+.nsfw-gallery img {
     width: 100%;
-    padding-bottom: 100%; /* Square */
-    background: #eee;
-    border: 1px solid #ddd;
-    overflow: hidden;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.nsfw-thumb img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    height: 120px;
     object-fit: cover;
-    filter: blur(15px);
-    transition: filter 0.4s ease;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s;
 }
 
-.nsfw-thumb img.unblurred {
-    filter: blur(0);
-}
-
-.nsfw-warning {
-    font-size: 0.85rem;
-    text-align: center;
-    color: #666;
-    margin-bottom: 10px;
-    font-style: italic;
+.nsfw-gallery img:hover {
+    transform: scale(1.05);
 }
         
         /* --- LIGHTBOX (ZOOM) --- */
@@ -540,20 +520,11 @@
         <!-- 6. NSFW / GORE / THEMES SECTION -->
 <div class="gallery-section">
     <div class="section-title">NSFW / Gore / Themes</div>
-    <p class="nsfw-warning">Click to reveal. Content is blurred by default.</p>
     <div class="nsfw-gallery">
-        <div class="nsfw-thumb" onclick="toggleNsfw(this)">
-            <img src="https://i.imgur.com/apOlXA9.jpeg" alt="NSFW 1">
-        </div>
-        <div class="nsfw-thumb" onclick="toggleNsfw(this)">
-            <img src="https://i.imgur.com/zQqoV9e.jpeg" alt="NSFW 2">
-        </div>
-        <div class="nsfw-thumb" onclick="toggleNsfw(this)">
-            <img src="https://i.imgur.com/cwraQ4D.jpeg" alt="NSFW 3">
-        </div>
-        <div class="nsfw-thumb" onclick="toggleNsfw(this)">
-            <img src="https://i.imgur.com/BlgWaeM.jpeg" alt="NSFW 4">
-        </div>
+        <img src="https://i.imgur.com/apOlXA9.jpeg" alt="NSFW 1">
+        <img src="https://i.imgur.com/zQqoV9e.jpeg" alt="NSFW 2">
+        <img src="https://i.imgur.com/cwraQ4D.jpeg" alt="NSFW 3">
+        <img src="https://i.imgur.com/BlgWaeM.jpeg" alt="NSFW 4">
     </div>
 </div>
 
