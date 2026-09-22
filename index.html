@@ -347,6 +347,37 @@
             min-height: 120px;
         }
 
+        /* Client contact fields */
+.form-group input[type="text"],
+.form-group input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--border-color);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
+}
+
+/* Contact section header */
+.contact-section-title {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    margin: 25px 0 15px 0;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #ddd;
+    letter-spacing: 0.5px;
+}
+
         /* Price Calculator Box */
         .price-estimator {
             background: #f4f4f4;
@@ -671,6 +702,107 @@
     </div>
 
 </div>
+
+    <form action="https://formsubmit.co/eryndorcontact@gmail.com" method="POST" id="commissionForm">
+    <!-- FormSubmit Config -->
+    <input type="hidden" name="_subject" value="New Commission Request from Website!">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://your-website-url.com/thankyou.html">
+
+    <h3 style="font-family: var(--font-serif); margin-bottom: 15px;">Request Form</h3>
+
+    <!-- ===== CONTACT INFO ===== -->
+    <p class="contact-section-title">Your Contact Info</p>
+
+    <div class="form-group">
+        <label for="clientName">Your Name / Handle</label>
+        <input type="text" id="clientName" name="Name" placeholder="e.g., Jane / @janedraws" required>
+    </div>
+
+    <div class="form-group">
+        <label for="clientEmail">Your Email</label>
+        <input type="email" id="clientEmail" name="email" placeholder="you@example.com" required>
+    </div>
+
+    <!-- ===== COMMISSION DETAILS ===== -->
+    <p class="contact-section-title">Commission Details</p>
+
+    <!-- Base Type -->
+    <div class="form-group">
+        <label>Base Type</label>
+        <select name="Base Type" id="baseType" required>
+            <option value="">Select a base...</option>
+            <option value="Bust Up">Bust Up</option>
+            <option value="Half Body">Half Body</option>
+            <option value="Full Body">Full Body</option>
+        </select>
+    </div>
+
+    <!-- Style -->
+    <div class="form-group">
+        <label>Style</label>
+        <select name="Style" id="artStyle" required>
+            <option value="">Select a style...</option>
+            <option value="Anime">Anime</option>
+            <option value="Furry">Furry</option>
+        </select>
+    </div>
+
+    <!-- Finish -->
+    <div class="form-group">
+        <label>Finish</label>
+        <select name="Finish" id="finish" required>
+            <option value="">Select finish...</option>
+            <option value="Lineart">Lineart (base price)</option>
+            <option value="Flat">Flat (+15%)</option>
+            <option value="Rendered">Rendered (+30%)</option>
+        </select>
+    </div>
+
+    <!-- Background -->
+    <div class="form-group">
+        <label>Background</label>
+        <div class="radio-group">
+            <label><input type="radio" name="Background" value="No Background" data-mult="0" checked> No Background (+0%)</label>
+            <label><input type="radio" name="Background" value="Simple Background" data-mult="0.05"> Simple Background (+5%)</label>
+            <label><input type="radio" name="Background" value="Complex Background" data-mult="0.30"> Complex Background (+30%)</label>
+        </div>
+    </div>
+
+    <!-- Number of Characters -->
+    <div class="form-group">
+        <label>Number of Characters</label>
+        <input type="number" id="charCount" name="Number of Characters" min="1" value="1" required>
+        <div class="note">1 character = base price. Each additional character adds +50% to the base.</div>
+    </div>
+
+    <!-- Content Add-ons -->
+    <div class="form-group">
+        <label>Content Add-ons</label>
+        <div class="checkbox-group">
+            <label><input type="checkbox" id="goreCheck" name="Content" value="Gore (+50%)"> Gore (+50%)</label>
+            <label><input type="checkbox" id="nsfwCheck" name="Content" value="NSFW (+50%)"> NSFW (+50%)</label>
+        </div>
+    </div>
+
+    <!-- Mood & Details -->
+    <div class="form-group">
+        <label for="description">Mood &amp; Details / Description</label>
+        <textarea id="description" name="Description" placeholder="Describe the mood, character personality, references (links welcome), and any specific details." required></textarea>
+    </div>
+
+    <!-- Price Estimate -->
+    <div class="price-badge">
+        Estimated total: <span id="priceDisplay">$150</span> USD
+    </div>
+
+    <!-- Payment Note -->
+    <div class="form-group" style="background: #f9f9f9; padding: 15px; border: 1px solid #eee; margin-top: 20px;">
+        <p><strong>Payment Note:</strong> Payments are currently processed via PayPal (Invoicing). If PayPal is unavailable, we will arrange an alternative method upon contact.</p>
+    </div>
+
+    <button type="submit" class="btn" style="width: 100%;">Submit</button>
+</form>
 
 <!-- LIGHTBOX OVERLAY -->
 <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
