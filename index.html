@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ERYN · Illustration & Character Art</title>
+    <title>ERYN - Illustration & Character Art</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -34,16 +34,18 @@
             line-height: 1.6;
         }
 
+        /* --- MAIN CONTAINER --- */
         .container {
             background-color: var(--card-bg);
             width: 100%;
-            max-width: 900px;
+            max-width: 800px;
             padding: 40px 30px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             min-height: 80vh;
             position: relative;
         }
 
+        /* --- TYPOGRAPHY --- */
         h1 {
             font-family: var(--font-serif);
             font-size: 3.5rem;
@@ -136,7 +138,7 @@
             color: #fff;
         }
 
-        /* --- GALLERY SECTIONS --- */
+        /* --- GALLERY GENERAL --- */
         .gallery-section {
             margin-bottom: 40px;
         }
@@ -171,7 +173,6 @@
             height: auto;
             display: block;
             object-fit: contain;
-            max-height: 600px;
         }
 
         .slide.active {
@@ -184,76 +185,74 @@
             to { opacity: 1; }
         }
 
-        /* Natural-size gallery items: use object-fit: contain and remove fixed heights */
-        .natural-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 15px;
-            align-items: start;
-        }
-
-        .natural-grid img {
+        /* Containers for larger images (no cropping) */
+        .image-showcase {
             width: 100%;
-            height: auto;
-            object-fit: contain;
-            border: 1px solid #ddd;
-            cursor: pointer;
-            transition: transform 0.2s;
-            background: #fafafa;
-            display: block;
-        }
-
-        .natural-grid img:hover {
-            transform: scale(1.01);
-        }
-
-        /* Video Sized Containers (16:9) – but for showing full art we use natural size */
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
             margin-bottom: 20px;
-            background: #eee;
             border: 1px solid #ddd;
             cursor: pointer;
+            background: #f9f9f9;
             overflow: hidden;
         }
 
-        .video-container img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;  /* changed from cover to contain so art isn't cropped */
-            background: #f9f9f9;
-        }
-
-        /* NSFW / Gore section — natural sizes */
-        .nsfw-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 12px;
-            margin-top: 15px;
-        }
-
-        .nsfw-gallery img {
+        .image-showcase img {
             width: 100%;
             height: auto;
-            object-fit: contain;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: transform 0.2s;
-            background: #f0f0f0;
             display: block;
         }
 
-        .nsfw-gallery img:hover {
-            transform: scale(1.01);
+        /* Standard Grid — now natural sizes with flexible layout */
+        .grid-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
         }
 
-        /* LIGHTBOX */
+        .grid-gallery img {
+            width: auto;
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: transform 0.2s;
+            object-fit: contain;
+        }
+
+        .grid-gallery img:hover {
+            transform: scale(1.02);
+        }
+
+        /* --- NSFW / GORE SECTION --- */
+        .nsfw-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        .nsfw-gallery img {
+            width: auto;
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.2s, filter 0.2s;
+            filter: blur(15px);
+            object-fit: contain;
+        }
+
+        .nsfw-gallery img.unblurred {
+            filter: blur(0px);
+        }
+
+        .nsfw-gallery img:hover {
+            transform: scale(1.02);
+        }
+
+        /* --- LIGHTBOX (ZOOM) --- */
         .lightbox {
             display: none;
             position: fixed;
@@ -322,6 +321,7 @@
             font-weight: bold;
         }
 
+        /* Form Styles */
         .form-group {
             margin-bottom: 20px;
             text-align: left;
@@ -334,8 +334,8 @@
             font-family: var(--font-serif);
         }
 
-        .form-group select,
-        .form-group input,
+        .form-group select, 
+        .form-group input, 
         .form-group textarea {
             width: 100%;
             padding: 12px;
@@ -350,6 +350,7 @@
             min-height: 120px;
         }
 
+        /* Price Calculator Box */
         .price-estimator {
             background: #f4f4f4;
             border: 1px solid #ccc;
@@ -376,6 +377,7 @@
             margin-top: 5px;
         }
 
+        /* Back Button */
         .back-btn {
             display: inline-block;
             margin-top: 20px;
@@ -393,6 +395,7 @@
             text-decoration: underline;
         }
 
+        /* Hide pages by default */
         .page {
             display: none;
         }
@@ -407,68 +410,18 @@
             margin: 30px 0;
         }
 
-        /* style for the upload note */
-        .upload-hint {
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 4px;
+        /* File input styling */
+        .file-input-wrapper {
+            margin-top: 5px;
         }
 
-        /* blur toggle for NSFW if needed (optional, but we keep toggle) */
-        .nsfw-item {
-            position: relative;
-            cursor: pointer;
-        }
-
-        /* disabled checkbox style */
-        .checkbox-group label {
-            font-weight: normal;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            margin-bottom: 6px;
-        }
-
-        .checkbox-group input[type="checkbox"] {
-            width: auto;
-            transform: scale(1.2);
-            margin-right: 4px;
-        }
-
-        /* Ensure image grid doesn't crop */
-        .grid-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 12px;
-        }
-
-        .grid-gallery img {
+        .file-input-wrapper input[type="file"] {
             width: 100%;
-            height: auto;
-            object-fit: contain;
-            border: 1px solid #ddd;
+            padding: 10px;
+            border: 1px dashed #ccc;
+            background: #fafafa;
             cursor: pointer;
-            transition: transform 0.2s;
-            background: #f9f9f9;
-            display: block;
-        }
-
-        .grid-gallery img:hover {
-            transform: scale(1.02);
-        }
-
-        /* override for NSFW and grid to not crop */
-        .grid-gallery img,
-        .nsfw-gallery img,
-        .natural-grid img {
-            aspect-ratio: auto;
-            min-height: 100px;
-        }
-
-        /* For the feature & category containers: they keep their natural aspect but max height */
-        .video-container img {
-            object-fit: contain;
+            font-family: var(--font-sans);
         }
     </style>
 </head>
@@ -481,6 +434,7 @@
         <h1>ERYN</h1>
         <p class="subtitle">Illustrations, Character art,<br>and Cinematic worlds by Eryn.</p>
 
+        <!-- Social Icons -->
         <div class="social-icons">
             <a href="https://x.com/eryndor_0" target="_blank" title="Twitter/X"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
             <a href="https://www.tiktok.com/@eryndor__0" target="_blank" title="TikTok"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
@@ -506,7 +460,7 @@
         <h2>Gallery</h2>
         <p class="subtitle">Selected character art, illustrations, and concept work.</p>
 
-        <!-- FEATURED SLIDESHOW -->
+        <!-- 1. FEATURED SLIDESHOW -->
         <div class="gallery-section">
             <div class="section-title">Featured Works</div>
             <div class="slideshow-container" onclick="openLightbox(this.querySelector('.slide.active img').src)">
@@ -530,33 +484,33 @@
 
         <hr class="divider">
         
-        <!-- BUST -->
+        <!-- 2. BUST CONTAINER -->
         <div class="gallery-section">
             <div class="section-title">Bust</div>
-            <div class="video-container" onclick="openLightbox('https://i.imgur.com/ieCQ1aU.jpeg')">
+            <div class="image-showcase" onclick="openLightbox('https://i.imgur.com/ieCQ1aU.jpeg')">
                 <img src="https://i.imgur.com/ieCQ1aU.jpeg" alt="Bust Showcase">
             </div>
         </div>
 
-        <!-- HALF BODY -->
+        <!-- 3. HALF BODY CONTAINER -->
         <div class="gallery-section">
             <div class="section-title">Half Body</div>
-            <div class="video-container" onclick="openLightbox('https://i.imgur.com/ckBfinZ.jpeg')">
+            <div class="image-showcase" onclick="openLightbox('https://i.imgur.com/ckBfinZ.jpeg')">
                 <img src="https://i.imgur.com/ckBfinZ.jpeg" alt="Half Body Showcase">
             </div>
         </div>
 
-        <!-- FULL BODY -->
+        <!-- 4. FULL BODY CONTAINER -->
         <div class="gallery-section">
             <div class="section-title">Full Body</div>
-            <div class="video-container" onclick="openLightbox('https://i.imgur.com/1t6d0Vp.jpeg')">
+            <div class="image-showcase" onclick="openLightbox('https://i.imgur.com/1t6d0Vp.jpeg')">
                 <img src="https://i.imgur.com/1t6d0Vp.jpeg" alt="Full Body Showcase">
             </div>
         </div>
 
         <hr class="divider">
 
-        <!-- MORE ART GRID (natural sizes) -->
+        <!-- 5. REST OF 15 IMAGES GRID (natural sizes) -->
         <div class="gallery-section">
             <div class="section-title">More Art</div>
             <div class="grid-gallery">
@@ -580,14 +534,14 @@
 
         <hr class="divider">
 
-        <!-- NSFW / GORE / THEMES (natural sizes) -->
+        <!-- 6. NSFW / GORE / THEMES SECTION -->
         <div class="gallery-section">
             <div class="section-title">NSFW / Gore / Themes</div>
             <div class="nsfw-gallery">
-                <img src="https://i.imgur.com/apOlXA9.jpeg" alt="NSFW 1" onclick="openLightbox(this.src)">
-                <img src="https://i.imgur.com/zQqoV9e.jpeg" alt="NSFW 2" onclick="openLightbox(this.src)">
-                <img src="https://i.imgur.com/cwraQ4D.jpeg" alt="NSFW 3" onclick="openLightbox(this.src)">
-                <img src="https://i.imgur.com/BlgWaeM.jpeg" alt="NSFW 4" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/apOlXA9.jpeg" alt="NSFW 1" class="nsfw-img" onclick="handleNsfwClick(this, event)">
+                <img src="https://i.imgur.com/zQqoV9e.jpeg" alt="NSFW 2" class="nsfw-img" onclick="handleNsfwClick(this, event)">
+                <img src="https://i.imgur.com/cwraQ4D.jpeg" alt="NSFW 3" class="nsfw-img" onclick="handleNsfwClick(this, event)">
+                <img src="https://i.imgur.com/BlgWaeM.jpeg" alt="NSFW 4" class="nsfw-img" onclick="handleNsfwClick(this, event)">
             </div>
         </div>
 
@@ -647,26 +601,31 @@
             </ul>
         </div>
 
-        <!-- COMMISSION FORM - now inside the page container -->
+        <!-- THE COMMISSION FORM -->
         <form action="https://formsubmit.co/eryndorcontact@gmail.com" method="POST" id="commissionForm" enctype="multipart/form-data">
             <input type="hidden" name="_subject" value="New Commission Request from Website!">
             <input type="hidden" name="_captcha" value="false">
-            <!-- This hidden field will be populated by JavaScript with the calculated total -->
             <input type="hidden" name="Calculated Total Price" id="hiddenTotalPrice" value="150">
 
             <h3 style="margin-bottom: 15px;">Commission Request Form</h3>
+
+            <!-- NAME / EMAIL -->
+            <div class="form-group">
+                <label for="clientName">Your Name or Email <span style="color:red;">*</span></label>
+                <input type="text" id="clientName" name="Client Name / Email" placeholder="Your name or email so I can contact you" required>
+            </div>
 
             <!-- BASE TYPE -->
             <div class="form-group">
                 <label>Base Type</label>
                 <select name="Base Type" id="baseType" required onchange="calculatePrice()">
-                    <option value="Bust Up" data-price="150">Bust Up - $150</option>
-                    <option value="Half Body" data-price="200">Half Body - $200</option>
-                    <option value="Full Body" data-price="250">Full Body - $250</option>
+                    <option value="Bust Up" data-price="150">Bust Up - $60</option>
+                    <option value="Half Body" data-price="200">Half Body - $80</option>
+                    <option value="Full Body" data-price="250">Full Body - $100</option>
                 </select>
             </div>
 
-            <!-- STYLE (three options: Anime, Manga, Furry) -->
+            <!-- STYLE (now with Furry, Anime, Manga) -->
             <div class="form-group">
                 <label>Style</label>
                 <select name="Style" required>
@@ -682,7 +641,7 @@
                 <select name="Finish" id="finishType" required onchange="calculatePrice()">
                     <option value="Lineart" data-price="1.0">Lineart (Standard Price)</option>
                     <option value="Flat Color" data-price="1.2">Flat Color (+20%)</option>
-                    <option value="Rendered" data-price="1.5">Rendered (+50%)</option>
+                    <option value="Rendered" data-price="1.5">Rendered (+40%)</option>
                 </select>
             </div>
 
@@ -696,201 +655,13 @@
                 </select>
             </div>
 
-            <!-- ADD-ONS / THEMES -->
+            <!-- COMMERCIAL USE (new) -->
             <div class="form-group">
-                <label>Add-ons & Themes (Select all that apply)</label>
+                <label>Usage Rights</label>
                 <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 5px;">
                     <label style="font-weight: normal; display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                        <input type="checkbox" name="Addons" value="Extra Character (+50%)" id="addChar" onchange="calculatePrice()" style="width: auto; transform: scale(1.2);"> 
-                        Extra Character (+50%)
+                        <input type="radio" name="Usage" value="Personal" checked onchange="calculatePrice()" style="width: auto; transform: scale(1.2);"> 
+                        Personal (No extra fee)
                     </label>
                     <label style="font-weight: normal; display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                        <input type="checkbox" name="Addons" value="Gore (+50%)" id="addGore" onchange="calculatePrice()" style="width: auto; transform: scale(1.2);"> 
-                        Gore (+50%)
-                    </label>
-                    <label style="font-weight: normal; display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                        <input type="checkbox" name="Addons" value="NSFW (+50%)" id="addNsfw" onchange="calculatePrice()" style="width: auto; transform: scale(1.2);"> 
-                        NSFW (+50%)
-                    </label>
-                </div>
-            </div>
-
-            <!-- COMMERCIAL USE ADD-ONS -->
-            <div class="form-group">
-                <label>Commercial Usage</label>
-                <div class="checkbox-group">
-                    <label>
-                        <input type="checkbox" name="Commercial" value="Commercial Content (+50%)" id="commercialContent" onchange="calculatePrice()" style="width: auto;"> 
-                        Commercial Content (+50%)
-                    </label>
-                    <label>
-                        <input type="checkbox" name="Commercial" value="Commercial Merchandising (+100%)" id="commercialMerch" onchange="calculatePrice()" style="width: auto;"> 
-                        Commercial Merchandising (+100%)
-                    </label>
-                </div>
-                <p class="upload-hint">Personal use is free. Commercial content +50%, merchandising +100%.</p>
-            </div>
-
-            <!-- DESCRIPTION BOX -->
-            <div class="form-group">
-                <label for="description">Character Description & Details</label>
-                <textarea id="description" name="Character Description" placeholder="Describe your character, scene, preferred mood, setting, and any specific details." required></textarea>
-                <p class="upload-hint">Tell me the mood, setting, personality, etc. References can be linked here.</p>
-            </div>
-
-            <!-- CONTACT INFO (NEW) -->
-            <div class="form-group">
-                <label for="contact">Your Email or Name *</label>
-                <input type="text" id="contact" name="Contact Info" placeholder="e.g. your@email.com or Discord name" required>
-                <p class="upload-hint">So I can contact you about your commission.</p>
-            </div>
-
-            <!-- OPTIONAL IMAGE UPLOAD (between description and payment note) -->
-            <div class="form-group">
-                <label for="imageUpload">Reference Image (optional, one image)</label>
-                <input type="file" id="imageUpload" name="Reference Image" accept="image/*">
-                <p class="upload-hint">If you have a picture reference, upload it here. Otherwise, describe everything in the box above.</p>
-            </div>
-
-            <!-- PAYMENT NOTE -->
-            <div class="form-group" style="background: #f9f9f9; padding: 15px; border: 1px solid #eee;">
-                <p><strong>Payment Note:</strong> Payments are currently processed via Wise (Invoicing). If Wise is unavailable, we will arrange an alternative method upon contact.</p>
-            </div>
-
-            <button type="submit" class="btn" style="width: 100%;">Submit Request</button>
-        </form>
-
-        <br>
-        <button class="back-btn" onclick="showPage('home')">&larr; Back to Home</button>
-    </div>
-
-</div>
-
-<!-- LIGHTBOX OVERLAY (shared) -->
-<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
-    <img id="lightboxImg" src="" alt="Zoomed Artwork">
-    <button class="lightbox-close" onclick="closeLightbox(event)">Back to Gallery</button>
-</div>
-
-<script>
-    // --- PAGE NAVIGATION LOGIC ---
-    function showPage(pageId) {
-        document.querySelectorAll('.page').forEach(page => {
-            page.classList.remove('active');
-        });
-        document.getElementById(pageId).classList.add('active');
-        window.scrollTo(0, 0);
-    }
-
-    // --- SLIDESHOW LOGIC ---
-    let slideIndex = 0;
-    let slideInterval;
-
-    function showSlides() {
-        let slides = document.querySelectorAll(".slide");
-        if (slides.length === 0) return;
-        
-        for (let i = 0; i < slides.length; i++) {
-            slides[i].classList.remove("active");
-        }
-        
-        slideIndex++;
-        if (slideIndex > slides.length) { slideIndex = 1 }
-        slides[slideIndex - 1].classList.add("active");
-    }
-
-    function initSlideshow() {
-        let slides = document.querySelectorAll(".slide");
-        if (slides.length > 0) {
-            slides[0].classList.add("active");
-            slideIndex = 1;
-            slideInterval = setInterval(showSlides, 5000);
-        }
-    }
-
-    // --- LIGHTBOX LOGIC ---
-    function openLightbox(src) {
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-        lightboxImg.src = src;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox(event) {
-        if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    }
-
-    // --- PRICE CALCULATOR LOGIC (with commercial) ---
-    function calculatePrice() {
-        const baseTypeSelect = document.getElementById('baseType');
-        const basePrice = parseFloat(baseTypeSelect.options[baseTypeSelect.selectedIndex].getAttribute('data-price'));
-        
-        const finishSelect = document.getElementById('finishType');
-        const finishMultiplier = parseFloat(finishSelect.options[finishSelect.selectedIndex].getAttribute('data-price'));
-        
-        const bgSelect = document.getElementById('bgType');
-        const bgMultiplier = parseFloat(bgSelect.options[bgSelect.selectedIndex].getAttribute('data-price')) / 100;
-        
-        const addChar = document.getElementById('addChar').checked ? 0.5 : 0;
-        const addGore = document.getElementById('addGore').checked ? 0.5 : 0;
-        const addNsfw = document.getElementById('addNsfw').checked ? 0.5 : 0;
-        const totalAddons = addChar + addGore + addNsfw;
-
-        // Commercial additions
-        const commContent = document.getElementById('commercialContent').checked ? 0.5 : 0;
-        const commMerch = document.getElementById('commercialMerch').checked ? 1.0 : 0;
-        const totalCommercial = commContent + commMerch;
-
-        let finalPrice = basePrice * finishMultiplier;
-        finalPrice += basePrice * bgMultiplier;
-        finalPrice += basePrice * totalAddons;
-        finalPrice += basePrice * totalCommercial; // commercial multiplier
-
-        // Update UI - but there's no displayPrice element currently; we need to add it or just keep hidden.
-        // But we'll show a breakdown inside the hidden field and optionally alert. We'll create a small dynamic display? 
-        // We can add a live display near the submit button, but the user didn't require it. We'll just update hidden.
-        document.getElementById('hiddenTotalPrice').value = finalPrice.toFixed(2);
-        
-        // Also we can show a breakdown somewhere? Optional: we can create a small div.
-        // Let's add a small info text next to form. (or just keep in hidden)
-        // We'll add a simple price display inside the form but it's not required. I'll put a small note in the payment section.
-        const priceDisplay = document.getElementById('livePriceDisplay');
-        if (priceDisplay) {
-            priceDisplay.innerText = 'Estimated total: $' + finalPrice.toFixed(2) + ' USD';
-        }
-    }
-
-    // We'll add a live price element inside the form after the commercial checkboxes
-    // (I'll insert it via JS to avoid messing with HTML, but better to add directly)
-    // Actually I can add it just below the commercial usage group.
-
-    window.onload = function() {
-        initSlideshow();
-        // Insert a live price display dynamically
-        const commercialDiv = document.querySelector('#commissions .form-group:has(#commercialContent)');
-        if (commercialDiv) {
-            const priceDiv = document.createElement('div');
-            priceDiv.style.marginTop = '10px';
-            priceDiv.style.fontWeight = 'bold';
-            priceDiv.id = 'livePriceDisplay';
-            priceDiv.innerText = 'Estimated total: $150.00 USD';
-            commercialDiv.appendChild(priceDiv);
-        }
-        calculatePrice();
-    };
-
-    // Since we need to call calculatePrice after DOM loaded, and we dynamically add the price display,
-    // we should recalc after creating it.
-    document.addEventListener('DOMContentLoaded', function() {
-        // just to ensure after dynamic add
-        setTimeout(calculatePrice, 50);
-    });
-</script>
-
-</body>
-</html>
+                        <input type="radio" name="Usage" value="Commercial Content (+50%)
