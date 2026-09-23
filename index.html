@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ERYN - Illustration & Character Art</title>
+    <title>ERYN · Illustration & Character Art</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -38,7 +38,7 @@
         .container {
             background-color: var(--card-bg);
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             padding: 40px 30px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             min-height: 80vh;
@@ -173,7 +173,7 @@
             height: auto;
             display: block;
             object-fit: contain;
-            max-height: 500px;
+            max-height: 600px;
         }
 
         .slide.active {
@@ -186,11 +186,10 @@
             to { opacity: 1; }
         }
 
-        /* Video Sized Containers */
+        /* Video Sized Containers (for bust, half, full) */
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             margin-bottom: 20px;
             background: #eee;
             border: 1px solid #ddd;
@@ -199,15 +198,13 @@
         }
 
         .video-container img {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
+            object-fit: contain;
         }
 
-        /* Standard Grid - Natural sizes */
+        /* Standard Grid — natural sizes, no forced height */
         .grid-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -221,7 +218,7 @@
             border: 1px solid #ddd;
             cursor: pointer;
             transition: transform 0.2s;
-            background: #f9f9f9;
+            display: block;
         }
 
         .grid-gallery img:hover {
@@ -232,19 +229,19 @@
         .nsfw-gallery {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
+            gap: 10px;
             margin-top: 15px;
         }
 
         .nsfw-gallery img {
             width: 100%;
-            height: 90px;
+            height: 100px;
             object-fit: cover;
             border: 1px solid #ddd;
             border-radius: 4px;
             cursor: pointer;
             transition: transform 0.2s, filter 0.3s;
-            filter: blur(12px);
+            filter: blur(10px);
         }
 
         .nsfw-gallery img.unblurred {
@@ -353,31 +350,17 @@
             min-height: 120px;
         }
 
-        /* Price Calculator Box */
-        .price-estimator {
-            background: #f4f4f4;
-            border: 1px solid #ccc;
-            padding: 20px;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .price-estimator h4 {
-            font-family: var(--font-serif);
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .price-total {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #111;
-        }
-
-        .price-breakdown {
-            font-size: 0.85rem;
+        /* Small, italic notes */
+        .small-italic {
+            font-size: 0.8rem;
+            font-style: italic;
             color: #555;
-            margin-top: 5px;
+        }
+
+        /* Price Calculator Box — REMOVED, not shown on site */
+        /* Hide the old estimator if any remains */
+        .price-estimator {
+            display: none;
         }
 
         /* Back Button */
@@ -413,20 +396,35 @@
             margin: 30px 0;
         }
 
-        /* Small italic note styling */
-        .small-italic {
-            font-size: 0.85rem;
-            font-style: italic;
-            color: #555;
+        /* Custom checkbox row */
+        .checkbox-row {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 5px;
         }
 
-        .file-upload-note {
-            font-size: 0.85rem;
-            font-style: italic;
-            color: #555;
-            margin-top: 5px;
-            display: block;
+        .checkbox-row label {
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
         }
+
+        .checkbox-row input[type="checkbox"] {
+            width: auto;
+            transform: scale(1.2);
+            margin: 0;
+        }
+
+        /* File input */
+        input[type="file"] {
+            padding: 8px;
+            background: #f9f9f9;
+        }
+
+        /* remove request form outside container — already handled by structure */
     </style>
 </head>
 <body>
@@ -492,7 +490,7 @@
         <div class="gallery-section">
             <div class="section-title">Bust</div>
             <div class="video-container" onclick="openLightbox('https://i.imgur.com/ieCQ1aU.jpeg')">
-                <img src="https://i.imgur.com/ieCQ1aU.jpeg" alt="Half Body Showcase">
+                <img src="https://i.imgur.com/ieCQ1aU.jpeg" alt="Bust Showcase">
             </div>
         </div>
 
@@ -514,7 +512,7 @@
 
         <hr class="divider">
 
-        <!-- 5. REST OF 15 IMAGES GRID -->
+        <!-- 5. REST OF 15 IMAGES GRID — natural sizes -->
         <div class="gallery-section">
             <div class="section-title">More Art</div>
             <div class="grid-gallery">
@@ -538,16 +536,16 @@
 
         <hr class="divider">
 
-        <!-- 6. NSFW / GORE / THEMES SECTION (Blur/Unblur/Zoom) -->
+        <!-- 6. NSFW / GORE / THEMES SECTION — blurred, click to unblur, then click again to enlarge -->
         <div class="gallery-section">
             <div class="section-title">NSFW / Gore / Themes</div>
             <div class="nsfw-gallery">
-                <img src="https://i.imgur.com/apOlXA9.jpeg" alt="NSFW 1" onclick="handleNsfwClick(this)">
-                <img src="https://i.imgur.com/zQqoV9e.jpeg" alt="NSFW 2" onclick="handleNsfwClick(this)">
-                <img src="https://i.imgur.com/cwraQ4D.jpeg" alt="NSFW 3" onclick="handleNsfwClick(this)">
-                <img src="https://i.imgur.com/BlgWaeM.jpeg" alt="NSFW 4" onclick="handleNsfwClick(this)">
+                <img src="https://i.imgur.com/apOlXA9.jpeg" alt="NSFW 1" class="nsfw-img" onclick="handleNsfwClick(this, event)">
+                <img src="https://i.imgur.com/zQqoV9e.jpeg" alt="NSFW 2" class="nsfw-img" onclick="handleNsfwClick(this, event)">
+                <img src="https://i.imgur.com/cwraQ4D.jpeg" alt="NSFW 3" class="nsfw-img" onclick="handleNsfwClick(this, event)">
+                <img src="https://i.imgur.com/BlgWaeM.jpeg" alt="NSFW 4" class="nsfw-img" onclick="handleNsfwClick(this, event)">
             </div>
-            <p class="small-italic" style="margin-top: 8px;">* Click to unblur, click again to enlarge.</p>
+            <p class="small-italic" style="margin-top: 8px; text-align: center;">Click to reveal, click again to enlarge.</p>
         </div>
 
         <br>
@@ -610,34 +608,35 @@
         <form action="https://formsubmit.co/eryndorcontact@gmail.com" method="POST" id="commissionForm" enctype="multipart/form-data">
             <input type="hidden" name="_subject" value="New Commission Request from Website!">
             <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="Calculated Total Price" id="hiddenTotalPrice" value="150">
+            <!-- Hidden field for calculated total (not displayed) -->
+            <input type="hidden" name="Calculated Total Price" id="hiddenTotalPrice" value="0">
 
             <h3 style="margin-bottom: 15px;">Commission Request Form</h3>
 
             <!-- BASE TYPE -->
             <div class="form-group">
                 <label>Base Type</label>
-                <select name="Base Type" id="baseType" required onchange="calculatePrice()">
-                    <option value="Bust Up" data-price="150">Bust Up - $150</option>
-                    <option value="Half Body" data-price="200">Half Body - $200</option>
-                    <option value="Full Body" data-price="250">Full Body - $250</option>
+                <select name="Base Type" id="baseType" required onchange="updateHiddenTotal()">
+                    <option value="Bust Up" data-price="60">Bust Up - $60</option>
+                    <option value="Half Body" data-price="80">Half Body - $80</option>
+                    <option value="Full Body" data-price="100">Full Body - $100</option>
                 </select>
             </div>
 
-            <!-- STYLE (3 options) -->
+            <!-- STYLE — now three options -->
             <div class="form-group">
                 <label>Style</label>
                 <select name="Style" required>
                     <option value="Anime">Anime</option>
-                    <option value="Manga">Manga</option>
                     <option value="Furry">Furry</option>
+                    <option value="Manga">Manga</option>
                 </select>
             </div>
 
-            <!-- LINEART / FLAT / RENDERED -->
+            <!-- FINISH -->
             <div class="form-group">
                 <label>Finish</label>
-                <select name="Finish" id="finishType" required onchange="calculatePrice()">
+                <select name="Finish" id="finishType" required onchange="updateHiddenTotal()">
                     <option value="Lineart" data-price="1.0">Lineart (Standard Price)</option>
                     <option value="Flat Color" data-price="1.2">Flat Color (+20%)</option>
                     <option value="Rendered" data-price="1.5">Rendered (+40%)</option>
@@ -647,35 +646,35 @@
             <!-- BACKGROUND -->
             <div class="form-group">
                 <label>Background</label>
-                <select name="Background" id="bgType" required onchange="calculatePrice()">
+                <select name="Background" id="bgType" required onchange="updateHiddenTotal()">
                     <option value="None" data-price="0">No Background (+$0)</option>
                     <option value="Simple" data-price="10">Simple Background (+10%)</option>
                     <option value="Complex" data-price="50">Complex Background (+50%)</option>
                 </select>
             </div>
 
-            <!-- ADD-ONS / THEMES (including Commercial options) -->
+            <!-- ADD-ONS / THEMES -->
             <div class="form-group">
                 <label>Add-ons & Themes (Select all that apply)</label>
-                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 5px;">
-                    <label style="font-weight: normal; display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                        <input type="checkbox" name="Addons" value="Extra Character (+50%)" id="addChar" onchange="calculatePrice()" style="width: auto; transform: scale(1.2);"> 
+                <div class="checkbox-row">
+                    <label>
+                        <input type="checkbox" name="Addons" value="Extra Character (+50%)" id="addChar" onchange="updateHiddenTotal()"> 
                         Extra Character (+50%)
                     </label>
-                    <label style="font-weight: normal; display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                        <input type="checkbox" name="Addons" value="Gore (+50%)" id="addGore" onchange="calculatePrice()" style="width: auto; transform: scale(1.2);"> 
+                    <label>
+                        <input type="checkbox" name="Addons" value="Gore (+50%)" id="addGore" onchange="updateHiddenTotal()"> 
                         Gore (+50%)
                     </label>
-                    <label style="font-weight: normal; display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                        <input type="checkbox" name="Addons" value="NSFW (+50%)" id="addNsfw" onchange="calculatePrice()" style="width: auto; transform: scale(1.2);"> 
+                    <label>
+                        <input type="checkbox" name="Addons" value="NSFW (+50%)" id="addNsfw" onchange="updateHiddenTotal()"> 
                         NSFW (+50%)
                     </label>
-                    <label style="font-weight: normal; display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                        <input type="checkbox" name="Addons" value="Commercial Content (+50%)" id="addCommContent" onchange="calculatePrice()" style="width: auto; transform: scale(1.2);"> 
-                        Commercial Content (+50%)
+                    <label>
+                        <input type="checkbox" name="Addons" value="Commercial Use (+50%)" id="addCommercial" onchange="updateHiddenTotal()"> 
+                        Commercial Use (+50%)
                     </label>
-                    <label style="font-weight: normal; display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                        <input type="checkbox" name="Addons" value="Commercial Merchandising (+100%)" id="addCommMerch" onchange="calculatePrice()" style="width: auto; transform: scale(1.2);"> 
+                    <label>
+                        <input type="checkbox" name="Addons" value="Commercial Merchandising (+100%)" id="addMerch" onchange="updateHiddenTotal()"> 
                         Commercial Merchandising (+100%)
                     </label>
                 </div>
@@ -684,24 +683,24 @@
             <!-- DESCRIPTION BOX -->
             <div class="form-group">
                 <label for="description">Character Description & Details</label>
-                <textarea id="description" name="Character Description" placeholder="Describe your character, scene, preferred mood, references (links to Pinterest/Google Drive are fine here), and any specific details." required></textarea>
+                <textarea id="description" name="Character Description" placeholder="Describe your character, scene, preferred mood, references (links are fine), and any specific details." required></textarea>
             </div>
 
-            <!-- YOUR EMAIL / NAME (required) -->
+            <!-- YOUR EMAIL OR NAME (required) -->
             <div class="form-group">
-                <label for="contactInfo">Your Email or Your Name <span style="color: red;">*</span></label>
-                <input type="text" id="contactInfo" name="Contact Info" placeholder="e.g. jane@example.com or Jane Doe" required>
-                <span class="small-italic">(Required so I can contact you)</span>
+                <label for="contact">Your Email or Your Name *</label>
+                <input type="text" id="contact" name="Contact Info" placeholder="e.g., your@email.com or your name" required>
+                <p class="small-italic" style="margin-top: 4px;">Required — so I can reach you.</p>
             </div>
 
-            <!-- OPTIONAL PICTURE UPLOAD (between description and payment note) -->
+            <!-- FILE UPLOAD (optional) -->
             <div class="form-group">
-                <label for="fileUpload">Optional Picture Reference</label>
-                <input type="file" id="fileUpload" name="attachment" accept="image/*">
-                <span class="file-upload-note">One image is enough. If you don't have a picture, just describe everything in the description box (mood, setting, etc.).</span>
+                <label for="reference">Picture Reference (optional)</label>
+                <input type="file" id="reference" name="Reference Image" accept="image/*">
+                <p class="small-italic" style="margin-top: 4px;">One image is enough. If not, describe everything in the description box above.</p>
             </div>
 
-            <!-- PAYMENT NOTE (smaller italic font) -->
+            <!-- PAYMENT NOTE (small, italic) -->
             <div class="form-group" style="background: #f9f9f9; padding: 15px; border: 1px solid #eee;">
                 <p class="small-italic"><strong>Payment Note:</strong> Payments are currently processed via Wise (Invoicing). If Wise is unavailable, we will arrange an alternative method upon contact.</p>
             </div>
@@ -722,7 +721,7 @@
 </div>
 
 <script>
-    // --- PAGE NAVIGATION LOGIC ---
+    // --- PAGE NAVIGATION ---
     function showPage(pageId) {
         document.querySelectorAll('.page').forEach(page => {
             page.classList.remove('active');
@@ -731,18 +730,16 @@
         window.scrollTo(0, 0);
     }
 
-    // --- SLIDESHOW LOGIC ---
+    // --- SLIDESHOW ---
     let slideIndex = 0;
     let slideInterval;
 
     function showSlides() {
         let slides = document.querySelectorAll(".slide");
         if (slides.length === 0) return;
-        
         for (let i = 0; i < slides.length; i++) {
             slides[i].classList.remove("active");
         }
-        
         slideIndex++;
         if (slideIndex > slides.length) { slideIndex = 1 }
         slides[slideIndex - 1].classList.add("active");
@@ -757,7 +754,7 @@
         }
     }
 
-    // --- LIGHTBOX LOGIC ---
+    // --- LIGHTBOX ---
     function openLightbox(src) {
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightboxImg');
@@ -774,51 +771,55 @@
         }
     }
 
-    // --- NSFW BLUR / UNBLUR / ZOOM LOGIC ---
-    function handleNsfwClick(img) {
+    // --- NSFW BLUR + ZOOM LOGIC ---
+    function handleNsfwClick(img, event) {
+        event.stopPropagation(); // prevent triggering lightbox from container
+
         if (!img.classList.contains('unblurred')) {
             // First click: unblur
             img.classList.add('unblurred');
             img.style.filter = 'blur(0px)';
         } else {
-            // Second click: open lightbox (zoom)
+            // Second click: enlarge via lightbox
             openLightbox(img.src);
         }
     }
 
-    // --- PRICE CALCULATOR LOGIC (UPDATED) ---
-    function calculatePrice() {
+    // --- PRICE CALCULATION (hidden from UI, only used for hidden input) ---
+    function updateHiddenTotal() {
+        // Base price
         const baseTypeSelect = document.getElementById('baseType');
         const basePrice = parseFloat(baseTypeSelect.options[baseTypeSelect.selectedIndex].getAttribute('data-price'));
         
+        // Finish multiplier
         const finishSelect = document.getElementById('finishType');
         const finishMultiplier = parseFloat(finishSelect.options[finishSelect.selectedIndex].getAttribute('data-price'));
         
+        // Background multiplier (as decimal)
         const bgSelect = document.getElementById('bgType');
         const bgMultiplier = parseFloat(bgSelect.options[bgSelect.selectedIndex].getAttribute('data-price')) / 100;
         
-        // Add-ons (percentage-based, stored as decimal)
+        // Add-ons
         const addChar = document.getElementById('addChar').checked ? 0.5 : 0;
         const addGore = document.getElementById('addGore').checked ? 0.5 : 0;
         const addNsfw = document.getElementById('addNsfw').checked ? 0.5 : 0;
-        const addCommContent = document.getElementById('addCommContent').checked ? 0.5 : 0;
-        const addCommMerch = document.getElementById('addCommMerch').checked ? 1.0 : 0; // 100%
-        
-        const totalAddons = addChar + addGore + addNsfw + addCommContent + addCommMerch;
+        const addCommercial = document.getElementById('addCommercial').checked ? 0.5 : 0;
+        const addMerch = document.getElementById('addMerch').checked ? 1.0 : 0;
+        const totalAddons = addChar + addGore + addNsfw + addCommercial + addMerch;
 
-        // Calculate final price
+        // Calculate: Base * finish + Base * bg% + Base * addons%
         let finalPrice = basePrice * finishMultiplier;
         finalPrice += basePrice * bgMultiplier;
         finalPrice += basePrice * totalAddons;
 
-        // Update hidden input for email
+        // Set hidden input (no visible display)
         document.getElementById('hiddenTotalPrice').value = finalPrice.toFixed(2);
     }
 
-    // Initialize on load
+    // Initialize
     window.onload = function() {
         initSlideshow();
-        calculatePrice();
+        updateHiddenTotal();
     };
 </script>
 
