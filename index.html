@@ -34,7 +34,7 @@
             line-height: 1.6;
         }
 
-        /* --- MAIN CONTAINER (Removed white background, now floating content) --- */
+        /* --- MAIN CONTAINER --- */
         .container {
             width: 100%;
             max-width: 900px;
@@ -79,7 +79,7 @@
             line-height: 1.5;
         }
 
-        /* --- SOCIAL ICONS & TOOLTIPS (Made smaller) --- */
+        /* --- SOCIAL ICONS & TOOLTIPS --- */
         .social-icons {
             display: flex;
             justify-content: center;
@@ -90,7 +90,7 @@
 
         .social-icons a, .social-icons .comic-icon {
             color: var(--text-color);
-            font-size: 1rem; /* Smaller base font for tooltips */
+            font-size: 1rem;
             transition: transform 0.2s, opacity 0.2s;
             text-decoration: none;
             display: inline-flex;
@@ -104,12 +104,11 @@
         }
 
         .icon-svg {
-            width: 18px; /* Smaller icons */
+            width: 18px;
             height: 18px;
             fill: currentColor;
         }
 
-        /* Hover Tooltip Text */
         .tooltip-text {
             position: absolute;
             bottom: -18px;
@@ -130,7 +129,6 @@
             opacity: 1;
         }
 
-        /* Specific styling for the Comic Bunny Icon */
         .comic-icon {
             cursor: pointer;
         }
@@ -141,7 +139,7 @@
             fill: currentColor;
         }
 
-        /* --- BUTTONS (Made smaller) --- */
+        /* --- BUTTONS --- */
         .main-buttons {
             display: flex;
             flex-direction: column;
@@ -160,11 +158,11 @@
             text-decoration: none;
             color: var(--text-color);
             border: 1px solid var(--border-color);
-            font-size: 0.95rem; /* Smaller font */
+            font-size: 0.95rem;
             font-family: var(--font-serif);
             transition: background 0.3s, color 0.3s;
             cursor: pointer;
-            background: var(--card-bg); /* Keep white button background for visibility */
+            background: var(--card-bg);
         }
 
         .btn:hover {
@@ -182,11 +180,9 @@
             font-size: 1.3rem;
             text-align: center;
             margin-bottom: 10px;
-            border-bottom: 1px solid #ddd;
             padding-bottom: 5px;
         }
 
-        /* Full width images for Gallery */
         .full-width-img {
             width: 100%;
             height: auto;
@@ -230,7 +226,7 @@
             to { opacity: 1; }
         }
 
-        /* Grid Gallery (for additional images) */
+        /* Grid Gallery */
         .grid-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -279,7 +275,7 @@
             transform: scale(1.05);
         }
 
-        /* --- LIGHTBOX (ZOOM) --- */
+        /* --- LIGHTBOX --- */
         .lightbox {
             display: none;
             position: fixed;
@@ -325,7 +321,7 @@
 
         /* --- COMMISSION/TERMS PAGE --- */
         .terms-text {
-            font-size: 0.9rem; /* Small font as requested */
+            font-size: 0.9rem;
             margin-bottom: 20px;
             background: var(--card-bg);
             padding: 20px;
@@ -352,7 +348,7 @@
         }
 
         .terms-list.small-text {
-            font-size: 0.8rem; /* Smaller for specific lists */
+            font-size: 0.8rem;
         }
 
         .terms-list.small-text li {
@@ -363,7 +359,7 @@
         .form-group {
             margin-bottom: 15px;
             text-align: left;
-            font-size: 0.9rem; /* Small fonts for request form */
+            font-size: 0.9rem;
         }
 
         .form-group label {
@@ -390,14 +386,12 @@
             min-height: 100px;
         }
 
-        /* Small, italic notes */
         .small-italic {
             font-size: 0.75rem;
             font-style: italic;
             color: #555;
         }
 
-        /* Back Button */
         .back-btn {
             display: inline-block;
             margin-top: 15px;
@@ -415,7 +409,6 @@
             text-decoration: underline;
         }
 
-        /* Hide pages by default */
         .page {
             display: none;
         }
@@ -424,7 +417,6 @@
             display: block;
         }
 
-        /* Form Elements */
         .checkbox-row {
             display: flex;
             flex-direction: column;
@@ -447,7 +439,6 @@
             margin: 0;
         }
 
-        /* File input */
         input[type="file"] {
             padding: 8px;
             background: #f9f9f9;
@@ -468,18 +459,12 @@
             pointer-events: none;
         }
 
-        /* Hide the old estimator if any remains */
         .price-estimator {
             display: none;
         }
 
-        .divider {
-            border: 0;
-            border-top: 1px solid #ddd;
-            margin: 20px 0;
-        }
+        /* Removed .divider class since we are removing <hr> */
 
-        /* Gallery/Commission specific image containers */
         .full-width-wrapper {
             margin-bottom: 20px;
             border: 1px solid #ddd;
@@ -628,12 +613,9 @@
             </div>
         </div>
 
-        <hr class="divider">
-        
-        <!-- 2. BUST ($70) -->
+        <!-- 2. BUST ($60) -->
         <div class="gallery-section">
-            <div class="section-title">Bust</div>
-            <div class="price-tag">$70</div>
+            <div class="section-title">Bust $60</div>
             <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/ieCQ1aU.jpeg')">
                 <img src="https://i.imgur.com/ieCQ1aU.jpeg" alt="Bust Showcase">
             </div>
@@ -641,8 +623,7 @@
 
         <!-- 3. HALF BODY ($100) -->
         <div class="gallery-section">
-            <div class="section-title">Half Body</div>
-            <div class="price-tag">$100</div>
+            <div class="section-title">Half Body $100</div>
             <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/ckBfinZ.jpeg')">
                 <img src="https://i.imgur.com/ckBfinZ.jpeg" alt="Half Body Showcase">
             </div>
@@ -650,8 +631,7 @@
 
         <!-- 4. KNEE UP ($120) -->
         <div class="gallery-section">
-            <div class="section-title">Knee Up</div>
-            <div class="price-tag">$120</div>
+            <div class="section-title">Knee Up $120</div>
             <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/1t6d0Vp.jpeg')">
                 <img src="https://i.imgur.com/1t6d0Vp.jpeg" alt="Knee Up Showcase">
             </div>
@@ -659,17 +639,15 @@
 
         <!-- 5. FULL BODY ($170) -->
         <div class="gallery-section">
-            <div class="section-title">Full Body</div>
-            <div class="price-tag">$170</div>
+            <div class="section-title">Full Body $170</div>
             <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/Yjajqr4.jpeg')">
                 <img src="https://i.imgur.com/Yjajqr4.jpeg" alt="Full Body Showcase">
             </div>
         </div>
 
-        <!-- 6. CHIBI ($70) -->
+        <!-- 6. CHIBI ($35) -->
         <div class="gallery-section">
-            <div class="section-title">Chibi</div>
-            <div class="price-tag">$70</div>
+            <div class="section-title">Chibi $35</div>
             <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/txwazrh.jpeg')">
                 <img src="https://i.imgur.com/txwazrh.jpeg" alt="Chibi Showcase">
             </div>
@@ -677,8 +655,7 @@
 
         <!-- 7. CHARACTER REF SHEET ($150) -->
         <div class="gallery-section">
-            <div class="section-title">Character Ref Sheet</div>
-            <div class="price-tag">$150</div>
+            <div class="section-title">Character Ref Sheet $150</div>
             <div class="ref-sheet-info">
                 Side view +$60<br>
                 Extra bust sketches +$40 each
@@ -688,9 +665,7 @@
             </div>
         </div>
 
-        <hr class="divider">
-
-        <!-- 8. REST OF IMAGES GRID - Full size images inside grid -->
+        <!-- 8. REST OF IMAGES GRID -->
         <div class="gallery-section">
             <div class="section-title">More Art</div>
             <div class="grid-gallery">
@@ -708,8 +683,6 @@
                 <img src="https://i.imgur.com/rXRWRIW.jpeg" alt="Art 15" onclick="openLightbox(this.src)">
             </div>
         </div>
-
-        <hr class="divider">
 
         <!-- 9. NSFW / GORE / THEMES SECTION -->
         <div class="gallery-section">
@@ -734,7 +707,7 @@
         <div class="terms-text">
             <p style="font-weight: bold; margin-bottom: 15px;">Please read carefully before commissioning. By requesting a commission, you agree to the following terms.</p>
             
-            <p>Painterly anime and furry character art, illustration, and project-based artwork. Commissions start at <strong>$70 USD</strong>.</p>
+            <p>Painterly anime and furry character art, illustration, and project-based artwork. Commissions start at <strong>$60 USD</strong>.</p>
             <p>Pricing can be sensitive to complexity, character count, background detail, usage, and deadline.</p>
             
             <br>
@@ -751,7 +724,7 @@
             <br>
             <p><strong>Pricing</strong></p>
             <ul class="terms-list">
-                <li>Base price: $70 USD</li>
+                <li>Base price: $60 USD</li>
                 <li>Larger or more complex work is quoted individually.</li>
                 <li>Commercial use, multiple characters, detailed backgrounds, tight deadlines, or complex designs may increase the price.</li>
             </ul>
@@ -807,16 +780,16 @@
             <div class="form-group">
                 <label>Base Type</label>
                 <select name="Base Type" id="baseType" required onchange="updateHiddenTotal()">
-                    <option value="Bust Up" data-price="70">Bust Up - $70</option>
+                    <option value="Bust Up" data-price="60">Bust Up - $60</option>
                     <option value="Half Body" data-price="100">Half Body - $100</option>
                     <option value="Knee Up" data-price="120">Knee Up - $120</option>
                     <option value="Full Body" data-price="170">Full Body - $170</option>
-                    <option value="Chibi" data-price="70">Chibi - $70</option>
+                    <option value="Chibi" data-price="35">Chibi - $35</option>
                     <option value="Character Ref Sheet" data-price="150">Character Ref Sheet - $150</option>
                 </select>
             </div>
 
-            <!-- STYLE (Only Anime and Furry) -->
+            <!-- STYLE -->
             <div class="form-group">
                 <label>Style</label>
                 <select name="Style" required>
@@ -825,7 +798,7 @@
                 </select>
             </div>
 
-            <!-- FINISH (Removed percentages) -->
+            <!-- FINISH -->
             <div class="form-group">
                 <label>Finish</label>
                 <select name="Finish" id="finishType" required onchange="updateHiddenTotal()">
@@ -845,7 +818,7 @@
                 </select>
             </div>
 
-            <!-- ADD-ONS (List only, no checkboxes) -->
+            <!-- ADD-ONS -->
             <div class="form-group">
                 <label>Add-ons & Themes (Select all that apply in the description below or discuss directly)</label>
                 <div style="font-size: 0.8rem; line-height: 1.4; color: #444;">
@@ -863,21 +836,21 @@
                 <textarea id="description" name="Character Description" placeholder="Describe your character, scene, preferred mood, references (links are fine), and any specific details." required></textarea>
             </div>
 
-            <!-- YOUR EMAIL OR NAME (required) -->
+            <!-- CONTACT INFO -->
             <div class="form-group">
                 <label for="contact">Your Email or Your Name *</label>
                 <input type="text" id="contact" name="Contact Info" placeholder="e.g., your@email.com or your name" required>
                 <p class="small-italic" style="margin-top: 4px;">Required — so I can reach you.</p>
             </div>
 
-            <!-- FILE UPLOAD (optional) -->
+            <!-- FILE UPLOAD -->
             <div class="form-group">
                 <label for="reference">Picture Reference (optional)</label>
                 <input type="file" id="reference" name="Reference Image" accept="image/*">
                 <p class="small-italic" style="margin-top: 4px;">One image is enough. If not, describe everything in the description box above.</p>
             </div>
 
-            <!-- PAYMENT NOTE (small, italic) -->
+            <!-- PAYMENT NOTE -->
             <div class="form-group" style="background: #f9f9f9; padding: 15px; border: 1px solid #eee;">
                 <p class="small-italic"><strong>Payment Note:</strong> Payments are currently processed via Wise (Invoicing). If Wise is unavailable, we will arrange an alternative method upon contact.</p>
             </div>
@@ -974,8 +947,6 @@
         const bgSelect = document.getElementById('bgType');
         const bgMultiplier = parseFloat(bgSelect.options[bgSelect.selectedIndex].getAttribute('data-price')) / 100;
         
-        // Add-ons are now text-based, calculated as a default 0 for the hidden field unless we add logic to sum them up. 
-        // Since the user requested no checkboxes, we'll just calculate the base + finish + bg for the hidden field.
         const totalAddons = 0; 
 
         let finalPrice = basePrice * finishMultiplier;
