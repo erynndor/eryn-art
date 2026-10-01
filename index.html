@@ -11,7 +11,7 @@
         /* --- GLOBAL STYLES --- */
         :root {
             --bg-color: #f4f4f4;
-            --card-bg: #ffffff;
+            --card-bg: transparent; /* Removed container background */
             --text-color: #111;
             --border-color: #000;
             --font-serif: 'Playfair Display', serif;
@@ -34,13 +34,13 @@
             line-height: 1.6;
         }
 
-        /* --- MAIN CONTAINER (still present but invisible background) --- */
+        /* --- MAIN CONTAINER --- */
         .container {
             background-color: var(--card-bg);
             width: 100%;
             max-width: 900px;
-            padding: 40px 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 40px 15px; /* Reduced side padding */
+            box-shadow: none; /* Removed shadow */
             min-height: 80vh;
             position: relative;
         }
@@ -82,18 +82,18 @@
             line-height: 1.5;
         }
 
-        /* --- SOCIAL ICONS & TOOLTIPS --- */
+        /* --- SOCIAL ICONS & TOOLTIPS (SMALLER) --- */
         .social-icons {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 12px;
             margin-bottom: 30px;
         }
 
         .social-icons a, .social-icons .comic-icon {
             color: var(--text-color);
-            font-size: 1.5rem;
+            font-size: 1rem; /* Smaller icon font */
             transition: transform 0.2s, opacity 0.2s;
             text-decoration: none;
             display: inline-flex;
@@ -107,8 +107,8 @@
         }
 
         .icon-svg {
-            width: 28px;
-            height: 28px;
+            width: 20px; /* Smaller icon size */
+            height: 20px;
             fill: currentColor;
         }
 
@@ -118,7 +118,7 @@
             bottom: -20px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: #888;
             white-space: nowrap;
             opacity: 0;
@@ -139,8 +139,8 @@
         }
         
         .comic-icon svg {
-            width: 28px;
-            height: 28px;
+            width: 20px; /* Smaller icon size */
+            height: 20px;
             fill: currentColor;
         }
 
@@ -172,7 +172,7 @@
             color: #fff;
         }
 
-        /* --- GALLERY GENERAL --- */
+        /* --- GALLERY GENERAL (FULL WIDTH) --- */
         .gallery-section {
             margin-bottom: 40px;
         }
@@ -182,8 +182,7 @@
             font-size: 1.5rem;
             text-align: center;
             margin-bottom: 15px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
+            padding-bottom: 5px;
         }
 
         /* Featured Slideshow */
@@ -192,7 +191,6 @@
             max-width: 100%;
             margin: 20px auto;
             overflow: hidden;
-            border: 1px solid #ddd;
             cursor: pointer;
             background: #f9f9f9;
         }
@@ -207,7 +205,6 @@
             height: auto;
             display: block;
             object-fit: contain;
-            max-height: 600px;
         }
 
         .slide.active {
@@ -220,13 +217,10 @@
             to { opacity: 1; }
         }
 
-        /* Full image containers for gallery items (Bust, Half Body, etc.) */
+        /* Full Width Image Containers */
         .full-image-container {
-            position: relative;
             width: 100%;
             margin-bottom: 20px;
-            background: #eee;
-            border: 1px solid #ddd;
             cursor: pointer;
             overflow: hidden;
         }
@@ -238,47 +232,7 @@
             object-fit: contain;
         }
 
-        /* Price tag styling */
-        .price-tag {
-            font-family: var(--font-serif);
-            font-size: 1.3rem;
-            text-align: center;
-            margin-top: 8px;
-            margin-bottom: 5px;
-            font-weight: 400;
-            letter-spacing: 1px;
-        }
-
-        .ref-note {
-            font-size: 0.8rem;
-            text-align: center;
-            color: #777;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-
-        /* Standard Grid — natural sizes, no forced height */
-        .grid-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-        }
-
-        .grid-gallery img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-            border: 1px solid #ddd;
-            cursor: pointer;
-            transition: transform 0.2s;
-            display: block;
-        }
-
-        .grid-gallery img:hover {
-            transform: scale(1.03);
-        }
-
-        /* --- NSFW / GORE SECTION --- */
+        /* NSFW / GORE SECTION */
         .nsfw-gallery {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -290,7 +244,6 @@
             width: 100%;
             height: 100px;
             object-fit: cover;
-            border: 1px solid #ddd;
             border-radius: 4px;
             cursor: pointer;
             transition: transform 0.2s, filter 0.3s;
@@ -349,114 +302,69 @@
             background: #ccc;
         }
 
-        /* --- COMMISSION PAGE --- */
-        .commission-text {
-            font-size: 0.95rem;
+        /* --- TERMS OF SERVICE PAGE (SMALLER FONTS & NO LINES) --- */
+        .tos-text {
+            font-size: 0.9rem;
             margin-bottom: 25px;
         }
 
-        .commission-list {
-            list-style-type: none;
-            padding-left: 0;
-            margin-bottom: 20px;
-        }
-
-        .commission-list li {
-            margin-bottom: 8px;
-            padding-left: 15px;
-            position: relative;
-        }
-
-        .commission-list li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        /* Small font for the do's/don'ts section */
-        .small-list {
-            font-size: 0.8rem;
-            line-height: 1.5;
-            margin-bottom: 10px;
-        }
-
-        .small-list strong {
-            font-size: 0.85rem;
-        }
-
-        .small-list ul {
+        .tos-text ul, .tos-text ol {
             padding-left: 20px;
-            margin-top: 5px;
-            margin-bottom: 10px;
-            list-style-type: disc;
+            margin-bottom: 15px;
         }
 
-        .small-list li {
-            margin-bottom: 2px;
+        .tos-text li {
+            margin-bottom: 5px;
         }
 
-        /* Terms of Service section */
-        .tos-section {
-            font-size: 0.85rem;
-            margin-bottom: 20px;
-            border-left: 2px solid #ccc;
-            padding-left: 15px;
+        .small-text-list {
+            font-size: 0.75rem;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+        
+        .small-text-list span {
+            display: block;
+            margin-bottom: 4px;
         }
 
-        .tos-section p {
-            margin-bottom: 8px;
-        }
-
-        .tos-section strong {
-            font-family: var(--font-serif);
-        }
-
-        /* Form Styles */
+        /* Form Styles for Request (SMALLER FONTS) */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: left;
+            font-size: 0.8rem;
         }
 
         .form-group label {
             display: block;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-family: var(--font-serif);
+            font-size: 0.85rem;
         }
 
         .form-group select, 
         .form-group input, 
         .form-group textarea {
             width: 100%;
-            padding: 12px;
+            padding: 8px;
             border: 1px solid #ccc;
             font-family: var(--font-sans);
-            font-size: 1rem;
+            font-size: 0.8rem;
             background: #fff;
         }
 
         .form-group textarea {
             resize: vertical;
-            min-height: 120px;
+            min-height: 80px;
         }
 
         /* Small, italic notes */
         .small-italic {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-style: italic;
             color: #555;
-        }
-
-        /* Add-ons list (plain text, no checkboxes) */
-        .addon-list {
-            font-size: 0.9rem;
-            margin-top: 5px;
-            padding-left: 20px;
-        }
-
-        .addon-list li {
-            margin-bottom: 4px;
+            margin-top: 2px;
         }
 
         /* Back Button */
@@ -486,15 +394,14 @@
             display: block;
         }
 
+        /* Divider removed */
         .divider {
-            border: 0;
-            border-top: 1px solid #ddd;
-            margin: 30px 0;
+            display: none;
         }
 
         /* File input */
         input[type="file"] {
-            padding: 8px;
+            padding: 5px;
             background: #f9f9f9;
         }
 
@@ -511,16 +418,6 @@
             padding: 4px 8px;
             border-radius: 4px;
             pointer-events: none;
-        }
-
-        /* Remove default list styling for the plain addon list */
-        .plain-addon-list {
-            list-style: none;
-            padding-left: 0;
-            font-size: 0.9rem;
-        }
-        .plain-addon-list li {
-            margin-bottom: 4px;
         }
     </style>
 </head>
@@ -608,18 +505,21 @@
                 </svg>
                 <span class="tooltip-text">Beastars Next Generation</span>
             </div>
+
         </div>
 
         <div class="main-buttons">
-            <a href="#" class="btn" onclick="showPage('gallery')">Gallery</a>
-            <a href="#" class="btn" onclick="showPage('commissions')">Commission</a>
+            <!-- Changed to Commission -->
+            <a href="#" class="btn" onclick="showPage('gallery')">Commission</a>
+            <!-- Changed to Terms of Service -->
+            <a href="#" class="btn" onclick="showPage('commissions')">Terms of Service</a>
             <a href="mailto:eryndorcontact@gmail.com" class="btn">Email</a>
         </div>
     </div>
 
-    <!-- ================= PAGE 2: GALLERY ================= -->
+    <!-- ================= PAGE 2: COMMISSION (GALLERY) ================= -->
     <div id="gallery" class="page">
-        <h2>Gallery</h2>
+        <h2>Commission</h2>
         <p class="subtitle">Selected character art, illustrations, and concept work.</p>
 
         <!-- 1. FEATURED SLIDESHOW -->
@@ -627,6 +527,7 @@
             <div class="section-title">Featured Works</div>
             <div class="slideshow-container" onclick="openLightbox(this.querySelector('.slide.active img').src)">
                 <div class="slide active">
+                    <!-- YOU CAN EDIT THIS IMAGE LINK -->
                     <img src="https://i.imgur.com/3b68EGu.jpeg" alt="Featured 1">
                 </div>
                 <div class="slide">
@@ -643,132 +544,75 @@
                 </div>
             </div>
         </div>
-
-        <hr class="divider">
         
-        <!-- 2. BUST - FULL IMAGE with price -->
+        <!-- 2. BUST CONTAINER (FULL IMAGE) -->
         <div class="gallery-section">
-            <div class="section-title">Bust</div>
-            <div class="price-tag">$70</div>
+            <div class="section-title">Bust - $70</div>
             <div class="full-image-container" onclick="openLightbox('https://i.imgur.com/ieCQ1aU.jpeg')">
+                <!-- YOU CAN EDIT THIS IMAGE LINK -->
                 <img src="https://i.imgur.com/ieCQ1aU.jpeg" alt="Bust Showcase">
             </div>
-            <p class="ref-note">[Reference image placeholder — replace with your own link]</p>
-            <!-- Two placeholder spots for additional images -->
-            <div class="full-image-container" style="margin-top:10px; border:1px dashed #ccc; background:#fafafa; padding:30px; text-align:center; cursor:default;">
-                <span style="color:#aaa;">[Placeholder for additional Bust image 1]</span>
-            </div>
-            <div class="full-image-container" style="margin-top:10px; border:1px dashed #ccc; background:#fafafa; padding:30px; text-align:center; cursor:default;">
-                <span style="color:#aaa;">[Placeholder for additional Bust image 2]</span>
-            </div>
         </div>
 
-        <!-- 3. HALF BODY - FULL IMAGE with price -->
+        <!-- 3. HALF BODY CONTAINER (FULL IMAGE) -->
         <div class="gallery-section">
-            <div class="section-title">Half Body</div>
-            <div class="price-tag">$100</div>
+            <div class="section-title">Half Body - $100</div>
             <div class="full-image-container" onclick="openLightbox('https://i.imgur.com/ckBfinZ.jpeg')">
+                <!-- YOU CAN EDIT THIS IMAGE LINK -->
                 <img src="https://i.imgur.com/ckBfinZ.jpeg" alt="Half Body Showcase">
             </div>
-            <p class="ref-note">[Reference image placeholder — replace with your own link]</p>
-            <div class="full-image-container" style="margin-top:10px; border:1px dashed #ccc; background:#fafafa; padding:30px; text-align:center; cursor:default;">
-                <span style="color:#aaa;">[Placeholder for additional Half Body image 1]</span>
-            </div>
-            <div class="full-image-container" style="margin-top:10px; border:1px dashed #ccc; background:#fafafa; padding:30px; text-align:center; cursor:default;">
-                <span style="color:#aaa;">[Placeholder for additional Half Body image 2]</span>
-            </div>
         </div>
 
-        <!-- 4. KNEE UP - FULL IMAGE with price -->
+        <!-- 4. KNEE UP CONTAINER (FULL IMAGE) -->
         <div class="gallery-section">
-            <div class="section-title">Knee Up</div>
-            <div class="price-tag">$120</div>
+            <div class="section-title">Knee Up - $120</div>
             <div class="full-image-container" onclick="openLightbox('https://i.imgur.com/1t6d0Vp.jpeg')">
+                <!-- YOU CAN EDIT THIS IMAGE LINK -->
                 <img src="https://i.imgur.com/1t6d0Vp.jpeg" alt="Knee Up Showcase">
             </div>
-            <p class="ref-note">[Reference image placeholder — replace with your own link]</p>
-            <div class="full-image-container" style="margin-top:10px; border:1px dashed #ccc; background:#fafafa; padding:30px; text-align:center; cursor:default;">
-                <span style="color:#aaa;">[Placeholder for additional Knee Up image 1]</span>
-            </div>
-            <div class="full-image-container" style="margin-top:10px; border:1px dashed #ccc; background:#fafafa; padding:30px; text-align:center; cursor:default;">
-                <span style="color:#aaa;">[Placeholder for additional Knee Up image 2]</span>
-            </div>
         </div>
 
-        <!-- 5. FULL BODY - FULL IMAGE with price -->
+        <!-- 5. FULL BODY CONTAINER (FULL IMAGE) -->
         <div class="gallery-section">
-            <div class="section-title">Full Body</div>
-            <div class="price-tag">$170</div>
+            <div class="section-title">Full Body - $170</div>
             <div class="full-image-container" onclick="openLightbox('https://i.imgur.com/1t6d0Vp.jpeg')">
+                <!-- YOU CAN EDIT THIS IMAGE LINK -->
                 <img src="https://i.imgur.com/1t6d0Vp.jpeg" alt="Full Body Showcase">
             </div>
-            <p class="ref-note">[Reference image placeholder — replace with your own link]</p>
-            <div class="full-image-container" style="margin-top:10px; border:1px dashed #ccc; background:#fafafa; padding:30px; text-align:center; cursor:default;">
-                <span style="color:#aaa;">[Placeholder for additional Full Body image 1]</span>
-            </div>
-            <div class="full-image-container" style="margin-top:10px; border:1px dashed #ccc; background:#fafafa; padding:30px; text-align:center; cursor:default;">
-                <span style="color:#aaa;">[Placeholder for additional Full Body image 2]</span>
+        </div>
+
+        <!-- 6. CHIBI CONTAINER (FULL IMAGE) -->
+        <div class="gallery-section">
+            <div class="section-title">Chibi - $70</div>
+            <div class="full-image-container" onclick="openLightbox('https://i.imgur.com/ieCQ1aU.jpeg')">
+                <!-- YOU CAN EDIT THIS IMAGE LINK -->
+                <img src="https://i.imgur.com/ieCQ1aU.jpeg" alt="Chibi Showcase">
             </div>
         </div>
 
-        <!-- 6. CHIBI - FULL IMAGE with price -->
+        <!-- 7. CHARACTER REF SHEET CONTAINER (FULL IMAGE) -->
         <div class="gallery-section">
-            <div class="section-title">Chibi</div>
-            <div class="price-tag">$70</div>
+            <div class="section-title">Character Ref Sheet - $150</div>
+            <p style="text-align:center; font-size:0.9rem; margin-bottom:10px;">Side View +$60 | Extra Bust Sketches +$40 each</p>
             <div class="full-image-container" onclick="openLightbox('https://i.imgur.com/Yjajqr4.jpeg')">
-                <img src="https://i.imgur.com/Yjajqr4.jpeg" alt="Chibi Showcase">
-            </div>
-            <p class="ref-note">[Reference image placeholder — replace with your own link]</p>
-            <div class="full-image-container" style="margin-top:10px; border:1px dashed #ccc; background:#fafafa; padding:30px; text-align:center; cursor:default;">
-                <span style="color:#aaa;">[Placeholder for additional Chibi image 1]</span>
-            </div>
-            <div class="full-image-container" style="margin-top:10px; border:1px dashed #ccc; background:#fafafa; padding:30px; text-align:center; cursor:default;">
-                <span style="color:#aaa;">[Placeholder for additional Chibi image 2]</span>
+                <!-- YOU CAN EDIT THIS IMAGE LINK -->
+                <img src="https://i.imgur.com/Yjajqr4.jpeg" alt="Character Ref Sheet Showcase">
             </div>
         </div>
-
-        <!-- 7. CHARACTER REF SHEET - FULL IMAGE with price -->
+        
+        <!-- 8. ADDITIONAL REF SHEET IMAGES -->
         <div class="gallery-section">
-            <div class="section-title">Character Ref Sheet</div>
-            <div class="price-tag">$150</div>
-            <p class="ref-note">Side view +$60 · Extra bust sketches +$40 each</p>
+            <div class="section-title">Ref Sheet Details</div>
+            <!-- YOU CAN EDIT THESE TWO IMAGE LINKS -->
             <div class="full-image-container" onclick="openLightbox('https://i.imgur.com/txwazrh.jpeg')">
-                <img src="https://i.imgur.com/txwazrh.jpeg" alt="Character Ref Sheet Showcase">
+                <img src="https://i.imgur.com/txwazrh.jpeg" alt="Ref Sheet Detail 1">
             </div>
-            <p class="ref-note">[Reference image placeholder — replace with your own link]</p>
-            <div class="full-image-container" style="margin-top:10px; border:1px dashed #ccc; background:#fafafa; padding:30px; text-align:center; cursor:default;">
-                <span style="color:#aaa;">[Placeholder for additional Ref Sheet image 1]</span>
-            </div>
-            <div class="full-image-container" style="margin-top:10px; border:1px dashed #ccc; background:#fafafa; padding:30px; text-align:center; cursor:default;">
-                <span style="color:#aaa;">[Placeholder for additional Ref Sheet image 2]</span>
+            <div class="full-image-container" onclick="openLightbox('https://i.imgur.com/qeKhkiQ.jpeg')">
+                <img src="https://i.imgur.com/qeKhkiQ.jpeg" alt="Ref Sheet Detail 2">
             </div>
         </div>
 
-        <hr class="divider">
-
-        <!-- 8. MORE ART GRID (15 images) -->
-        <div class="gallery-section">
-            <div class="section-title">More Art</div>
-            <div class="grid-gallery">
-                <img src="https://i.imgur.com/qeKhkiQ.jpeg" alt="Art 3" onclick="openLightbox(this.src)">
-                <img src="https://i.imgur.com/1cYShvb.jpeg" alt="Art 4" onclick="openLightbox(this.src)">
-                <img src="https://i.imgur.com/qxLsF1Z.jpeg" alt="Art 5" onclick="openLightbox(this.src)">
-                <img src="https://i.imgur.com/d7lqPmU.jpeg" alt="Art 6" onclick="openLightbox(this.src)">
-                <img src="https://i.imgur.com/XoVg5CR.jpeg" alt="Art 7" onclick="openLightbox(this.src)">
-                <img src="https://i.imgur.com/WbwyGHA.jpeg" alt="Art 8" onclick="openLightbox(this.src)">
-                <img src="https://i.imgur.com/DGWFFMd.jpeg" alt="Art 9" onclick="openLightbox(this.src)">
-                <img src="https://i.imgur.com/a0KUP6J.jpeg" alt="Art 10" onclick="openLightbox(this.src)">
-                <img src="https://i.imgur.com/JOKHwaO.jpeg" alt="Art 11" onclick="openLightbox(this.src)">
-                <img src="https://i.imgur.com/4Jguddb.jpeg" alt="Art 12" onclick="openLightbox(this.src)">
-                <img src="https://i.imgur.com/Qm9kt0u.jpeg" alt="Art 13" onclick="openLightbox(this.src)">
-                <img src="https://i.imgur.com/HJAscJ3.jpeg" alt="Art 14" onclick="openLightbox(this.src)">
-                <img src="https://i.imgur.com/rXRWRIW.jpeg" alt="Art 15" onclick="openLightbox(this.src)">
-            </div>
-        </div>
-
-        <hr class="divider">
-
-        <!-- 9. NSFW / GORE / THEMES SECTION -->
+        <!-- NSFW SECTION -->
         <div class="gallery-section">
             <div class="section-title">NSFW / Gore / Themes</div>
             <div class="nsfw-gallery">
@@ -784,96 +628,76 @@
         <button class="back-btn" onclick="showPage('home')">&larr; Back to Home</button>
     </div>
 
-    <!-- ================= PAGE 3: COMMISSIONS ================= -->
+    <!-- ================= PAGE 3: TERMS OF SERVICE ================= -->
     <div id="commissions" class="page">
-        <h2>Commissions</h2>
+        <h2>Terms of Service</h2>
         
-        <div class="commission-text">
-            <p>Painterly anime and furry character art, illustration, and project-based artwork. Commissions start at <strong>$75 USD</strong>.</p>
-            <p>Pricing can be sensitive to complexity, character count, background detail, usage, and deadline.</p>
+        <div class="tos-text">
+            <p><strong>Please read carefully before commissioning. By requesting a commission, you agree to the following terms</strong></p>
             
             <br>
-            <p><strong>What I Offer</strong></p>
-            <ul class="commission-list">
-                <li>Character art</li>
-                <li>Portraits / busts</li>
-                <li>Full-body illustrations</li>
-                <li>Character sheets</li>
-                <li>Promotional or project artwork</li>
-                <li>Dark, surreal, emotional, or cinematic focused pieces</li>
+            <p><strong>Do's and Don'ts</strong></p>
+            <!-- Applied smaller font class here -->
+            <div class="small-text-list">
+                <span>do’s</span>
+                <span>don’ts</span>
+                <span>ocs</span>
+                <span>very old people</span>
+                <span>personas / self inserts</span>
+                <span>mecha / full armor</span>
+                <span>fanart (depending on the copyright holder)</span>
+                <span>very muscular men or men with large amounts of facial hair</span>
+                <span>NSFW (discuss in dms)</span>
+                <span>any form of nft</span>
+                <span>Small characters</span>
+                <span>Small characters/childlike characters in nsfw settings</span>
+                <span>Furries</span>
+                <span>heavy gore</span>
+                <span>Men</span>
+                <span>Femboys</span>
+                <span>Women</span>
+                <span>Tall Women</span>
+            </div>
+
+            <br>
+            <p><strong>Payment:</strong></p>
+            <ul>
+                <li>Full payment required before starting the commission.</li>
+                <li>All prices are in American dollars (USD), you can use Wise conversion calculator to estimate the price in your currency.</li>
+                <li>Backgrounds can come at an additional price depending on complexity</li>
+                <li>If wanting to purchase commercial rights, please discuss with me directly</li>
+                <li>Any additional characters after the first are at full price(example: knee up commission with two characters 120+60 vs knee up commission with 3 characters 120+60+120)</li>
+                <li>Character prices are based on how they appear in frame(example: one character is half body and 2 other characters are only slightly in frame it would be 100+35+70(half body, bust(50% off), bust).</li>
+                <li>Payments through wise only.</li>
             </ul>
 
             <br>
-            <p><strong>Pricing</strong></p>
-            <p>Base price: from $75 USD</p>
-            <p>Larger or more complex work is quoted individually.</p>
-            <p>Commercial use, multiple characters, detailed backgrounds, tight deadlines, or complex designs may increase the price.</p>
-            
+            <p><strong>Edits:</strong></p>
+            <p>Any major edits must be specified before lineart is started, minor edits can be made at any stage.</p>
+
             <br>
-            <p><strong>Process</strong></p>
-            <ol style="padding-left: 20px; margin-bottom: 20px;">
-                <li>Send a request through the form.</li>
-                <li>I review the idea and give a quote.</li>
-                <li>50% Payment is confirmed.</li>
-                <li>I send progress/sketch updates.</li>
-                <li>A Preview of final work is sent.</li>
-                <li>Other 50% Payment is confirmed.</li>
-                <li>Final artwork is delivered as a high-resolution file.</li>
-            </ol>
+            <p><strong>Cancellations and Refunds:</strong></p>
+            <p>50% refund if only sketch is done. No refunds after base color has been filled in.</p>
+            <p>Commissioned artwork is for your personal use and must not be resold or used for commercial purposes unless given explicit permission to do so.</p>
 
-            <!-- TERMS OF SERVICE SECTION -->
-            <div class="tos-section">
-                <h3 style="font-size:1.2rem; margin-bottom:8px;">Terms of Service</h3>
-                <p><em>Please read carefully before commissioning. By requesting a commission, you agree to the following terms.</em></p>
-                
-                <p><strong>Payment:</strong></p>
-                <p>• Full payment required before starting the commission.<br>
-                • All prices are in American dollars (USD), you can use Wise conversion calculator to estimate the price in your currency.<br>
-                • Backgrounds can come at an additional price depending on complexity<br>
-                • If wanting to purchase commercial rights, please discuss with me directly<br>
-                • Any additional characters after the first are at full price (example: knee up commission with two characters 120+60 vs knee up commission with 3 characters 120+60+120)<br>
-                • Character prices are based on how they appear in frame (example: one character is half body and 2 other characters are only slightly in frame it would be 100+35+70 (half body, bust(50% off), bust).<br>
-                Payments through wise only.</p>
-
-                <p><strong>Edits:</strong> Any major edits must be specified before lineart is started, minor edits can be made at any stage.</p>
-                <p><strong>Cancellations and Refunds:</strong> 50% refund if only sketch is done. No refunds after base color has been filled in.</p>
-                <p>Commissioned artwork is for your personal use and must not be resold or used for commercial purposes unless given explicit permission to do so.</p>
-            </div>
-
-            <!-- SMALL FONT DO'S AND DON'TS SECTION -->
-            <div class="small-list">
-                <strong>DO's</strong>
-                <ul>
-                    <li>Small characters</li>
-                    <li>Furries</li>
-                    <li>Heavy gore</li>
-                    <li>Men</li>
-                    <li>Femboys</li>
-                    <li>Women</li>
-                    <li>Tall Women</li>
-                    <li>OCs</li>
-                    <li>Very old people</li>
-                    <li>Personas / self inserts</li>
-                    <li>Mecha / full armor</li>
-                    <li>Fanart (depending on the copyright holder)</li>
-                    <li>Very muscular men or men with large amounts of facial hair</li>
-                    <li>NSFW (discuss in dms)</li>
-                </ul>
-                <strong>DON'TS</strong>
-                <ul>
-                    <li>Any form of NFT</li>
-                    <li>Small characters/childlike characters in NSFW settings</li>
-                </ul>
-            </div>
+            <br>
+            <p><strong>Add-ons & Themes (Select all that apply)</strong></p>
+            <p style="font-size: 0.85rem; margin-top: 5px;">
+                Extra Character (+50%) <br>
+                Gore (+50%) <br>
+                NSFW (+50%) <br>
+                Commercial Use (+50%) <br>
+                Commercial Merchandising (+100%)
+            </p>
         </div>
 
-        <!-- THE COMMISSION FORM -->
+        <!-- THE COMMISSION REQUEST FORM (SMALLER FONTS) -->
         <form action="https://formsubmit.co/eryndorcontact@gmail.com" method="POST" id="commissionForm" enctype="multipart/form-data">
             <input type="hidden" name="_subject" value="New Commission Request from Website!">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="Calculated Total Price" id="hiddenTotalPrice" value="0">
 
-            <h3 style="margin-bottom: 15px;">Commission Request Form</h3>
+            <h3 style="margin-bottom: 15px; font-size: 1.2rem;">Commission Request Form</h3>
 
             <!-- BASE TYPE -->
             <div class="form-group">
@@ -884,7 +708,6 @@
                     <option value="Knee Up" data-price="120">Knee Up - $120</option>
                     <option value="Full Body" data-price="170">Full Body - $170</option>
                     <option value="Chibi" data-price="70">Chibi - $70</option>
-                    <option value="Character Ref Sheet" data-price="150">Character Ref Sheet - $150</option>
                 </select>
             </div>
 
@@ -918,45 +741,32 @@
                 </select>
             </div>
 
-            <!-- ADD-ONS & THEMES (plain list, no checkboxes) -->
-            <div class="form-group">
-                <label>Add-ons & Themes</label>
-                <ul class="plain-addon-list">
-                    <li>Extra Character (+50%)</li>
-                    <li>Gore (+50%)</li>
-                    <li>NSFW (+50%)</li>
-                    <li>Commercial Use (+50%)</li>
-                    <li>Commercial Merchandising (+100%)</li>
-                </ul>
-                <p class="small-italic" style="margin-top: 5px;">Select all that apply in the description below or discuss directly.</p>
-            </div>
-
             <!-- DESCRIPTION BOX -->
             <div class="form-group">
                 <label for="description">Character Description & Details</label>
-                <textarea id="description" name="Character Description" placeholder="Describe your character, scene, preferred mood, references (links are fine), and any specific details. Also mention any add-ons you want." required></textarea>
+                <textarea id="description" name="Character Description" placeholder="Describe your character, scene, preferred mood, references (links are fine), and any specific details." required></textarea>
             </div>
 
             <!-- YOUR EMAIL OR NAME (required) -->
             <div class="form-group">
                 <label for="contact">Your Email or Your Name *</label>
                 <input type="text" id="contact" name="Contact Info" placeholder="e.g., your@email.com or your name" required>
-                <p class="small-italic" style="margin-top: 4px;">Required — so I can reach you.</p>
+                <p class="small-italic">Required — so I can reach you.</p>
             </div>
 
             <!-- FILE UPLOAD (optional) -->
             <div class="form-group">
                 <label for="reference">Picture Reference (optional)</label>
                 <input type="file" id="reference" name="Reference Image" accept="image/*">
-                <p class="small-italic" style="margin-top: 4px;">One image is enough. If not, describe everything in the description box above.</p>
+                <p class="small-italic">One image is enough. If not, describe everything in the description box above.</p>
             </div>
 
             <!-- PAYMENT NOTE -->
-            <div class="form-group" style="background: #f9f9f9; padding: 15px; border: 1px solid #eee;">
+            <div class="form-group" style="background: #f9f9f9; padding: 10px; border: 1px solid #eee;">
                 <p class="small-italic"><strong>Payment Note:</strong> Payments are currently processed via Wise (Invoicing). If Wise is unavailable, we will arrange an alternative method upon contact.</p>
             </div>
 
-            <button type="submit" class="btn" style="width: 100%;">Submit Request</button>
+            <button type="submit" class="btn" style="width: 100%; padding: 10px; font-size: 0.9rem;">Submit Request</button>
         </form>
 
         <br>
@@ -968,7 +778,7 @@
 <!-- LIGHTBOX OVERLAY -->
 <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
     <img id="lightboxImg" src="" alt="Zoomed Artwork">
-    <button class="lightbox-close" onclick="closeLightbox(event)">Back to Gallery</button>
+    <button class="lightbox-close" onclick="closeLightbox(event)">Back</button>
 </div>
 
 <!-- VISITOR COUNTER -->
@@ -1027,7 +837,7 @@
 
     // --- NSFW BLUR + ZOOM LOGIC ---
     function handleNsfwClick(img, event) {
-        event.stopPropagation();
+        event.stopPropagation(); 
 
         if (!img.classList.contains('unblurred')) {
             img.classList.add('unblurred');
@@ -1037,7 +847,7 @@
         }
     }
 
-    // --- HIDDEN PRICE CALCULATION (not displayed on page) ---
+    // --- PRICE CALCULATION (hidden from UI, only used for hidden input) ---
     function updateHiddenTotal() {
         const baseTypeSelect = document.getElementById('baseType');
         const basePrice = parseFloat(baseTypeSelect.options[baseTypeSelect.selectedIndex].getAttribute('data-price'));
@@ -1048,8 +858,8 @@
         const bgSelect = document.getElementById('bgType');
         const bgMultiplier = parseFloat(bgSelect.options[bgSelect.selectedIndex].getAttribute('data-price')) / 100;
         
-        // We no longer have addon checkboxes, so we set them to 0 (client can discuss add-ons)
-        const totalAddons = 0;
+        // Since checkboxes are removed from the form, these values default to 0 for the hidden total calculation.
+        const totalAddons = 0; 
 
         let finalPrice = basePrice * finishMultiplier;
         finalPrice += basePrice * bgMultiplier;
@@ -1082,4 +892,4 @@
 </script>
 
 </body>
-</html>
+    </html>
