@@ -79,6 +79,66 @@
             line-height: 1.5;
         }
 
+        /* --- SOCIAL ICONS & TOOLTIPS --- */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .social-icons a, .social-icons .comic-icon {
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: transform 0.2s, opacity 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .social-icons a:hover, .social-icons .comic-icon:hover {
+            transform: translateY(-2px);
+            opacity: 0.7;
+        }
+
+        .icon-svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .tooltip-text {
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.6rem;
+            color: #888;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            font-family: var(--font-sans);
+            text-transform: capitalize;
+        }
+
+        .social-icons a:hover .tooltip-text,
+        .social-icons .comic-icon:hover .tooltip-text {
+            opacity: 1;
+        }
+
+        .comic-icon {
+            cursor: pointer;
+        }
+        
+        .comic-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
         /* --- BUTTONS --- */
         .main-buttons {
             display: flex;
@@ -110,33 +170,7 @@
             color: #fff;
         }
 
-        .back-btn {
-            display: inline-block;
-            margin-top: 15px;
-            text-decoration: none;
-            color: #666;
-            font-size: 0.85rem;
-            cursor: pointer;
-            border: none;
-            background: none;
-            font-family: var(--font-sans);
-        }
-
-        .back-btn:hover {
-            color: #000;
-            text-decoration: underline;
-        }
-
-        /* --- PAGE MANAGEMENT --- */
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        /* --- GALLERY SECTIONS --- */
+        /* --- GALLERY/COMMISSION SECTION --- */
         .gallery-section {
             margin-bottom: 30px;
         }
@@ -149,87 +183,50 @@
             padding-bottom: 5px;
         }
 
-        .full-width-wrapper {
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            background: #fff;
-            padding: 5px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .full-width-wrapper img {
+        .full-width-img {
             width: 100%;
-            max-width: 600px;
             height: auto;
             display: block;
-            margin: 0 auto;
-        }
-
-        /* --- SLIDESHOW (POWERPOINT STYLE) --- */
-        .slide-container {
-            position: relative;
-            width: 100%;
-            max-width: 700px;
-            margin: 0 auto;
-            overflow: hidden;
+            margin-bottom: 10px;
             border: 1px solid #ddd;
             background: #fff;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 200px;
+            cursor: pointer;
         }
 
-        .slide-wrapper {
-            display: flex;
-            transition: transform 0.4s ease-in-out;
+        /* Slideshow */
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: 15px auto;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            background: #f9f9f9;
+        }
+
+        .slide {
+            display: none;
             width: 100%;
         }
 
-        .slide-item {
-            min-width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-        }
-
-        .slide-item img {
-            max-width: 100%;
-            max-height: 400px;
-            object-fit: contain;
+        .slide img {
+            width: 100%;
+            height: auto;
             display: block;
+            object-fit: contain;
         }
 
-        .slide-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid #ccc;
-            font-size: 1.5rem;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 10;
-            user-select: none;
-            transition: background 0.2s;
+        .slide.active {
+            display: block;
+            animation: fade 1.5s ease-in-out;
         }
 
-        .slide-arrow:hover {
-            background: rgba(255, 255, 255, 0.95);
+        @keyframes fade {
+            from { opacity: 0.4; }
+            to { opacity: 1; }
         }
 
-        .slide-arrow.left {
-            left: 10px;
-        }
-
-        .slide-arrow.right {
-            right: 10px;
-        }
-
-        /* --- GRID GALLERY --- */
+        /* Grid Gallery */
         .grid-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -251,7 +248,7 @@
             transform: scale(1.02);
         }
 
-        /* --- NSFW SECTION --- */
+        /* --- NSFW / GORE SECTION --- */
         .nsfw-gallery {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -322,7 +319,7 @@
             background: #ccc;
         }
 
-        /* --- TERMS & ORDER FORM --- */
+        /* --- COMMISSION/TERMS PAGE --- */
         .terms-text {
             font-size: 0.9rem;
             margin-bottom: 20px;
@@ -358,97 +355,7 @@
             margin-bottom: 3px;
         }
 
-        /* Order Form Specific */
-        .order-builder {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .order-builder h3 {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
-        }
-
-        .sticky-total {
-            position: sticky;
-            top: 20px;
-            float: right;
-            background: var(--card-bg);
-            padding: 10px 20px;
-            border: 2px solid var(--border-color);
-            border-radius: 5px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            z-index: 100;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 10px;
-        }
-
-        .order-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 0.85rem;
-        }
-
-        .order-item:last-child {
-            border-bottom: none;
-        }
-
-        .order-item .item-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex: 1;
-        }
-
-        .order-item .item-img {
-            width: 40px;
-            height: 40px;
-            object-fit: cover;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            cursor: pointer;
-        }
-
-        .order-item .item-img:hover {
-            opacity: 0.8;
-        }
-
-        .order-item .item-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .order-item .item-controls button {
-            background: none;
-            border: 1px solid #ccc;
-            padding: 2px 8px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            border-radius: 3px;
-            font-family: var(--font-sans);
-        }
-
-        .order-item .item-controls button:hover {
-            background: #eee;
-        }
-
-        .order-item .item-controls span {
-            min-width: 20px;
-            text-align: center;
-            font-weight: bold;
-        }
-
+        /* Form Styles */
         .form-group {
             margin-bottom: 15px;
             text-align: left;
@@ -485,121 +392,325 @@
             color: #555;
         }
 
+        .back-btn {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #666;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: var(--font-sans);
+        }
+
+        .back-btn:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .checkbox-row {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .checkbox-row label {
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .checkbox-row input[type="checkbox"] {
+            width: auto;
+            transform: scale(1.1);
+            margin: 0;
+        }
+
         input[type="file"] {
             padding: 8px;
             background: #f9f9f9;
         }
 
-        /* --- SUCCESS MODAL --- */
-        .modal-overlay {
+        /* --- VISITOR COUNTER (removed) --- */
+        #visitor-counter {
+            display: none;
+        }
+
+        .price-estimator {
+            display: none;
+        }
+
+        .full-width-wrapper {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            background: #fff;
+            padding: 5px;
+        }
+
+        .full-width-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            cursor: pointer;
+        }
+
+        .price-tag {
+            text-align: center;
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .ref-sheet-info {
+            text-align: center;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        /* --- CUSTOM BACKGROUND SECTION --- */
+        .bg-scope-list {
+            font-size: 0.78rem;
+            color: #444;
+            margin: 6px 0 10px 0;
+            padding-left: 18px;
+            line-height: 1.45;
+        }
+        .bg-scope-list li {
+            margin-bottom: 2px;
+        }
+
+        /* --- ORDER FORM / QUANTITY SELECTOR (Commission Section) --- */
+        .order-block {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 18px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+        .order-block h3 {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+        .order-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 6px 8px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.8rem;
+        }
+        .order-row:last-of-type {
+            border-bottom: none;
+        }
+        .order-row .item-name {
+            flex: 1 1 40%;
+            font-weight: 700;
+            font-family: var(--font-serif);
+            font-size: 0.85rem;
+        }
+        .order-row .item-price {
+            flex: 0 0 auto;
+            color: #555;
+            font-size: 0.78rem;
+            min-width: 55px;
+        }
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .qty-btn {
+            border: 1px solid #000;
+            background: #fff;
+            color: #000;
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            cursor: pointer;
+            border-radius: 3px;
+            line-height: 1.3;
+            transition: background 0.2s, color 0.2s;
+        }
+        .qty-btn:hover {
+            background: #000;
+            color: #fff;
+        }
+        .qty-btn.delete-btn {
+            border-color: #b00;
+            color: #b00;
+        }
+        .qty-btn.delete-btn:hover {
+            background: #b00;
+            color: #fff;
+        }
+        .qty-value {
+            min-width: 22px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.82rem;
+        }
+        .row-total {
+            flex: 0 0 auto;
+            font-size: 0.75rem;
+            color: #333;
+            min-width: 55px;
+            text-align: right;
+        }
+
+        .order-summary {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 2px solid #000;
+        }
+        .order-summary .grand-total {
+            font-family: var(--font-serif);
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+        .submit-btn {
+            padding: 10px 28px;
+            border: 1px solid #000;
+            background: #fff;
+            color: #000;
+            font-family: var(--font-serif);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+        .submit-btn:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        /* --- SUCCESS MODAL (smaller) --- */
+        .success-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
             z-index: 10000;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
-
-        .modal-overlay.active {
+        .success-overlay.active {
             display: flex;
         }
-
-        .modal-content {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
+        .success-box {
+            background: #fff;
+            border-radius: 8px;
+            padding: 28px 22px;
+            max-width: 320px;
+            width: 100%;
             text-align: center;
-            max-width: 400px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            animation: popIn 0.3s ease-out;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: popIn 0.35s ease;
         }
-
         @keyframes popIn {
-            from { transform: scale(0.8); opacity: 0; }
+            from { transform: scale(0.85); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
-
-        .modal-check {
-            display: inline-block;
-            width: 80px;
-            height: 80px;
-            background: #4CAF50;
-            border-radius: 50%;
-            position: relative;
-            margin-bottom: 20px;
+        .success-check {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 14px auto;
+            display: block;
         }
-
-        .modal-check::after {
-            content: '';
-            position: absolute;
-            left: 28px;
-            top: 15px;
-            width: 20px;
-            height: 40px;
-            border: solid white;
-            border-width: 0 6px 6px 0;
-            transform: rotate(45deg);
+        .success-check circle {
+            stroke: #2ecc71;
+            stroke-width: 4;
+            fill: none;
+            stroke-dasharray: 260;
+            stroke-dashoffset: 260;
+            animation: drawCircle 0.6s ease forwards;
         }
-
-        .modal-content h3 {
+        .success-check path {
+            stroke: #2ecc71;
+            stroke-width: 5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 60;
+            stroke-dashoffset: 60;
+            animation: drawCheck 0.4s 0.5s ease forwards;
+        }
+        @keyframes drawCircle {
+            to { stroke-dashoffset: 0; }
+        }
+        @keyframes drawCheck {
+            to { stroke-dashoffset: 0; }
+        }
+        .success-box h3 {
             font-family: var(--font-serif);
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 1rem;
+            margin-bottom: 8px;
             text-align: center;
         }
-
-        .modal-content p {
-            font-size: 1rem;
-            color: #555;
-            margin-bottom: 20px;
+        .success-box p {
+            font-size: 0.78rem;
+            color: #444;
+            margin-bottom: 4px;
         }
-
-        .modal-content button {
-            padding: 10px 30px;
-            background: #111;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
+        .success-close {
+            margin-top: 14px;
+            padding: 6px 22px;
+            border: 1px solid #000;
+            background: #fff;
             font-family: var(--font-sans);
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+        .success-close:hover {
+            background: #000;
+            color: #fff;
         }
 
-        .modal-content button:hover {
-            background: #333;
+        /* Socials in corner for commission + terms pages */
+        .corner-socials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+            justify-content: flex-start;
         }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            h1 { font-size: 2.2rem; }
-            h2 { font-size: 1.6rem; }
-            .sticky-total {
-                position: relative;
-                top: 0;
-                float: none;
-                margin-bottom: 15px;
-                text-align: center;
-            }
-            .order-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-            }
-            .order-item .item-controls {
-                width: 100%;
-                justify-content: flex-end;
-            }
-            .nsfw-gallery {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .slide-arrow {
-                font-size: 1rem;
-                padding: 6px;
-            }
+        .corner-socials a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: transform 0.2s, opacity 0.2s;
+            position: relative;
+        }
+        .corner-socials a:hover {
+            transform: translateY(-2px);
+            opacity: 0.7;
+        }
+        .corner-socials .icon-svg {
+            width: 16px;
+            height: 16px;
         }
     </style>
 </head>
@@ -612,20 +723,65 @@
         <h1>ERYN</h1>
         <p class="subtitle">Illustrations, Character art,<br>and Cinematic worlds by Eryn.</p>
 
-        <!-- Social Icons for Home -->
-        <div class="social-icons" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 25px;">
-            <a href="https://x.com/eryndor_0" target="_blank" title="Twitter" style="color: #111;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-            <a href="https://www.tiktok.com/@eryndor.artist" target="_blank" title="TikTok" style="color: #111;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
-            <a href="https://www.instagram.com/eryndor.artist" target="_blank" title="Instagram" style="color: #111;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-            <a href="https://www.patreon.com/Eryndor_01" target="_blank" title="Patreon" style="color: #111;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.386 3.252c-4.356 0-7.892 3.536-7.892 7.892 0 4.356 3.536 7.892 7.892 7.892 4.356 0 7.892-3.536 7.892-7.892 0-4.356-3.536-7.892-7.892-7.892zm-10.55.748v16h3v-16h-3z"/></svg></a>
-            <a href="https://jannapaypal6.artstation.com/" target="_blank" title="ArtStation" style="color: #111;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2 18.5l2.5-4.3h5.1L7 18.5H2zM21.5 18.5h-6.8l-3.4-5.9 3.4-5.9h6.8l-3.4 5.9 3.4 5.9zM12.5 2L2 20h4.5l6.5-11.2L19.5 20H24L12.5 2z"/></svg></a>
-            <a href="https://www.facebook.com/share/1behpyvBWH/" target="_blank" title="Facebook" style="color: #111;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-            <a href="https://www.pixiv.net/users/87870114" target="_blank" title="Pixiv" style="color: #111;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2zm4 8h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></a>
-            <a href="https://www.tumblr.com/eryndor00" target="_blank" title="Tumblr" style="color: #111;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 2v3.5h3.5v4h-3.5v5.5c0 1.5.5 2 2 2h1.5v4h-3.5c-4 0-6-2-6-6V9.5H5.5v-4H8V2h6.5z"/></svg></a>
-            <a href="https://youtube.com/@eryndor_0" target="_blank" title="YouTube" style="color: #111;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-            <a href="mailto:eryndorcontact@gmail.com" title="Email" style="color: #111;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
-            <a href="https://discord.gg/2RUWZsrHY" target="_blank" title="Discord" style="color: #111;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
-            <a href="https://erynshop.acggoods.com/?from=my-center" target="_blank" title="ACG Goods" style="color: #111;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></a>
+        <!-- Social Icons -->
+        <div class="social-icons">
+            <a href="https://x.com/eryndor_0" target="_blank" title="Twitter">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                <span class="tooltip-text">Twitter</span>
+            </a>
+            <a href="https://www.tiktok.com/@eryndor.artist" target="_blank" title="TikTok">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                <span class="tooltip-text">TikTok</span>
+            </a>
+            <a href="https://www.instagram.com/eryndor.artist?stkn=MWxwMDB5NG4zM3BlaA==" target="_blank" title="Instagram">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                <span class="tooltip-text">Instagram</span>
+            </a>
+            <a href="https://www.patreon.com/Eryndor_01" target="_blank" title="Patreon">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.386 3.252c-4.356 0-7.892 3.536-7.892 7.892 0 4.356 3.536 7.892 7.892 7.892 4.356 0 7.892-3.536 7.892-7.892 0-4.356-3.536-7.892-7.892-7.892zm-10.55.748v16h3v-16h-3z"/></svg>
+                <span class="tooltip-text">Patreon</span>
+            </a>
+            <a href="https://jannapaypal6.artstation.com/" target="_blank" title="ArtStation">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2 18.5l2.5-4.3h5.1L7 18.5H2zM21.5 18.5h-6.8l-3.4-5.9 3.4-5.9h6.8l-3.4 5.9 3.4 5.9zM12.5 2L2 20h4.5l6.5-11.2L19.5 20H24L12.5 2z"/></svg>
+                <span class="tooltip-text">ArtStation</span>
+            </a>
+            <a href="https://www.facebook.com/share/1behpyvBWH/" target="_blank" title="Facebook">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <span class="tooltip-text">Facebook</span>
+            </a>
+            <a href="https://www.pixiv.net/users/87870114" target="_blank" title="Pixiv">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2zm4 8h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                <span class="tooltip-text">Pixiv</span>
+            </a>
+            <a href="https://www.tumblr.com/eryndor00" target="_blank" title="Tumblr">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M14.5 2v3.5h3.5v4h-3.5v5.5c0 1.5.5 2 2 2h1.5v4h-3.5c-4 0-6-2-6-6V9.5H5.5v-4H8V2h6.5z"/></svg>
+                <span class="tooltip-text">Tumblr</span>
+            </a>
+            <a href="https://youtube.com/@eryndor_0" target="_blank" title="YouTube">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                <span class="tooltip-text">YouTube</span>
+            </a>
+            <a href="mailto:eryndorcontact@gmail.com" title="Email">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <span class="tooltip-text">Email</span>
+            </a>
+            <a href="https://discord.gg/2RUWZsrHY" target="_blank" title="Discord">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+                <span class="tooltip-text">Discord</span>
+            </a>
+            <a href="https://erynshop.acggoods.com/?from=my-center" target="_blank" title="ACG Goods">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+                <span class="tooltip-text">ACG Goods</span>
+            </a>
+            <div class="comic-icon" title="Beastars Next Generation" onclick="alert('Coming Soon!')">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 4c-2.5 0-4.5 1.5-5.5 3.5-.5 1-.5 2.5-.5 3.5 0 2 1 3.5 2.5 4.5.5.3 1 .5 1.5.5.5 0 1-.2 1.5-.5 1.5-1 2.5-2.5 2.5-4.5 0-1 0-2.5-.5-3.5C14.5 5.5 12.5 4 12 4z"/>
+                    <path d="M7 10c-1.5.5-2.5 2-2.5 4 0 2.5 1.5 4.5 4 5.5.5.2 1 .3 1.5.3.5 0 1-.1 1.5-.3 2.5-1 4-3 4-5.5 0-2-1-3.5-2.5-4-.5-.2-1-.3-1.5-.3-.5 0-1 .1-1.5.3z"/>
+                    <circle cx="9" cy="12" r="1" fill="white"/>
+                    <circle cx="15" cy="12" r="1" fill="white"/>
+                </svg>
+                <span class="tooltip-text">Beastars Next Generation</span>
+            </div>
         </div>
 
         <div class="main-buttons">
@@ -635,24 +791,46 @@
         </div>
     </div>
 
-    <!-- ================= PAGE 2: GALLERY (Commission Showcase) ================= -->
+    <!-- ================= PAGE 2: COMMISSION ================= -->
     <div id="gallery" class="page">
+        <!-- Socials top left -->
+        <div class="corner-socials">
+            <a href="https://x.com/eryndor_0" target="_blank" title="Twitter"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="https://www.tiktok.com/@eryndor.artist" target="_blank" title="TikTok"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+            <a href="https://www.instagram.com/eryndor.artist?stkn=MWxwMDB5NG4zM3BlaA==" target="_blank" title="Instagram"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="https://www.patreon.com/Eryndor_01" target="_blank" title="Patreon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.386 3.252c-4.356 0-7.892 3.536-7.892 7.892 0 4.356 3.536 7.892 7.892 7.892 4.356 0 7.892-3.536 7.892-7.892 0-4.356-3.536-7.892-7.892-7.892zm-10.55.748v16h3v-16h-3z"/></svg></a>
+            <a href="https://jannapaypal6.artstation.com/" target="_blank" title="ArtStation"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2 18.5l2.5-4.3h5.1L7 18.5H2zM21.5 18.5h-6.8l-3.4-5.9 3.4-5.9h6.8l-3.4 5.9 3.4 5.9zM12.5 2L2 20h4.5l6.5-11.2L19.5 20H24L12.5 2z"/></svg></a>
+            <a href="https://www.facebook.com/share/1behpyvBWH/" target="_blank" title="Facebook"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="https://www.pixiv.net/users/87870114" target="_blank" title="Pixiv"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2zm4 8h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></a>
+            <a href="https://www.tumblr.com/eryndor00" target="_blank" title="Tumblr"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M14.5 2v3.5h3.5v4h-3.5v5.5c0 1.5.5 2 2 2h1.5v4h-3.5c-4 0-6-2-6-6V9.5H5.5v-4H8V2h6.5z"/></svg></a>
+            <a href="https://youtube.com/@eryndor_0" target="_blank" title="YouTube"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <a href="mailto:eryndorcontact@gmail.com" title="Email"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+            <a href="https://discord.gg/2RUWZsrHY" target="_blank" title="Discord"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+            <a href="https://erynshop.acggoods.com/?from=my-center" target="_blank" title="ACG Goods"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></a>
+        </div>
+
         <h2>Commission</h2>
         <p class="subtitle">Selected character art, illustrations, and concept work.</p>
 
-        <!-- 1. FEATURED SLIDESHOW (PowerPoint Style) -->
+        <!-- 1. FEATURED SLIDESHOW -->
         <div class="gallery-section">
             <div class="section-title">Featured Works</div>
-            <div class="slide-container" id="featuredSlideshow">
-                <div class="slide-arrow left" onclick="moveSlide('featuredSlideshow', -1)">&#10094;</div>
-                <div class="slide-wrapper" id="featuredWrapper">
-                    <div class="slide-item"><img src="https://i.imgur.com/3b68EGu.jpeg" alt="Featured 1" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/txwazrh.jpeg" alt="Featured 2" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/pchKrSG.jpeg" alt="Featured 3" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/4FVTOJG.jpeg" alt="Featured 4" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/jCmtWGt.jpeg" alt="Featured 5" onclick="openLightbox(this.src)"></div>
+            <div class="slideshow-container" onclick="openLightbox(this.querySelector('.slide.active img').src)">
+                <div class="slide active">
+                    <img src="https://i.imgur.com/3b68EGu.jpeg" alt="Featured 1">
                 </div>
-                <div class="slide-arrow right" onclick="moveSlide('featuredSlideshow', 1)">&#10095;</div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/txwazrh.jpeg" alt="Featured 2">
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/pchKrSG.jpeg" alt="Featured 3">
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/4FVTOJG.jpeg" alt="Featured 4">
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/jCmtWGt.jpeg" alt="Featured 5">
+                </div>
             </div>
         </div>
 
@@ -660,7 +838,7 @@
         <div class="gallery-section">
             <div class="section-title">Bust $70</div>
             <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/0v1wJ7n.jpeg')">
-                <img src="https://i.imgur.com/0v1wJ7n.jpeg" alt="Bust Showcase">
+                <img src="https://i.imgur.com/0vlwJ7n.jpeg" alt="Bust Showcase">
             </div>
         </div>
 
@@ -696,31 +874,30 @@
             </div>
         </div>
 
-        <!-- 7. CUSTOM BACKGROUND FOR VTUBER STREAMING ($350) -->
+        <!-- CUSTOM BACKGROUND FOR VTUBER STREAMING -->
         <div class="gallery-section">
             <div class="section-title">Custom Background for Vtuber Streaming $350</div>
-            <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/placeholder_vtuber_bg.jpg')">
-                <img src="https://i.imgur.com/placeholder_vtuber_bg.jpg" alt="Vtuber Background Showcase">
+            <ul class="bg-scope-list">
+                <li>For Extraordinary Background Art scope:</li>
+                <li>Large-scale or complex environments</li>
+                <li>Multiple areas or extended spaces</li>
+                <li>Interior or exterior scenes (palace halls, stages, city views, detailed buildings, landscapes)</li>
+                <li>Deeper perspective and layered composition</li>
+                <li>High level of detail</li>
+                <li>Suitable for key visuals, debut scenes, concerts, or showcase backg</li>
+            </ul>
+            <div class="ref-sheet-info">
+                Custom quote available for extended scope. Base: $350 USD.
             </div>
-            <p class="small-italic" style="text-align:center; margin-top:5px;">(PowerPoint slideshow placeholder - 5 images)</p>
-            <!-- Placeholder PPT for this section -->
-            <div class="slide-container" style="margin-top:10px;">
-                <div class="slide-arrow left" onclick="moveSlide('vtuberSlideshow', -1)">&#10094;</div>
-                <div class="slide-wrapper" id="vtuberWrapper">
-                    <div class="slide-item"><img src="https://i.imgur.com/placeholder_vtuber_bg.jpg" alt="Vtuber BG 1" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/placeholder_vtuber_bg.jpg" alt="Vtuber BG 2" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/placeholder_vtuber_bg.jpg" alt="Vtuber BG 3" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/placeholder_vtuber_bg.jpg" alt="Vtuber BG 4" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/placeholder_vtuber_bg.jpg" alt="Vtuber BG 5" onclick="openLightbox(this.src)"></div>
-                </div>
-                <div class="slide-arrow right" onclick="moveSlide('vtuberSlideshow', 1)">&#10095;</div>
+            <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/IBZxgAh.jpeg')">
+                <img src="https://i.imgur.com/IBZxgAh.jpeg" alt="Custom Background for Vtuber Streaming Showcase">
             </div>
         </div>
 
-        <!-- 8. CHARACTER REF SHEET ($150) -->
+        <!-- 7. CHARACTER REF SHEET ($150) -->
         <div class="gallery-section">
             <div class="section-title">Character Ref Sheet $150</div>
-            <div class="ref-sheet-info" style="text-align:center; font-size:0.9rem; margin-bottom:10px; color:#555;">
+            <div class="ref-sheet-info">
                 Side view +$60<br>
                 Extra bust sketches +$40 each
             </div>
@@ -729,30 +906,26 @@
             </div>
         </div>
 
-        <!-- 9. REST OF IMAGES GRID (Now PowerPoint Slideshow) -->
+        <!-- 8. REST OF IMAGES GRID -->
         <div class="gallery-section">
             <div class="section-title">More Art</div>
-            <div class="slide-container" id="moreArtSlideshow">
-                <div class="slide-arrow left" onclick="moveSlide('moreArtSlideshow', -1)">&#10094;</div>
-                <div class="slide-wrapper" id="moreArtWrapper">
-                    <div class="slide-item"><img src="https://i.imgur.com/1cYShvb.jpeg" alt="Art 1" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/qxLsF1Z.jpeg" alt="Art 2" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/CiWB6Nx.jpeg" alt="Art 3" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/VXGuaDh.jpeg" alt="Art 4" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/ROxi7Mm.jpeg" alt="Art 5" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/DGWFFMd.jpeg" alt="Art 6" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/a0KUP6J.jpeg" alt="Art 7" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/qeKhkiQ.jpeg" alt="Art 8" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/4Jguddb.jpeg" alt="Art 9" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/Qm9kt0u.jpeg" alt="Art 10" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/HJAscJ3.jpeg" alt="Art 11" onclick="openLightbox(this.src)"></div>
-                    <div class="slide-item"><img src="https://i.imgur.com/rXRWRIW.jpeg" alt="Art 12" onclick="openLightbox(this.src)"></div>
-                </div>
-                <div class="slide-arrow right" onclick="moveSlide('moreArtSlideshow', 1)">&#10095;</div>
+            <div class="grid-gallery">
+                <img src="https://i.imgur.com/1cYShvb.jpeg" alt="Art 1" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/qxLsF1Z.jpeg" alt="Art 2" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/CiWB6Nx.jpeg" alt="Art 3" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/VXGuaDh.jpeg" alt="Art 4" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/ROxi7Mm.jpeg" alt="Art 5" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/DGWFFMd.jpeg" alt="Art 6" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/a0KUP6J.jpeg" alt="Art 7" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/qeKhkiQ.jpeg" alt="Art 8" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/4Jguddb.jpeg" alt="Art 9" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/Qm9kt0u.jpeg" alt="Art 10" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/HJAscJ3.jpeg" alt="Art 11" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/rXRWRIW.jpeg" alt="Art 12" onclick="openLightbox(this.src)">
             </div>
         </div>
 
-        <!-- 10. NSFW / GORE / THEMES SECTION -->
+        <!-- 9. NSFW / GORE / THEMES SECTION -->
         <div class="gallery-section">
             <div class="section-title">NSFW / Gore / Themes</div>
             <div class="nsfw-gallery">
@@ -764,12 +937,43 @@
             <p class="small-italic" style="margin-top: 8px; text-align: center;">Click to reveal, click again to enlarge.</p>
         </div>
 
+        <!-- ORDER FORM / QUANTITY SELECTOR (underneath Gore section) -->
+        <div class="order-block" id="orderBlock">
+            <h3>Commission Order Form</h3>
+            <p class="small-italic" style="text-align:center; margin-bottom:12px;">Use add+ / Delete− to add commissions. Total updates automatically.</p>
+
+            <div id="orderRowsContainer">
+                <!-- Rows generated by JS -->
+            </div>
+
+            <div class="order-summary">
+                <div class="grand-total">Total: $<span id="grandTotalDisplay">0</span></div>
+                <button type="button" class="submit-btn" id="orderSubmitBtn">Submit Order</button>
+            </div>
+        </div>
+
         <br>
         <button class="back-btn" onclick="showPage('home')">&larr; Back to Home</button>
     </div>
 
     <!-- ================= PAGE 3: TERMS OF SERVICE ================= -->
     <div id="commissions" class="page">
+        <!-- Socials top left -->
+        <div class="corner-socials">
+            <a href="https://x.com/eryndor_0" target="_blank" title="Twitter"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="https://www.tiktok.com/@eryndor.artist" target="_blank" title="TikTok"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+            <a href="https://www.instagram.com/eryndor.artist?stkn=MWxwMDB5NG4zM3BlaA==" target="_blank" title="Instagram"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="https://www.patreon.com/Eryndor_01" target="_blank" title="Patreon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.386 3.252c-4.356 0-7.892 3.536-7.892 7.892 0 4.356 3.536 7.892 7.892 7.892 4.356 0 7.892-3.536 7.892-7.892 0-4.356-3.536-7.892-7.892-7.892zm-10.55.748v16h3v-16h-3z"/></svg></a>
+            <a href="https://jannapaypal6.artstation.com/" target="_blank" title="ArtStation"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2 18.5l2.5-4.3h5.1L7 18.5H2zM21.5 18.5h-6.8l-3.4-5.9 3.4-5.9h6.8l-3.4 5.9 3.4 5.9zM12.5 2L2 20h4.5l6.5-11.2L19.5 20H24L12.5 2z"/></svg></a>
+            <a href="https://www.facebook.com/share/1behpyvBWH/" target="_blank" title="Facebook"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="https://www.pixiv.net/users/87870114" target="_blank" title="Pixiv"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2zm4 8h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></a>
+            <a href="https://www.tumblr.com/eryndor00" target="_blank" title="Tumblr"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M14.5 2v3.5h3.5v4h-3.5v5.5c0 1.5.5 2 2 2h1.5v4h-3.5c-4 0-6-2-6-6V9.5H5.5v-4H8V2h6.5z"/></svg></a>
+            <a href="https://youtube.com/@eryndor_0" target="_blank" title="YouTube"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <a href="mailto:eryndorcontact@gmail.com" title="Email"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+            <a href="https://discord.gg/2RUWZsrHY" target="_blank" title="Discord"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+            <a href="https://erynshop.acggoods.com/?from=my-center" target="_blank" title="ACG Goods"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></a>
+        </div>
+
         <h2>Terms of Service</h2>
         
         <div class="terms-text">
@@ -795,26 +999,6 @@
                 <li>Base price: $70 USD</li>
                 <li>Larger or more complex work is quoted individually.</li>
                 <li>Commercial use, multiple characters, detailed backgrounds, tight deadlines, or complex designs may increase the price.</li>
-            </ul>
-
-            <br>
-            <p><strong>Background Art Pricing (Additional)</strong></p>
-            <ul class="terms-list">
-                <li>Standard Art Commission Background: <strong>$20 - $40</strong> (depends on complexity)</li>
-                <li><strong>Custom Vtuber Background:</strong> <strong>$350</strong></li>
-                <li style="list-style-type: none; padding-left: 0; margin-top: 5px;"><strong>Extraordinary Background Art scope:</strong>
-                    <ul style="padding-left: 20px; margin-top: 5px; list-style-type: circle;">
-                        <li>Large-scale or complex environments</li>
-                        <li>Multiple areas or extended spaces</li>
-                        <li>Interior or exterior scenes (palace halls, stages, city views, detailed buildings, landscapes)</li>
-                        <li>Deeper perspective and layered composition</li>
-                        <li>High level of detail</li>
-                        <li>Suitable for key visuals, debut scenes, concerts, or showcase backgrounds</li>
-                        <li>Accepting various themes</li>
-                    </ul>
-                </li>
-                <li style="margin-top: 5px;"><strong>Add-ons:</strong> $30 USD per variation (Time variations such as morning, evening/sunset, night, rainy, snow, etc.)</li>
-                <li><strong>File format:</strong> PNG/JPG 4000 × 2500 px, 300 DPI</li>
             </ul>
 
             <br>
@@ -856,136 +1040,95 @@
             <p>Commissioned artwork is for your personal use and must not be resold or used for commercial purposes unless given explicit permission to do so.</p>
         </div>
 
-        <!-- ================= ORDER FORM (Commission Builder) ================= -->
-        <div id="orderSection" style="margin-top: 40px;">
-            <h3 style="font-size: 1.5rem; text-align: center; margin-bottom: 20px;">Commission Order Form</h3>
-            
-            <form action="https://formsubmit.co/eryndorcontact@gmail.com" method="POST" id="commissionForm" enctype="multipart/form-data">
-                <input type="hidden" name="_subject" value="New Commission Request from Website!">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="Calculated Total Price" id="hiddenTotalPrice" value="0.00">
-                <input type="hidden" name="Order Details" id="hiddenOrderDetails" value="">
+        <!-- THE COMMISSION REQUEST FORM (just underneath the terms) -->
+        <form action="https://formsubmit.co/eryndorcontact@gmail.com" method="POST" id="commissionForm" enctype="multipart/form-data">
+            <input type="hidden" name="_subject" value="New Commission Request from Website!">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="Calculated Total Price" id="hiddenTotalPrice" value="0">
 
-                <!-- Sticky Total Display -->
-                <div class="sticky-total" id="totalDisplay">Total: $0.00</div>
+            <h3 style="margin-bottom: 15px; font-size: 1.1rem;">Commission Request Form</h3>
 
-                <!-- Order Builder -->
-                <div class="order-builder">
-                    <h3>Select Commissions</h3>
-                    
-                    <!-- Bust $70 -->
-                    <div class="order-item" data-id="bust" data-price="70">
-                        <div class="item-info">
-                            <img src="https://i.imgur.com/0v1wJ7n.jpeg" class="item-img" onclick="openLightbox(this.src)" alt="Bust">
-                            <span><strong>Bust</strong> - $70</span>
-                        </div>
-                        <div class="item-controls">
-                            <button type="button" onclick="changeQty('bust', 'add')">Add +</button>
-                            <span id="qty-bust">0</span>
-                            <button type="button" onclick="changeQty('bust', 'delete')">Delete -</button>
-                        </div>
-                    </div>
+            <!-- BASE TYPE -->
+            <div class="form-group">
+                <label>Base Type</label>
+                <select name="Base Type" id="baseType" required onchange="updateHiddenTotal()">
+                    <option value="Bust Up" data-price="70">Bust - $70</option>
+                    <option value="Half Body" data-price="80">Half Body - $80</option>
+                    <option value="Knee Up" data-price="90">Knee Up - $90</option>
+                    <option value="Full Body" data-price="100">Full Body - $100</option>
+                    <option value="Chibi" data-price="70">Chibi - $70</option>
+                    <option value="Character Ref Sheet" data-price="150">Character Ref Sheet - $150</option>
+                </select>
+            </div>
 
-                    <!-- Half Body $80 -->
-                    <div class="order-item" data-id="halfbody" data-price="80">
-                        <div class="item-info">
-                            <img src="https://i.imgur.com/ktrfwYe.jpeg" class="item-img" onclick="openLightbox(this.src)" alt="Half Body">
-                            <span><strong>Half Body</strong> - $80</span>
-                        </div>
-                        <div class="item-controls">
-                            <button type="button" onclick="changeQty('halfbody', 'add')">Add +</button>
-                            <span id="qty-halfbody">0</span>
-                            <button type="button" onclick="changeQty('halfbody', 'delete')">Delete -</button>
-                        </div>
-                    </div>
+            <!-- STYLE -->
+            <div class="form-group">
+                <label>Style</label>
+                <select name="Style" required>
+                    <option value="Anime">Anime</option>
+                    <option value="Furry">Furry</option>
+                </select>
+            </div>
 
-                    <!-- Knee Up $90 -->
-                    <div class="order-item" data-id="kneeup" data-price="90">
-                        <div class="item-info">
-                            <img src="https://i.imgur.com/dERTAci.jpeg" class="item-img" onclick="openLightbox(this.src)" alt="Knee Up">
-                            <span><strong>Knee Up</strong> - $90</span>
-                        </div>
-                        <div class="item-controls">
-                            <button type="button" onclick="changeQty('kneeup', 'add')">Add +</button>
-                            <span id="qty-kneeup">0</span>
-                            <button type="button" onclick="changeQty('kneeup', 'delete')">Delete -</button>
-                        </div>
-                    </div>
+            <!-- FINISH -->
+            <div class="form-group">
+                <label>Finish</label>
+                <select name="Finish" id="finishType" required onchange="updateHiddenTotal()">
+                    <option value="Manga Color" data-price="1.0">Manga Color</option>
+                    <option value="Flat Color" data-price="1.2">Flat Color</option>
+                    <option value="Rendered" data-price="1.5">Rendered</option>
+                </select>
+            </div>
 
-                    <!-- Full Body $100 -->
-                    <div class="order-item" data-id="fullbody" data-price="100">
-                        <div class="item-info">
-                            <img src="https://i.imgur.com/IBZxgAh.jpeg" class="item-img" onclick="openLightbox(this.src)" alt="Full Body">
-                            <span><strong>Full Body</strong> - $100</span>
-                        </div>
-                        <div class="item-controls">
-                            <button type="button" onclick="changeQty('fullbody', 'add')">Add +</button>
-                            <span id="qty-fullbody">0</span>
-                            <button type="button" onclick="changeQty('fullbody', 'delete')">Delete -</button>
-                        </div>
-                    </div>
+            <!-- BACKGROUND -->
+            <div class="form-group">
+                <label>Background</label>
+                <select name="Background" id="bgType" required onchange="updateHiddenTotal()">
+                    <option value="None" data-price="0">No Background (+$0)</option>
+                    <option value="Simple" data-price="10">Simple Background (+10%)</option>
+                    <option value="Complex" data-price="50">Complex Background (+50%)</option>
+                </select>
+            </div>
 
-                    <!-- Chibi $70 -->
-                    <div class="order-item" data-id="chibi" data-price="70">
-                        <div class="item-info">
-                            <img src="https://i.imgur.com/2WxNyXM.jpeg" class="item-img" onclick="openLightbox(this.src)" alt="Chibi">
-                            <span><strong>Chibi</strong> - $70</span>
-                        </div>
-                        <div class="item-controls">
-                            <button type="button" onclick="changeQty('chibi', 'add')">Add +</button>
-                            <span id="qty-chibi">0</span>
-                            <button type="button" onclick="changeQty('chibi', 'delete')">Delete -</button>
-                        </div>
-                    </div>
-
-                    <!-- Character Ref Sheet $150 -->
-                    <div class="order-item" data-id="refsheet" data-price="150">
-                        <div class="item-info">
-                            <img src="https://i.imgur.com/wCjrpgK.jpeg" class="item-img" onclick="openLightbox(this.src)" alt="Ref Sheet">
-                            <span><strong>Character Ref Sheet</strong> - $150</span>
-                        </div>
-                        <div class="item-controls">
-                            <button type="button" onclick="changeQty('refsheet', 'add')">Add +</button>
-                            <span id="qty-refsheet">0</span>
-                            <button type="button" onclick="changeQty('refsheet', 'delete')">Delete -</button>
-                        </div>
-                    </div>
+            <!-- ADD-ONS -->
+            <div class="form-group">
+                <label>Add-ons & Themes (Select all that apply in the description below or discuss directly)</label>
+                <div style="font-size: 0.8rem; line-height: 1.4; color: #444;">
+                    Extra Character (+50%)<br>
+                    Gore (+50%)<br>
+                    NSFW (+50%)<br>
+                    Commercial Use (+50%)<br>
+                    Commercial Merchandising (+100%)
                 </div>
+            </div>
 
-                <!-- Hidden inputs to capture form data -->
-                <input type="hidden" name="Bust" id="input-bust" value="0">
-                <input type="hidden" name="Half Body" id="input-halfbody" value="0">
-                <input type="hidden" name="Knee Up" id="input-kneeup" value="0">
-                <input type="hidden" name="Full Body" id="input-fullbody" value="0">
-                <input type="hidden" name="Chibi" id="input-chibi" value="0">
-                <input type="hidden" name="Character Ref Sheet" id="input-refsheet" value="0">
+            <!-- DESCRIPTION BOX -->
+            <div class="form-group">
+                <label for="description">Character Description & Details</label>
+                <textarea id="description" name="Character Description" placeholder="Describe your character, scene, preferred mood, references (links are fine), and any specific details." required></textarea>
+            </div>
 
-                <!-- Additional Info -->
-                <div class="form-group" style="margin-top:20px;">
-                    <label for="description">Character Description & Details</label>
-                    <textarea id="description" name="Character Description" placeholder="Describe your character, scene, preferred mood, references (links are fine), and any specific details." required></textarea>
-                </div>
+            <!-- CONTACT INFO -->
+            <div class="form-group">
+                <label for="contact">Your Email or Your Name *</label>
+                <input type="text" id="contact" name="Contact Info" placeholder="e.g., your@email.com or your name" required>
+                <p class="small-italic" style="margin-top: 4px;">Required — so I can reach you.</p>
+            </div>
 
-                <div class="form-group">
-                    <label for="contact">Your Email or Your Name *</label>
-                    <input type="text" id="contact" name="Contact Info" placeholder="e.g., your@email.com or your name" required>
-                    <p class="small-italic" style="margin-top: 4px;">Required — so I can reach you.</p>
-                </div>
+            <!-- FILE UPLOAD -->
+            <div class="form-group">
+                <label for="reference">Picture Reference (optional)</label>
+                <input type="file" id="reference" name="Reference Image" accept="image/*">
+                <p class="small-italic" style="margin-top: 4px;">One image is enough. If not, describe everything in the description box above.</p>
+            </div>
 
-                <div class="form-group">
-                    <label for="reference">Picture Reference (optional)</label>
-                    <input type="file" id="reference" name="Reference Image" accept="image/*">
-                    <p class="small-italic" style="margin-top: 4px;">One image is enough. If not, describe everything in the description box above.</p>
-                </div>
+            <!-- PAYMENT NOTE -->
+            <div class="form-group" style="background: #f9f9f9; padding: 15px; border: 1px solid #eee;">
+                <p class="small-italic"><strong>Payment Note:</strong> Payments are currently processed via Wise (Invoicing). If Wise is unavailable, we will arrange an alternative method upon contact.</p>
+            </div>
 
-                <div class="form-group" style="background: #f9f9f9; padding: 15px; border: 1px solid #eee;">
-                    <p class="small-italic"><strong>Payment Note:</strong> Payments are currently processed via Wise (Invoicing). If Wise is unavailable, we will arrange an alternative method upon contact.</p>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Submit Request</button>
-            </form>
-        </div>
+            <button type="submit" class="btn" style="width: 100%;">Submit Request</button>
+        </form>
 
         <br>
         <button class="back-btn" onclick="showPage('home')">&larr; Back to Home</button>
@@ -1000,12 +1143,16 @@
 </div>
 
 <!-- SUCCESS MODAL -->
-<div id="successModal" class="modal-overlay">
-    <div class="modal-content">
-        <div class="modal-check"></div>
+<div id="successOverlay" class="success-overlay">
+    <div class="success-box">
+        <svg class="success-check" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="42"/>
+            <path d="M38 62 L54 78 L84 44"/>
+        </svg>
         <h3>Thanks for considering me for your commission!</h3>
-        <p>Your order has been submitted. I will talk to you soon!</p>
-        <button onclick="closeModal()">Close</button>
+        <p>Your order has been submitted.</p>
+        <p>I will talk to them soon!</p>
+        <button class="success-close" onclick="closeSuccess()">Close</button>
     </div>
 </div>
 
@@ -1019,33 +1166,28 @@
         window.scrollTo(0, 0);
     }
 
-    // --- SLIDESHOW (POWERPOINT STYLE) ---
-    const slideStates = {};
+    // --- SLIDESHOW ---
+    let slideIndex = 0;
+    let slideInterval;
 
-    function initSlide(id) {
-        const wrapper = document.getElementById(id + 'Wrapper');
-        if (!wrapper) return;
-        const items = wrapper.querySelectorAll('.slide-item');
-        if (items.length === 0) return;
-        slideStates[id] = { currentIndex: 0, total: items.length };
-        updateSlidePosition(id);
+    function showSlides() {
+        let slides = document.querySelectorAll(".slide");
+        if (slides.length === 0) return;
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove("active");
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        slides[slideIndex - 1].classList.add("active");
     }
 
-    function moveSlide(id, direction) {
-        if (!slideStates[id]) return;
-        let state = slideStates[id];
-        state.currentIndex += direction;
-        if (state.currentIndex < 0) state.currentIndex = 0;
-        if (state.currentIndex >= state.total) state.currentIndex = state.total - 1;
-        updateSlidePosition(id);
-    }
-
-    function updateSlidePosition(id) {
-        const wrapper = document.getElementById(id + 'Wrapper');
-        const state = slideStates[id];
-        if (!wrapper || !state) return;
-        const offset = -state.currentIndex * 100;
-        wrapper.style.transform = `translateX(${offset}%)`;
+    function initSlideshow() {
+        let slides = document.querySelectorAll(".slide");
+        if (slides.length > 0) {
+            slides[0].classList.add("active");
+            slideIndex = 1;
+            slideInterval = setInterval(showSlides, 5000);
+        }
     }
 
     // --- LIGHTBOX ---
@@ -1065,7 +1207,7 @@
         }
     }
 
-    // --- NSFW BLUR LOGIC ---
+    // --- NSFW BLUR + ZOOM LOGIC ---
     function handleNsfwClick(img, event) {
         event.stopPropagation();
         if (!img.classList.contains('unblurred')) {
@@ -1076,111 +1218,101 @@
         }
     }
 
-    // --- ORDER BUILDER LOGIC ---
-    const prices = {
-        bust: 70,
-        halfbody: 80,
-        kneeup: 90,
-        fullbody: 100,
-        chibi: 70,
-        refsheet: 150
-    };
+    // --- ORDER BUILDER (Commission Section) ---
+    const commissionItems = [
+        { name: 'Bust', price: 70 },
+        { name: 'Half Body', price: 80 },
+        { name: 'Knee Up', price: 90 },
+        { name: 'Full Body', price: 100 },
+        { name: 'Chibi', price: 70 },
+        { name: 'Character Ref Sheet', price: 150 },
+        { name: 'Custom Background for Vtuber Streaming', price: 350 }
+    ];
 
-    const quantities = {
-        bust: 0,
-        halfbody: 0,
-        kneeup: 0,
-        fullbody: 0,
-        chibi: 0,
-        refsheet: 0
-    };
+    let quantities = new Array(commissionItems.length).fill(0);
 
-    function changeQty(itemId, action) {
-        if (action === 'add') {
-            quantities[itemId]++;
-        } else if (action === 'delete') {
-            if (quantities[itemId] > 0) quantities[itemId]--;
-        }
-        
-        // Update visual count
-        document.getElementById('qty-' + itemId).textContent = quantities[itemId];
-        
-        // Update hidden inputs
-        document.getElementById('input-' + itemId).value = quantities[itemId];
-        
-        calculateTotal();
+    function buildOrderRows() {
+        const container = document.getElementById('orderRowsContainer');
+        container.innerHTML = '';
+        commissionItems.forEach((item, idx) => {
+            const row = document.createElement('div');
+            row.className = 'order-row';
+            row.innerHTML = `
+                <span class="item-name">${item.name}</span>
+                <span class="item-price">$${item.price}</span>
+                <div class="qty-controls">
+                    <button type="button" class="qty-btn" data-idx="${idx}" data-action="add">add+</button>
+                    <span class="qty-value" id="qty-${idx}">0</span>
+                    <button type="button" class="qty-btn delete-btn" data-idx="${idx}" data-action="del">Delete−</button>
+                </div>
+                <span class="row-total" id="rowTotal-${idx}">$0</span>
+            `;
+            container.appendChild(row);
+        });
+
+        container.querySelectorAll('.qty-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const idx = parseInt(this.getAttribute('data-idx'));
+                const action = this.getAttribute('data-action');
+                if (action === 'add') {
+                    quantities[idx]++;
+                } else {
+                    if (quantities[idx] > 0) quantities[idx]--;
+                }
+                updateOrderUI();
+            });
+        });
     }
 
-    function calculateTotal() {
-        let total = 0;
-        let orderDetails = [];
-        
-        for (let key in quantities) {
-            if (quantities[key] > 0) {
-                total += prices[key] * quantities[key];
-                orderDetails.push(`${key}: ${quantities[key]}x ($${prices[key] * quantities[key]})`);
-            }
-        }
-        
-        document.getElementById('totalDisplay').textContent = 'Total: $' + total.toFixed(2);
-        document.getElementById('hiddenTotalPrice').value = total.toFixed(2);
-        document.getElementById('hiddenOrderDetails').value = orderDetails.join(', ');
+    function updateOrderUI() {
+        let grandTotal = 0;
+        commissionItems.forEach((item, idx) => {
+            const qty = quantities[idx];
+            document.getElementById(`qty-${idx}`).textContent = qty;
+            const rowTotal = qty * item.price;
+            document.getElementById(`rowTotal-${idx}`).textContent = '$' + rowTotal;
+            grandTotal += rowTotal;
+        });
+        document.getElementById('grandTotalDisplay').textContent = grandTotal;
     }
 
-    // --- SUBMIT FORM & SUCCESS MODAL ---
-    document.getElementById('commissionForm').addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent actual form submission for demo
-        
-        // Check if at least one item is selected
-        let totalQty = 0;
-        for (let key in quantities) {
-            totalQty += quantities[key];
-        }
-        
-        if (totalQty === 0) {
-            alert("Please add at least one commission item to your order.");
-            return;
-        }
-
-        // Validate description and contact
-        const desc = document.getElementById('description').value.trim();
-        const contact = document.getElementById('contact').value.trim();
-        
-        if (!desc || !contact) {
-            alert("Please fill in your character description and contact info.");
-            return;
-        }
-
-        // Show success modal
-        document.getElementById('successModal').classList.add('active');
-        
-        // NOTE: In a real scenario, you would remove the e.preventDefault() 
-        // or use fetch to send data to formsubmit.co, then show the modal.
+    // --- SUBMIT ORDER -> SHOW SUCCESS MODAL ---
+    document.getElementById('orderSubmitBtn').addEventListener('click', function() {
+        document.getElementById('successOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
     });
 
-    function closeModal() {
-        document.getElementById('successModal').classList.remove('active');
-        // Optionally reset form here if desired
-        // document.getElementById('commissionForm').reset();
-        // quantities = { bust:0, halfbody:0, kneeup:0, fullbody:0, chibi:0, refsheet:0 };
-        // calculateTotal();
-        // document.querySelectorAll('[id^="qty-"]').forEach(el => el.textContent = '0');
-        // document.querySelectorAll('[id^="input-"]').forEach(el => el.value = '0');
+    function closeSuccess() {
+        document.getElementById('successOverlay').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // --- PRICE CALCULATION (Terms form) ---
+    function updateHiddenTotal() {
+        const baseTypeSelect = document.getElementById('baseType');
+        const basePrice = parseFloat(baseTypeSelect.options[baseTypeSelect.selectedIndex].getAttribute('data-price'));
+        
+        const finishSelect = document.getElementById('finishType');
+        const finishMultiplier = parseFloat(finishSelect.options[finishSelect.selectedIndex].getAttribute('data-price'));
+        
+        const bgSelect = document.getElementById('bgType');
+        const bgMultiplier = parseFloat(bgSelect.options[bgSelect.selectedIndex].getAttribute('data-price')) / 100;
+        
+        const totalAddons = 0; 
+
+        let finalPrice = basePrice * finishMultiplier;
+        finalPrice += basePrice * bgMultiplier;
+        finalPrice += basePrice * totalAddons;
+
+        document.getElementById('hiddenTotalPrice').value = finalPrice.toFixed(2);
     }
 
     // Initialize
     window.onload = function() {
-        // Init slideshows
-        initSlide('featuredSlideshow');
-        initSlide('vtuberSlideshow');
-        initSlide('moreArtSlideshow');
-        
-        // Init order builder (set all to 0)
-        for (let key in quantities) {
-            document.getElementById('qty-' + key).textContent = 0;
-            document.getElementById('input-' + key).value = 0;
-        }
-        calculateTotal();
+        initSlideshow();
+        buildOrderRows();
+        updateOrderUI();
+        updateHiddenTotal();
     };
 </script>
 
