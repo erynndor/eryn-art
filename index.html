@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ERYN · Commission & TOS</title>
+    <title>ERYN · Illustration & Character Art</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* --- GLOBAL --- */
+        /* --- GLOBAL STYLES --- */
         :root {
             --bg-color: #f4f4f4;
             --card-bg: #ffffff;
@@ -16,11 +16,16 @@
             --border-color: #000;
             --font-serif: 'Playfair Display', serif;
             --font-sans: 'Lato', sans-serif;
-            --green-check: #2e7d32;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            background: var(--bg-color);
+            background-color: var(--bg-color);
             font-family: var(--font-sans);
             color: var(--text-color);
             display: flex;
@@ -28,34 +33,43 @@
             padding: 20px;
             line-height: 1.6;
         }
+
+        /* --- MAIN CONTAINER --- */
         .container {
             width: 100%;
             max-width: 900px;
             padding: 20px 10px;
             position: relative;
         }
-        h1, h2, h3 {
-            font-family: var(--font-serif);
-            font-weight: 400;
-            text-transform: uppercase;
-        }
+
+        /* --- TYPOGRAPHY --- */
         h1 {
+            font-family: var(--font-serif);
             font-size: 3rem;
             text-align: center;
             letter-spacing: 4px;
             margin-bottom: 5px;
+            font-weight: 400;
+            text-transform: uppercase;
         }
+
         h2 {
+            font-family: var(--font-serif);
             font-size: 2rem;
             text-align: center;
             letter-spacing: 2px;
             margin-bottom: 15px;
+            font-weight: 400;
+            text-transform: uppercase;
         }
+
         h3 {
+            font-family: var(--font-serif);
             font-size: 1.3rem;
             margin-bottom: 10px;
             text-align: left;
         }
+
         p.subtitle {
             text-align: center;
             font-family: var(--font-serif);
@@ -64,7 +78,8 @@
             color: #333;
             line-height: 1.5;
         }
-        /* --- SOCIAL ICONS --- */
+
+        /* --- SOCIAL ICONS & TOOLTIPS --- */
         .social-icons {
             display: flex;
             justify-content: center;
@@ -72,6 +87,7 @@
             gap: 10px;
             margin-bottom: 25px;
         }
+
         .social-icons a, .social-icons .comic-icon {
             color: var(--text-color);
             font-size: 1rem;
@@ -81,12 +97,18 @@
             align-items: center;
             position: relative;
         }
+
         .social-icons a:hover, .social-icons .comic-icon:hover {
             transform: translateY(-2px);
             opacity: 0.7;
         }
-        .icon-svg { width: 18px; height: 18px; fill: currentColor; }
-        .comic-icon svg { width: 18px; height: 18px; fill: currentColor; }
+
+        .icon-svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
         .tooltip-text {
             position: absolute;
             bottom: -18px;
@@ -98,10 +120,50 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.2s;
+            font-family: var(--font-sans);
             text-transform: capitalize;
         }
+
         .social-icons a:hover .tooltip-text,
-        .social-icons .comic-icon:hover .tooltip-text { opacity: 1; }
+        .social-icons .comic-icon:hover .tooltip-text {
+            opacity: 1;
+        }
+
+        .comic-icon {
+            cursor: pointer;
+        }
+        
+        .comic-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Top-corner social icons for commission & terms pages */
+        .top-social {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .top-social a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: transform 0.2s, opacity 0.2s;
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .top-social a:hover {
+            transform: translateY(-2px);
+            opacity: 0.7;
+        }
+
+        .top-social .tooltip-text {
+            bottom: -16px;
+        }
 
         /* --- BUTTONS --- */
         .main-buttons {
@@ -113,6 +175,7 @@
             margin-left: auto;
             margin-right: auto;
         }
+
         .btn {
             display: block;
             width: 100%;
@@ -127,10 +190,17 @@
             cursor: pointer;
             background: var(--card-bg);
         }
-        .btn:hover { background: var(--border-color); color: #fff; }
 
-        /* --- GALLERY & SLIDESHOW (POWERSLIDE) --- */
-        .gallery-section { margin-bottom: 30px; }
+        .btn:hover {
+            background-color: var(--border-color);
+            color: #fff;
+        }
+
+        /* --- GALLERY/COMMISSION SECTION --- */
+        .gallery-section {
+            margin-bottom: 30px;
+        }
+
         .section-title {
             font-family: var(--font-serif);
             font-size: 1.3rem;
@@ -138,6 +208,51 @@
             margin-bottom: 10px;
             padding-bottom: 5px;
         }
+
+        .full-width-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        /* Slideshow */
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: 15px auto;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            background: #f9f9f9;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fade 1.5s ease-in-out;
+        }
+
+        @keyframes fade {
+            from { opacity: 0.4; }
+            to { opacity: 1; }
+        }
+
+        /* Manual slideshow (PowerSlide) */
         .powerslide-container {
             position: relative;
             max-width: 100%;
@@ -145,70 +260,63 @@
             overflow: hidden;
             border: 1px solid #ddd;
             background: #f9f9f9;
-            cursor: pointer;
-            touch-action: pan-y;
         }
+
         .powerslide-track {
             display: flex;
-            transition: transform 0.35s ease;
-            will-change: transform;
+            transition: transform 0.4s ease;
         }
+
         .powerslide-slide {
-            flex: 0 0 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            min-width: 100%;
         }
+
         .powerslide-slide img {
             width: 100%;
             height: auto;
             display: block;
             object-fit: contain;
-            pointer-events: none;
+            cursor: pointer;
         }
+
         .powerslide-arrow {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 2.2rem;
-            color: #fff;
-            background: rgba(0,0,0,0.45);
+            background: rgba(255,255,255,0.85);
+            border: 1px solid #000;
+            font-size: 1.5rem;
             width: 40px;
             height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            user-select: none;
-            border-radius: 50%;
+            z-index: 10;
+            font-family: var(--font-sans);
+            font-weight: bold;
             transition: background 0.2s;
-            z-index: 5;
-            line-height: 1;
         }
-        .powerslide-arrow:hover { background: rgba(0,0,0,0.75); }
-        .powerslide-arrow.left { left: 8px; }
-        .powerslide-arrow.right { right: 8px; }
 
-        /* --- FULL WIDTH IMAGE --- */
-        .full-width-wrapper {
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
+        .powerslide-arrow:hover {
             background: #fff;
-            padding: 5px;
-            cursor: pointer;
-        }
-        .full-width-wrapper img {
-            width: 100%;
-            height: auto;
-            display: block;
         }
 
-        /* --- GRID GALLERY --- */
+        .powerslide-arrow.left {
+            left: 10px;
+        }
+
+        .powerslide-arrow.right {
+            right: 10px;
+        }
+
+        /* Grid Gallery */
         .grid-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 10px;
         }
+
         .grid-gallery img {
             width: 100%;
             height: auto;
@@ -219,15 +327,19 @@
             display: block;
             background: #fff;
         }
-        .grid-gallery img:hover { transform: scale(1.02); }
 
-        /* --- NSFW --- */
+        .grid-gallery img:hover {
+            transform: scale(1.02);
+        }
+
+        /* --- NSFW / GORE SECTION --- */
         .nsfw-gallery {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
             margin-top: 15px;
         }
+
         .nsfw-gallery img {
             width: 100%;
             height: 100px;
@@ -238,28 +350,42 @@
             transition: transform 0.2s, filter 0.3s;
             filter: blur(10px);
         }
-        .nsfw-gallery img.unblurred { filter: blur(0px); }
-        .nsfw-gallery img:hover { transform: scale(1.05); }
+
+        .nsfw-gallery img.unblurred {
+            filter: blur(0px);
+        }
+
+        .nsfw-gallery img:hover {
+            transform: scale(1.05);
+        }
 
         /* --- LIGHTBOX --- */
         .lightbox {
             display: none;
             position: fixed;
             z-index: 9999;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
             justify-content: center;
             align-items: center;
             flex-direction: column;
             padding: 20px;
         }
-        .lightbox.active { display: flex; }
+
+        .lightbox.active {
+            display: flex;
+        }
+
         .lightbox img {
             max-width: 95%;
             max-height: 80vh;
             object-fit: contain;
             border: 2px solid #fff;
         }
+
         .lightbox-close {
             margin-top: 20px;
             padding: 10px 30px;
@@ -268,12 +394,16 @@
             border: none;
             font-size: 1rem;
             cursor: pointer;
+            font-family: var(--font-sans);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .lightbox-close:hover { background: #ccc; }
 
-        /* --- TERMS & COMMISSION --- */
+        .lightbox-close:hover {
+            background: #ccc;
+        }
+
+        /* --- COMMISSION/TERMS PAGE --- */
         .terms-text {
             font-size: 0.9rem;
             margin-bottom: 20px;
@@ -281,23 +411,71 @@
             padding: 20px;
             border-radius: 5px;
         }
+
         .terms-list {
             list-style-type: none;
             padding-left: 0;
             margin-bottom: 15px;
         }
+
         .terms-list li {
             margin-bottom: 6px;
             padding-left: 15px;
             position: relative;
         }
+
         .terms-list li::before {
             content: "•";
             position: absolute;
             left: 0;
             font-weight: bold;
         }
-        .small-italic { font-size: 0.75rem; font-style: italic; color: #555; }
+
+        .terms-list.small-text {
+            font-size: 0.8rem;
+        }
+
+        .terms-list.small-text li {
+            margin-bottom: 3px;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-family: var(--font-serif);
+            font-size: 0.9rem;
+        }
+
+        .form-group select, 
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            background: #fff;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .small-italic {
+            font-size: 0.75rem;
+            font-style: italic;
+            color: #555;
+        }
+
         .back-btn {
             display: inline-block;
             margin-top: 15px;
@@ -307,229 +485,246 @@
             cursor: pointer;
             border: none;
             background: none;
+            font-family: var(--font-sans);
         }
-        .back-btn:hover { color: #000; text-decoration: underline; }
-        .page { display: none; }
-        .page.active { display: block; }
 
-        /* --- COMMISSION ORDER BUILDER --- */
-        .order-builder {
-            background: var(--card-bg);
-            padding: 15px 18px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
+        .back-btn:hover {
+            color: #000;
+            text-decoration: underline;
         }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .checkbox-row {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .checkbox-row label {
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .checkbox-row input[type="checkbox"] {
+            width: auto;
+            transform: scale(1.1);
+            margin: 0;
+        }
+
+        input[type="file"] {
+            padding: 8px;
+            background: #f9f9f9;
+        }
+
+        /* --- VISITOR COUNTER (removed) --- */
+        /* #visitor-counter removed */
+
+        /* --- ORDER BUILDER --- */
+        .order-builder {
+            margin-top: 30px;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #eee;
+        }
+
+        .order-builder h3 {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
         .order-item {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             flex-wrap: wrap;
-            gap: 8px 6px;
-            padding: 6px 0;
+            padding: 10px 0;
             border-bottom: 1px solid #eee;
-            font-size: 0.8rem;
-        }
-        .order-item:last-child { border-bottom: none; }
-        .order-item .item-name {
-            flex: 1 1 120px;
-            font-weight: 600;
-            font-family: var(--font-serif);
             font-size: 0.85rem;
-        }
-        .order-item .item-price {
-            flex: 0 0 auto;
-            color: #444;
-            font-size: 0.75rem;
-            min-width: 40px;
-        }
-        .order-item .qty-controls {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            flex-wrap: wrap;
-        }
-        .order-item .qty-controls button {
-            background: #fff;
-            border: 1px solid #aaa;
-            padding: 1px 8px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            border-radius: 3px;
-            font-family: var(--font-sans);
-            transition: background 0.2s;
-            line-height: 1.6;
-        }
-        .order-item .qty-controls button:hover { background: #eee; }
-        .order-item .qty-controls .qty-display {
-            min-width: 20px;
-            text-align: center;
-            font-weight: 700;
-            font-size: 0.85rem;
-        }
-        .order-item .subtotal {
-            font-weight: 700;
-            font-size: 0.8rem;
-            min-width: 50px;
-            text-align: right;
-            color: #111;
         }
 
-        .order-total-bar {
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1 1 180px;
+        }
+
+        .order-item-name {
+            font-weight: bold;
+            font-family: var(--font-serif);
+            font-size: 0.9rem;
+        }
+
+        .order-item-price {
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        .order-item-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .order-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+        }
+
+        .order-item-controls button {
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            border: 1px solid #000;
+            background: #fff;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            border-radius: 3px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .order-item-controls button:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .order-item-qty {
+            min-width: 24px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .order-item-total {
+            font-weight: bold;
+            font-size: 0.85rem;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .order-summary {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 12px;
-            padding-top: 12px;
+            margin-top: 20px;
+            padding-top: 15px;
             border-top: 2px solid #000;
+            font-size: 1rem;
+        }
+
+        .order-summary .grand-total {
             font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: bold;
         }
-        .order-total-bar .grand-total {
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-        .order-total-bar .grand-total span { font-size: 1.4rem; }
-        .order-total-bar .submit-btn {
+
+        .order-summary .submit-btn {
+            padding: 10px 30px;
             background: #000;
             color: #fff;
             border: none;
-            padding: 10px 28px;
-            font-size: 0.95rem;
             font-family: var(--font-serif);
+            font-size: 1rem;
             cursor: pointer;
-            letter-spacing: 1px;
-            transition: background 0.2s;
-            border-radius: 3px;
+            transition: background 0.3s;
         }
-        .order-total-bar .submit-btn:hover { background: #333; }
 
-        /* --- THANK YOU MODAL --- */
-        .thankyou-modal {
+        .order-summary .submit-btn:hover {
+            background: #333;
+        }
+
+        /* Success modal */
+        .success-modal {
             display: none;
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(0,0,0,0.6);
             justify-content: center;
             align-items: center;
-            z-index: 10000;
-            padding: 20px;
         }
-        .thankyou-modal.active { display: flex; }
-        .thankyou-box {
+
+        .success-modal.active {
+            display: flex;
+        }
+
+        .success-modal-content {
             background: #fff;
-            padding: 35px 40px;
-            border-radius: 10px;
+            padding: 40px 50px;
+            border-radius: 8px;
             text-align: center;
-            max-width: 400px;
-            width: 100%;
+            max-width: 420px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
             animation: popIn 0.3s ease;
         }
+
         @keyframes popIn {
-            from { transform: scale(0.85); opacity: 0; }
+            from { transform: scale(0.8); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
-        .thankyou-box .checkmark {
-            font-size: 4.5rem;
-            color: var(--green-check);
+
+        .success-modal-content .checkmark {
+            font-size: 4rem;
+            color: #2ecc71;
+            display: block;
+            margin-bottom: 10px;
             line-height: 1;
-            margin-bottom: 8px;
         }
-        .thankyou-box h3 {
+
+        .success-modal-content h3 {
             font-family: var(--font-serif);
-            font-size: 1.3rem;
-            text-transform: none;
-            letter-spacing: 0;
-            margin-bottom: 6px;
-            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            text-align: center;
         }
-        .thankyou-box p {
-            font-size: 0.9rem;
-            color: #555;
-            margin-bottom: 4px;
+
+        .success-modal-content p {
+            font-size: 0.95rem;
+            color: #444;
+            margin-bottom: 20px;
         }
-        .thankyou-box .sub-note {
-            font-size: 0.8rem;
-            color: #999;
-            margin-top: 10px;
-        }
-        .thankyou-box .close-thanks {
-            margin-top: 16px;
-            padding: 8px 28px;
+
+        .success-modal-content button {
+            padding: 10px 30px;
             background: #000;
             color: #fff;
             border: none;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            font-family: var(--font-sans);
-        }
-        .thankyou-box .close-thanks:hover { background: #333; }
-
-        /* --- SOCIALS IN TOS/COMMISSION TOP --- */
-        .top-socials {
-            display: flex;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 15px;
-            padding: 4px 0;
-        }
-        .top-socials a, .top-socials .comic-icon {
-            color: var(--text-color);
-            font-size: 0.9rem;
-            transition: transform 0.2s, opacity 0.2s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            position: relative;
-        }
-        .top-socials a:hover, .top-socials .comic-icon:hover {
-            transform: translateY(-2px);
-            opacity: 0.7;
-        }
-        .top-socials .icon-svg { width: 16px; height: 16px; fill: currentColor; }
-        .top-socials .comic-icon svg { width: 16px; height: 16px; fill: currentColor; }
-        .top-socials .tooltip-text {
-            position: absolute;
-            bottom: -16px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.55rem;
-            color: #888;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s;
-        }
-        .top-socials a:hover .tooltip-text,
-        .top-socials .comic-icon:hover .tooltip-text { opacity: 1; }
-
-        /* --- PRICE TAG --- */
-        .price-tag {
-            text-align: center;
             font-family: var(--font-serif);
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-        .ref-sheet-info {
-            text-align: center;
             font-size: 0.9rem;
-            margin-bottom: 15px;
-            color: #555;
+            cursor: pointer;
+            border-radius: 3px;
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 600px) {
-            h1 { font-size: 2.2rem; }
-            h2 { font-size: 1.5rem; }
-            .powerslide-arrow { width: 32px; height: 32px; font-size: 1.6rem; }
-            .order-item .item-name { flex: 1 1 100%; }
-            .order-item .subtotal { margin-left: auto; }
-            .nsfw-gallery { grid-template-columns: repeat(2, 1fr); }
-            .thankyou-box { padding: 25px 20px; }
+        .success-modal-content button:hover {
+            background: #333;
         }
     </style>
 </head>
@@ -542,6 +737,7 @@
         <h1>ERYN</h1>
         <p class="subtitle">Illustrations, Character art,<br>and Cinematic worlds by Eryn.</p>
 
+        <!-- Social Icons -->
         <div class="social-icons">
             <a href="https://x.com/eryndor_0" target="_blank" title="Twitter">
                 <svg class="icon-svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -609,46 +805,90 @@
         </div>
     </div>
 
-    <!-- ================= PAGE 2: COMMISSION (GALLERY) ================= -->
+    <!-- ================= PAGE 2: GALLERY (Commission Page) ================= -->
     <div id="gallery" class="page">
-        <!-- SOCIALS top-left -->
-        <div class="top-socials">
-            <a href="https://x.com/eryndor_0" target="_blank" title="Twitter"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span class="tooltip-text">Twitter</span></a>
-            <a href="https://www.tiktok.com/@eryndor.artist" target="_blank" title="TikTok"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg><span class="tooltip-text">TikTok</span></a>
-            <a href="https://www.instagram.com/eryndor.artist?stkn=MWxwMDB5NG4zM3BlaA==" target="_blank" title="Instagram"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg><span class="tooltip-text">Instagram</span></a>
-            <a href="https://www.patreon.com/Eryndor_01" target="_blank" title="Patreon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.386 3.252c-4.356 0-7.892 3.536-7.892 7.892 0 4.356 3.536 7.892 7.892 7.892 4.356 0 7.892-3.536 7.892-7.892 0-4.356-3.536-7.892-7.892-7.892zm-10.55.748v16h3v-16h-3z"/></svg><span class="tooltip-text">Patreon</span></a>
-            <a href="mailto:eryndorcontact@gmail.com" title="Email"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><span class="tooltip-text">Email</span></a>
+        <!-- Top-left social icons -->
+        <div class="top-social">
+            <a href="https://x.com/eryndor_0" target="_blank" title="Twitter">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                <span class="tooltip-text">Twitter</span>
+            </a>
+            <a href="https://www.tiktok.com/@eryndor.artist" target="_blank" title="TikTok">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                <span class="tooltip-text">TikTok</span>
+            </a>
+            <a href="https://www.instagram.com/eryndor.artist?stkn=MWxwMDB5NG4zM3BlaA==" target="_blank" title="Instagram">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                <span class="tooltip-text">Instagram</span>
+            </a>
+            <a href="https://www.patreon.com/Eryndor_01" target="_blank" title="Patreon">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.386 3.252c-4.356 0-7.892 3.536-7.892 7.892 0 4.356 3.536 7.892 7.892 7.892 4.356 0 7.892-3.536 7.892-7.892 0-4.356-3.536-7.892-7.892-7.892zm-10.55.748v16h3v-16h-3z"/></svg>
+                <span class="tooltip-text">Patreon</span>
+            </a>
+            <a href="https://jannapaypal6.artstation.com/" target="_blank" title="ArtStation">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2 18.5l2.5-4.3h5.1L7 18.5H2zM21.5 18.5h-6.8l-3.4-5.9 3.4-5.9h6.8l-3.4 5.9 3.4 5.9zM12.5 2L2 20h4.5l6.5-11.2L19.5 20H24L12.5 2z"/></svg>
+                <span class="tooltip-text">ArtStation</span>
+            </a>
+            <a href="https://www.facebook.com/share/1behpyvBWH/" target="_blank" title="Facebook">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <span class="tooltip-text">Facebook</span>
+            </a>
+            <a href="https://www.pixiv.net/users/87870114" target="_blank" title="Pixiv">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2zm4 8h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                <span class="tooltip-text">Pixiv</span>
+            </a>
+            <a href="https://www.tumblr.com/eryndor00" target="_blank" title="Tumblr">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M14.5 2v3.5h3.5v4h-3.5v5.5c0 1.5.5 2 2 2h1.5v4h-3.5c-4 0-6-2-6-6V9.5H5.5v-4H8V2h6.5z"/></svg>
+                <span class="tooltip-text">Tumblr</span>
+            </a>
+            <a href="https://youtube.com/@eryndor_0" target="_blank" title="YouTube">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                <span class="tooltip-text">YouTube</span>
+            </a>
+            <a href="mailto:eryndorcontact@gmail.com" title="Email">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <span class="tooltip-text">Email</span>
+            </a>
+            <a href="https://discord.gg/2RUWZsrHY" target="_blank" title="Discord">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+                <span class="tooltip-text">Discord</span>
+            </a>
         </div>
 
         <h2>Commission</h2>
         <p class="subtitle">Selected character art, illustrations, and concept work.</p>
 
-        <!-- POWERSLIDE (custom background showcase) -->
+        <!-- 1. FEATURED SLIDESHOW -->
         <div class="gallery-section">
-            <div class="section-title">Custom Background for Vtuber Streaming $350</div>
-            <div class="powerslide-container" id="powerslide">
-                <div class="powerslide-track" id="powerslideTrack">
-                    <div class="powerslide-slide"><img src="https://i.imgur.com/3b68EGu.jpeg" alt="Background 1"></div>
-                    <div class="powerslide-slide"><img src="https://i.imgur.com/txwazrh.jpeg" alt="Background 2"></div>
-                    <div class="powerslide-slide"><img src="https://i.imgur.com/pchKrSG.jpeg" alt="Background 3"></div>
-                    <div class="powerslide-slide"><img src="https://i.imgur.com/4FVTOJG.jpeg" alt="Background 4"></div>
-                    <div class="powerslide-slide"><img src="https://i.imgur.com/jCmtWGt.jpeg" alt="Background 5"></div>
+            <div class="section-title">Featured Works</div>
+            <div class="slideshow-container" onclick="openLightbox(this.querySelector('.slide.active img').src)">
+                <div class="slide active">
+                    <img src="https://i.imgur.com/3b68EGu.jpeg" alt="Featured 1">
                 </div>
-                <div class="powerslide-arrow left" onclick="slidePrev(event)">‹</div>
-                <div class="powerslide-arrow right" onclick="slideNext(event)">›</div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/txwazrh.jpeg" alt="Featured 2">
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/pchKrSG.jpeg" alt="Featured 3">
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/4FVTOJG.jpeg" alt="Featured 4">
+                </div>
+                <div class="slide">
+                    <img src="https://i.imgur.com/jCmtWGt.jpeg" alt="Featured 5">
+                </div>
             </div>
-            <p class="small-italic" style="text-align:center; margin-top:6px;">Click arrows to navigate · Click image to enlarge</p>
         </div>
 
-        <!-- BUST -->
+        <!-- 2. BUST ($70) -->
         <div class="gallery-section">
             <div class="section-title">Bust $70</div>
-            <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/0vlwJ7n.jpeg')">
-                <img src="https://i.imgur.com/0vlwJ7n.jpeg" alt="Bust Showcase">
+            <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/0v1wJ7n.jpeg')">
+                <img src="https://i.imgur.com/0v1wJ7n.jpeg" alt="Bust Showcase">
             </div>
         </div>
 
-        <!-- HALF BODY -->
+        <!-- 3. HALF BODY ($80) -->
         <div class="gallery-section">
             <div class="section-title">Half Body $80</div>
             <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/ktrfwYe.jpeg')">
@@ -656,7 +896,7 @@
             </div>
         </div>
 
-        <!-- KNEE UP -->
+        <!-- 4. KNEE UP ($90) -->
         <div class="gallery-section">
             <div class="section-title">Knee Up $90</div>
             <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/dERTAci.jpeg')">
@@ -664,7 +904,7 @@
             </div>
         </div>
 
-        <!-- FULL BODY -->
+        <!-- 5. FULL BODY ($100) -->
         <div class="gallery-section">
             <div class="section-title">Full Body $100</div>
             <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/IBZxgAh.jpeg')">
@@ -672,7 +912,7 @@
             </div>
         </div>
 
-        <!-- CHIBI -->
+        <!-- 6. CHIBI ($70) -->
         <div class="gallery-section">
             <div class="section-title">Chibi $70</div>
             <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/2WxNyXM.jpeg')">
@@ -680,16 +920,69 @@
             </div>
         </div>
 
-        <!-- CHARACTER REF SHEET -->
+        <!-- NEW: CUSTOM BACKGROUND FOR VTUBER STREAMING ($350) -->
+        <div class="gallery-section">
+            <div class="section-title">Custom Background for Vtuber Streaming $350</div>
+
+            <!-- PowerSlide (manual) -->
+            <div class="powerslide-container" id="vtuberPowerSlide">
+                <div class="powerslide-track" id="powerslideTrack">
+                    <div class="powerslide-slide">
+                        <img src="https://i.imgur.com/3b68EGu.jpeg" alt="Vtuber Background 1" onclick="openLightbox(this.src)">
+                    </div>
+                    <div class="powerslide-slide">
+                        <img src="https://i.imgur.com/txwazrh.jpeg" alt="Vtuber Background 2" onclick="openLightbox(this.src)">
+                    </div>
+                    <div class="powerslide-slide">
+                        <img src="https://i.imgur.com/pchKrSG.jpeg" alt="Vtuber Background 3" onclick="openLightbox(this.src)">
+                    </div>
+                    <div class="powerslide-slide">
+                        <img src="https://i.imgur.com/4FVTOJG.jpeg" alt="Vtuber Background 4" onclick="openLightbox(this.src)">
+                    </div>
+                    <div class="powerslide-slide">
+                        <img src="https://i.imgur.com/jCmtWGt.jpeg" alt="Vtuber Background 5" onclick="openLightbox(this.src)">
+                    </div>
+                </div>
+                <div class="powerslide-arrow left" onclick="powerslidePrev(event)">&#10094;</div>
+                <div class="powerslide-arrow right" onclick="powerslideNext(event)">&#10095;</div>
+            </div>
+            <p class="small-italic" style="text-align: center; margin-top: 4px;">Use arrows to browse. Click image to enlarge.</p>
+
+            <!-- Extraordinary Background Art scope -->
+            <div style="font-size: 0.8rem; margin-top: 15px; background: #f9f9f9; padding: 15px; border-radius: 5px;">
+                <p style="font-weight: bold; margin-bottom: 6px; font-family: var(--font-serif); font-size: 0.9rem;">Extraordinary Background Art scope:</p>
+                <ul class="terms-list small-text" style="margin-bottom: 8px;">
+                    <li>Large-scale or complex environments</li>
+                    <li>Multiple areas or extended spaces</li>
+                    <li>Interior or exterior scenes (palace halls, stages, city views, detailed buildings, landscapes)</li>
+                    <li>Deeper perspective and layered composition</li>
+                    <li>High level of detail</li>
+                    <li>Suitable for key visuals, debut scenes, concerts, or showcase backgrounds</li>
+                    <li>Accepting various themes</li>
+                </ul>
+                <p style="font-weight: bold; margin-bottom: 4px; font-family: var(--font-serif); font-size: 0.85rem;">Add-ons:</p>
+                <ul class="terms-list small-text" style="margin-bottom: 8px;">
+                    <li>$30 USD per variation</li>
+                    <li>(Time variations such as morning, evening/sunset, night, rainy, snow, etc.)</li>
+                </ul>
+                <p style="font-weight: bold; margin-bottom: 4px; font-family: var(--font-serif); font-size: 0.85rem;">File format:</p>
+                <p style="font-size: 0.8rem;">PNG/JPG 4000 × 2500 px, 300 DPI</p>
+            </div>
+        </div>
+
+        <!-- 7. CHARACTER REF SHEET ($150) -->
         <div class="gallery-section">
             <div class="section-title">Character Ref Sheet $150</div>
-            <div class="ref-sheet-info">Side view +$60<br>Extra bust sketches +$40 each</div>
+            <div class="ref-sheet-info">
+                Side view +$60<br>
+                Extra bust sketches +$40 each
+            </div>
             <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/wCjrpgK.jpeg')">
                 <img src="https://i.imgur.com/wCjrpgK.jpeg" alt="Character Ref Sheet Showcase">
             </div>
         </div>
 
-        <!-- MORE ART GRID -->
+        <!-- 8. REST OF IMAGES GRID -->
         <div class="gallery-section">
             <div class="section-title">More Art</div>
             <div class="grid-gallery">
@@ -708,7 +1001,7 @@
             </div>
         </div>
 
-        <!-- NSFW -->
+        <!-- 9. NSFW / GORE / THEMES SECTION -->
         <div class="gallery-section">
             <div class="section-title">NSFW / Gore / Themes</div>
             <div class="nsfw-gallery">
@@ -720,142 +1013,154 @@
             <p class="small-italic" style="margin-top: 8px; text-align: center;">Click to reveal, click again to enlarge.</p>
         </div>
 
+        <!-- ===== ORDER BUILDER (below all pictures) ===== -->
+        <div class="order-builder" id="orderBuilder">
+            <h3>Build Your Order</h3>
+            <div id="orderItemsContainer">
+                <!-- Dynamically populated by JS -->
+            </div>
+            <div class="order-summary">
+                <span>Total:</span>
+                <span class="grand-total" id="grandTotal">$0</span>
+                <button class="submit-btn" onclick="submitOrder()">Submit Order</button>
+            </div>
+        </div>
+
         <br>
         <button class="back-btn" onclick="showPage('home')">&larr; Back to Home</button>
     </div>
 
     <!-- ================= PAGE 3: TERMS OF SERVICE ================= -->
     <div id="commissions" class="page">
-        <!-- SOCIALS top-left -->
-        <div class="top-socials">
-            <a href="https://x.com/eryndor_0" target="_blank" title="Twitter"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span class="tooltip-text">Twitter</span></a>
-            <a href="https://www.tiktok.com/@eryndor.artist" target="_blank" title="TikTok"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg><span class="tooltip-text">TikTok</span></a>
-            <a href="https://www.instagram.com/eryndor.artist?stkn=MWxwMDB5NG4zM3BlaA==" target="_blank" title="Instagram"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg><span class="tooltip-text">Instagram</span></a>
-            <a href="https://www.patreon.com/Eryndor_01" target="_blank" title="Patreon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.386 3.252c-4.356 0-7.892 3.536-7.892 7.892 0 4.356 3.536 7.892 7.892 7.892 4.356 0 7.892-3.536 7.892-7.892 0-4.356-3.536-7.892-7.892-7.892zm-10.55.748v16h3v-16h-3z"/></svg><span class="tooltip-text">Patreon</span></a>
-            <a href="mailto:eryndorcontact@gmail.com" title="Email"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><span class="tooltip-text">Email</span></a>
+        <!-- Top-left social icons -->
+        <div class="top-social">
+            <a href="https://x.com/eryndor_0" target="_blank" title="Twitter">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                <span class="tooltip-text">Twitter</span>
+            </a>
+            <a href="https://www.tiktok.com/@eryndor.artist" target="_blank" title="TikTok">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                <span class="tooltip-text">TikTok</span>
+            </a>
+            <a href="https://www.instagram.com/eryndor.artist?stkn=MWxwMDB5NG4zM3BlaA==" target="_blank" title="Instagram">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                <span class="tooltip-text">Instagram</span>
+            </a>
+            <a href="https://www.patreon.com/Eryndor_01" target="_blank" title="Patreon">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.386 3.252c-4.356 0-7.892 3.536-7.892 7.892 0 4.356 3.536 7.892 7.892 7.892 4.356 0 7.892-3.536 7.892-7.892 0-4.356-3.536-7.892-7.892-7.892zm-10.55.748v16h3v-16h-3z"/></svg>
+                <span class="tooltip-text">Patreon</span>
+            </a>
+            <a href="https://jannapaypal6.artstation.com/" target="_blank" title="ArtStation">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2 18.5l2.5-4.3h5.1L7 18.5H2zM21.5 18.5h-6.8l-3.4-5.9 3.4-5.9h6.8l-3.4 5.9 3.4 5.9zM12.5 2L2 20h4.5l6.5-11.2L19.5 20H24L12.5 2z"/></svg>
+                <span class="tooltip-text">ArtStation</span>
+            </a>
+            <a href="https://www.facebook.com/share/1behpyvBWH/" target="_blank" title="Facebook">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <span class="tooltip-text">Facebook</span>
+            </a>
+            <a href="https://www.pixiv.net/users/87870114" target="_blank" title="Pixiv">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2zm4 8h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                <span class="tooltip-text">Pixiv</span>
+            </a>
+            <a href="https://www.tumblr.com/eryndor00" target="_blank" title="Tumblr">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M14.5 2v3.5h3.5v4h-3.5v5.5c0 1.5.5 2 2 2h1.5v4h-3.5c-4 0-6-2-6-6V9.5H5.5v-4H8V2h6.5z"/></svg>
+                <span class="tooltip-text">Tumblr</span>
+            </a>
+            <a href="https://youtube.com/@eryndor_0" target="_blank" title="YouTube">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                <span class="tooltip-text">YouTube</span>
+            </a>
+            <a href="mailto:eryndorcontact@gmail.com" title="Email">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <span class="tooltip-text">Email</span>
+            </a>
+            <a href="https://discord.gg/2RUWZsrHY" target="_blank" title="Discord">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+                <span class="tooltip-text">Discord</span>
+            </a>
         </div>
 
         <h2>Terms of Service</h2>
-
-        <!-- TERMS TEXT (unchanged) -->
+        
         <div class="terms-text">
             <p style="font-weight: bold; margin-bottom: 15px;">Please read carefully before commissioning. By requesting a commission, you agree to the following terms.</p>
+            
             <p>Painterly anime and furry character art, illustration, and project-based artwork. Commissions start at <strong>$70 USD</strong>.</p>
             <p>Pricing can be sensitive to complexity, character count, background detail, usage, and deadline.</p>
+            
             <br>
             <p><strong>What I Offer</strong></p>
             <ul class="terms-list">
-                <li>Character art</li><li>Portraits / busts</li><li>Full-body illustrations</li><li>Character sheets</li><li>Promotional or project artwork</li><li>Dark, surreal, emotional, or cinematic focused pieces</li>
+                <li>Character art</li>
+                <li>Portraits / busts</li>
+                <li>Full-body illustrations</li>
+                <li>Character sheets</li>
+                <li>Promotional or project artwork</li>
+                <li>Dark, surreal, emotional, or cinematic focused pieces</li>
             </ul>
+
             <br>
             <p><strong>Pricing</strong></p>
             <ul class="terms-list">
-                <li>Base price: $70 USD</li><li>Larger or more complex work is quoted individually.</li><li>Commercial use, multiple characters, detailed backgrounds, tight deadlines, or complex designs may increase the price.</li>
+                <li>Base price: $70 USD</li>
+                <li>Larger or more complex work is quoted individually.</li>
+                <li>Commercial use, multiple characters, detailed backgrounds, tight deadlines, or complex designs may increase the price.</li>
+                <li>Backgrounds for art commissions: additional $20–$40 depending on complexity.</li>
+                <li>For custom Vtuber backgrounds, see the Commission page for the full scope and add-ons.</li>
             </ul>
+
             <br>
             <p><strong>Process</strong></p>
             <ol style="padding-left: 20px; margin-bottom: 20px;">
-                <li>Send a request through the form.</li><li>I review the idea and give a quote.</li><li>50% Payment is confirmed.</li><li>I send progress/sketch updates.</li><li>A Preview of final work is sent.</li><li>Other 50% Payment is confirmed.</li><li>Final artwork is delivered as a high-resolution file.</li>
+                <li>Send a request through the form.</li>
+                <li>I review the idea and give a quote.</li>
+                <li>50% Payment is confirmed.</li>
+                <li>I send progress/sketch updates.</li>
+                <li>A Preview of final work is sent.</li>
+                <li>Other 50% Payment is confirmed.</li>
+                <li>Final artwork is delivered as a high-resolution file.</li>
             </ol>
+
             <br>
             <p><strong>Do's & Don'ts</strong></p>
             <div style="font-size: 0.8rem; margin-bottom: 15px;">
                 <p><strong>DO's:</strong> Small characters, Furries, Men, Femboys, Women, Very old people, OCs, Personas / self insert, Fanart (depending on the copyright holder), Very muscular men or men with large amounts of facial hair, NSFW (discuss DMs).</p>
                 <p><strong>DON'Ts:</strong> Mecha / full armor, Any form of NFT, Small characters/childlike characters in NSFW settings.</p>
             </div>
+
             <br>
             <p><strong>Payment</strong></p>
             <ul class="terms-list">
-                <li>Full payment required before starting the commission.</li><li>All prices are in American dollars (USD), you can use Wise conversion calculator to estimate the price in your currency.</li><li>Backgrounds can come at an additional price depending on complexity.</li><li>If wanting to purchase commercial rights, please discuss with me directly.</li><li>Any additional characters after the first are at full price (example: knee up commission with two characters 120+60 vs knee up commission with 3 characters 120+60+120).</li><li>Character prices are based on how they appear in frame (example: one character is half body and 2 other characters are only slightly in frame it would be 100+70+70(half body, bust(50% off), bust).</li><li>Payments through wise only.</li>
+                <li>Full payment required before starting the commission.</li>
+                <li>All prices are in American dollars (USD), you can use Wise conversion calculator to estimate the price in your currency.</li>
+                <li>Backgrounds can come at an additional price depending on complexity.</li>
+                <li>If wanting to purchase commercial rights, please discuss with me directly.</li>
+                <li>Any additional characters after the first are at full price (example: knee up commission with two characters 120+60 vs knee up commission with 3 characters 120+60+120).</li>
+                <li>Character prices are based on how they appear in frame (example: one character is half body and 2 other characters are only slightly in frame it would be 100+70+70(half body, bust(50% off), bust).</li>
+                <li>Payments through wise only.</li>
             </ul>
+
             <br>
             <p><strong>Edits:</strong> Any major edits must be specified before lineart is started, minor edits can be made at any stage.</p>
+            
             <p><strong>Cancellations and Refunds:</strong> 50% refund if only sketch is done. No refunds after base color has been filled in.</p>
+            
             <p>Commissioned artwork is for your personal use and must not be resold or used for commercial purposes unless given explicit permission to do so.</p>
+
+            <br>
+            <p><strong>Custom Vtuber Background — Extraordinary Background Art scope:</strong></p>
+            <ul class="terms-list small-text">
+                <li>Large-scale or complex environments</li>
+                <li>Multiple areas or extended spaces</li>
+                <li>Interior or exterior scenes (palace halls, stages, city views, detailed buildings, landscapes)</li>
+                <li>Deeper perspective and layered composition</li>
+                <li>High level of detail</li>
+                <li>Suitable for key visuals, debut scenes, concerts, or showcase backgrounds</li>
+                <li>Accepting various themes</li>
+                <li>Add-ons: $30 USD per variation (morning, evening/sunset, night, rainy, snow, etc.)</li>
+                <li>File format: PNG/JPG 4000 × 2500 px, 300 DPI</li>
+            </ul>
         </div>
-
-        <!-- ===== ORDER BUILDER (Commission Selector) ===== -->
-        <h3 style="margin-bottom: 10px; font-size: 1.1rem;">Build Your Order</h3>
-        <div class="order-builder" id="orderBuilder">
-            <div class="order-item" data-name="Bust" data-price="70">
-                <span class="item-name">Bust</span>
-                <span class="item-price">$70</span>
-                <div class="qty-controls">
-                    <button onclick="changeQty(this, -1)">Delete-</button>
-                    <span class="qty-display">0</span>
-                    <button onclick="changeQty(this, 1)">Add+</button>
-                </div>
-                <span class="subtotal">$0</span>
-            </div>
-            <div class="order-item" data-name="Half Body" data-price="80">
-                <span class="item-name">Half Body</span>
-                <span class="item-price">$80</span>
-                <div class="qty-controls">
-                    <button onclick="changeQty(this, -1)">Delete-</button>
-                    <span class="qty-display">0</span>
-                    <button onclick="changeQty(this, 1)">Add+</button>
-                </div>
-                <span class="subtotal">$0</span>
-            </div>
-            <div class="order-item" data-name="Knee Up" data-price="90">
-                <span class="item-name">Knee Up</span>
-                <span class="item-price">$90</span>
-                <div class="qty-controls">
-                    <button onclick="changeQty(this, -1)">Delete-</button>
-                    <span class="qty-display">0</span>
-                    <button onclick="changeQty(this, 1)">Add+</button>
-                </div>
-                <span class="subtotal">$0</span>
-            </div>
-            <div class="order-item" data-name="Full Body" data-price="100">
-                <span class="item-name">Full Body</span>
-                <span class="item-price">$100</span>
-                <div class="qty-controls">
-                    <button onclick="changeQty(this, -1)">Delete-</button>
-                    <span class="qty-display">0</span>
-                    <button onclick="changeQty(this, 1)">Add+</button>
-                </div>
-                <span class="subtotal">$0</span>
-            </div>
-            <div class="order-item" data-name="Chibi" data-price="70">
-                <span class="item-name">Chibi</span>
-                <span class="item-price">$70</span>
-                <div class="qty-controls">
-                    <button onclick="changeQty(this, -1)">Delete-</button>
-                    <span class="qty-display">0</span>
-                    <button onclick="changeQty(this, 1)">Add+</button>
-                </div>
-                <span class="subtotal">$0</span>
-            </div>
-            <div class="order-item" data-name="Character Ref Sheet" data-price="150">
-                <span class="item-name">Character Ref Sheet</span>
-                <span class="item-price">$150</span>
-                <div class="qty-controls">
-                    <button onclick="changeQty(this, -1)">Delete-</button>
-                    <span class="qty-display">0</span>
-                    <button onclick="changeQty(this, 1)">Add+</button>
-                </div>
-                <span class="subtotal">$0</span>
-            </div>
-            <div class="order-item" data-name="Custom Vtuber Background" data-price="350">
-                <span class="item-name">Custom Vtuber Background</span>
-                <span class="item-price">$350</span>
-                <div class="qty-controls">
-                    <button onclick="changeQty(this, -1)">Delete-</button>
-                    <span class="qty-display">0</span>
-                    <button onclick="changeQty(this, 1)">Add+</button>
-                </div>
-                <span class="subtotal">$0</span>
-            </div>
-
-            <div class="order-total-bar">
-                <div class="grand-total">Total: <span id="grandTotal">$0</span></div>
-                <button class="submit-btn" onclick="submitOrder()">Submit Order</button>
-            </div>
-        </div>
-
-        <!-- Hidden price summary for the form -->
-        <input type="hidden" id="hiddenOrderSummary" value="">
 
         <br>
         <button class="back-btn" onclick="showPage('home')">&larr; Back to Home</button>
@@ -863,76 +1168,107 @@
 
 </div>
 
-<!-- LIGHTBOX -->
+<!-- LIGHTBOX OVERLAY -->
 <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
     <img id="lightboxImg" src="" alt="Zoomed Artwork">
     <button class="lightbox-close" onclick="closeLightbox(event)">Back to Gallery</button>
 </div>
 
-<!-- THANK YOU MODAL -->
-<div id="thankyouModal" class="thankyou-modal">
-    <div class="thankyou-box">
-        <div class="checkmark">&#10004;</div>
+<!-- SUCCESS MODAL -->
+<div id="successModal" class="success-modal">
+    <div class="success-modal-content">
+        <span class="checkmark">✔</span>
         <h3>Thanks for considering me for your commission!</h3>
-        <p>Your order has been submitted.</p>
-        <p class="sub-note">I will talk to them soon!</p>
-        <button class="close-thanks" onclick="closeThankYou()">Close</button>
+        <p>Your order has been submitted.<br>I will talk to you soon!</p>
+        <button onclick="closeSuccessModal()">Close</button>
     </div>
 </div>
 
 <script>
-    // ===== PAGE NAV =====
+    // --- PAGE NAVIGATION ---
     function showPage(pageId) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
         document.getElementById(pageId).classList.add('active');
         window.scrollTo(0, 0);
     }
 
-    // ===== POWERSLIDE (custom background) =====
-    let slideIdx = 0;
-    const track = document.getElementById('powerslideTrack');
-    const totalSlides = track ? track.children.length : 0;
+    // --- AUTOMATIC SLIDESHOW (Featured Works) ---
+    let slideIndex = 0;
+    let slideInterval;
 
-    function updateSlide() {
+    function showSlides() {
+        let slides = document.querySelectorAll(".slide");
+        if (slides.length === 0) return;
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove("active");
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        slides[slideIndex - 1].classList.add("active");
+    }
+
+    function initSlideshow() {
+        let slides = document.querySelectorAll(".slide");
+        if (slides.length > 0) {
+            slides[0].classList.add("active");
+            slideIndex = 1;
+            slideInterval = setInterval(showSlides, 5000);
+        }
+    }
+
+    // --- POWER SLIDE (manual, for Vtuber background) ---
+    let powerslideIndex = 0;
+
+    function updatePowerslide() {
+        const track = document.getElementById('powerslideTrack');
         if (!track) return;
-        track.style.transform = `translateX(-${slideIdx * 100}%)`;
+        const width = track.parentElement.offsetWidth;
+        track.style.transform = `translateX(-${powerslideIndex * width}px)`;
     }
 
-    function slideNext(e) {
-        if (e) e.stopPropagation();
-        slideIdx = (slideIdx + 1) % totalSlides;
-        updateSlide();
+    function powerslideNext(event) {
+        if (event) event.stopPropagation();
+        const track = document.getElementById('powerslideTrack');
+        if (!track) return;
+        const total = track.children.length;
+        powerslideIndex = (powerslideIndex + 1) % total;
+        updatePowerslide();
     }
 
-    function slidePrev(e) {
-        if (e) e.stopPropagation();
-        slideIdx = (slideIdx - 1 + totalSlides) % totalSlides;
-        updateSlide();
+    function powerslidePrev(event) {
+        if (event) event.stopPropagation();
+        const track = document.getElementById('powerslideTrack');
+        if (!track) return;
+        const total = track.children.length;
+        powerslideIndex = (powerslideIndex - 1 + total) % total;
+        updatePowerslide();
     }
 
-    // Click on slide container opens lightbox for current slide
-    document.getElementById('powerslide')?.addEventListener('click', function(e) {
-        if (e.target.closest('.powerslide-arrow')) return;
-        const activeImg = this.querySelector('.powerslide-slide:nth-child(' + (slideIdx + 1) + ') img');
-        if (activeImg) openLightbox(activeImg.src);
-    });
+    window.addEventListener('resize', updatePowerslide);
 
-    // ===== LIGHTBOX =====
+    // --- LIGHTBOX ---
     function openLightbox(src) {
-        document.getElementById('lightboxImg').src = src;
-        document.getElementById('lightbox').classList.add('active');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        lightboxImg.src = src;
+        lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
-    function closeLightbox(e) {
-        if (e.target.id === 'lightbox' || e.target.classList.contains('lightbox-close')) {
-            document.getElementById('lightbox').classList.remove('active');
+
+    function closeLightbox(event) {
+        if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
     }
 
-    // ===== NSFW =====
-    function handleNsfwClick(img, e) {
-        e.stopPropagation();
+    // --- NSFW BLUR + ZOOM LOGIC ---
+    function handleNsfwClick(img, event) {
+        event.stopPropagation();
+
         if (!img.classList.contains('unblurred')) {
             img.classList.add('unblurred');
             img.style.filter = 'blur(0px)';
@@ -941,77 +1277,104 @@
         }
     }
 
-    // ===== ORDER BUILDER =====
-    function changeQty(btn, delta) {
-        const item = btn.closest('.order-item');
-        const display = item.querySelector('.qty-display');
-        const subtotalSpan = item.querySelector('.subtotal');
-        const price = parseFloat(item.dataset.price);
-        let qty = parseInt(display.textContent) || 0;
-        qty = Math.max(0, qty + delta);
-        display.textContent = qty;
-        subtotalSpan.textContent = '$' + (qty * price);
+    // ========== ORDER BUILDER LOGIC ==========
+    const commissionItems = [
+        { id: 'bust', name: 'Bust', price: 70, img: 'https://i.imgur.com/0v1wJ7n.jpeg' },
+        { id: 'halfbody', name: 'Half Body', price: 80, img: 'https://i.imgur.com/ktrfwYe.jpeg' },
+        { id: 'kneeup', name: 'Knee Up', price: 90, img: 'https://i.imgur.com/dERTAci.jpeg' },
+        { id: 'fullbody', name: 'Full Body', price: 100, img: 'https://i.imgur.com/IBZxgAh.jpeg' },
+        { id: 'chibi', name: 'Chibi', price: 70, img: 'https://i.imgur.com/2WxNyXM.jpeg' },
+        { id: 'refsheet', name: 'Character Ref Sheet', price: 150, img: 'https://i.imgur.com/wCjrpgK.jpeg' },
+        { id: 'vtuberbg', name: 'Custom Background for Vtuber Streaming', price: 350, img: 'https://i.imgur.com/3b68EGu.jpeg' }
+    ];
+
+    let orderQuantities = {};
+    commissionItems.forEach(item => { orderQuantities[item.id] = 0; });
+
+    function renderOrderBuilder() {
+        const container = document.getElementById('orderItemsContainer');
+        if (!container) return;
+
+        container.innerHTML = commissionItems.map(item => {
+            const qty = orderQuantities[item.id] || 0;
+            const lineTotal = qty * item.price;
+            return `
+                <div class="order-item" data-id="${item.id}">
+                    <div class="order-item-left">
+                        <span class="order-item-name">${item.name}</span>
+                        <span class="order-item-price">$${item.price} each</span>
+                        <div class="order-item-controls">
+                            <button onclick="changeQty('${item.id}', 1)">Add +</button>
+                            <span class="order-item-qty" id="qty-${item.id}">${qty}</span>
+                            <button onclick="changeQty('${item.id}', -1)">Delete −</button>
+                            <span class="order-item-total" id="lineTotal-${item.id}">= $${lineTotal}</span>
+                        </div>
+                    </div>
+                    <img src="${item.img}" alt="${item.name}" class="order-item-img" onclick="openLightbox('${item.img}')">
+                </div>
+            `;
+        }).join('');
+
         updateGrandTotal();
+    }
+
+    function changeQty(id, delta) {
+        if (orderQuantities[id] === undefined) return;
+        orderQuantities[id] = Math.max(0, orderQuantities[id] + delta);
+        renderOrderBuilder();
     }
 
     function updateGrandTotal() {
         let total = 0;
-        document.querySelectorAll('.order-item').forEach(item => {
-            const qty = parseInt(item.querySelector('.qty-display').textContent) || 0;
-            const price = parseFloat(item.dataset.price);
-            total += qty * price;
+        commissionItems.forEach(item => {
+            total += (orderQuantities[item.id] || 0) * item.price;
         });
-        document.getElementById('grandTotal').textContent = '$' + total;
-        // Update hidden summary
-        const summaryLines = [];
-        document.querySelectorAll('.order-item').forEach(item => {
-            const qty = parseInt(item.querySelector('.qty-display').textContent) || 0;
-            if (qty > 0) {
-                summaryLines.push(`${item.dataset.name} x${qty} = $${qty * parseFloat(item.dataset.price)}`);
-            }
-        });
-        summaryLines.push(`TOTAL: $${total}`);
-        document.getElementById('hiddenOrderSummary').value = summaryLines.join(' | ');
+        const el = document.getElementById('grandTotal');
+        if (el) el.textContent = '$' + total;
     }
 
-    // ===== SUBMIT ORDER (shows thank you modal) =====
     function submitOrder() {
-        // Build the hidden summary first
-        updateGrandTotal();
-        const summary = document.getElementById('hiddenOrderSummary').value;
-        if (summary.includes('TOTAL: $0')) {
-            alert('Please add at least one item to your order.');
+        // Build a summary for the user (and potentially for sending)
+        let summary = 'Order Summary:\n';
+        let total = 0;
+        commissionItems.forEach(item => {
+            const qty = orderQuantities[item.id] || 0;
+            if (qty > 0) {
+                const line = qty * item.price;
+                total += line;
+                summary += `${item.name} x${qty} = $${line}\n`;
+            }
+        });
+        if (total === 0) {
+            alert('Please add at least one commission item before submitting.');
             return;
         }
-        // Show thank you modal
-        document.getElementById('thankyouModal').classList.add('active');
+        summary += `\nTotal: $${total}`;
+        console.log(summary);
+
+        // Show success modal
+        document.getElementById('successModal').classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 
-    function closeThankYou() {
-        document.getElementById('thankyouModal').classList.remove('active');
+    function closeSuccessModal() {
+        document.getElementById('successModal').classList.remove('active');
         document.body.style.overflow = 'auto';
     }
 
-    // Close modal by clicking backdrop
-    document.getElementById('thankyouModal').addEventListener('click', function(e) {
-        if (e.target === this) closeThankYou();
-    });
-
-    // ===== INIT =====
+    // Initialize
     window.onload = function() {
-        updateSlide();
-        updateGrandTotal();
+        initSlideshow();
+        renderOrderBuilder();
+        // Set initial powerslide position
+        setTimeout(updatePowerslide, 100);
     };
 
-    // Keyboard navigation for slides
-    document.addEventListener('keydown', function(e) {
-        const galleryPage = document.getElementById('gallery');
-        if (galleryPage && galleryPage.classList.contains('active')) {
-            if (e.key === 'ArrowRight') slideNext();
-            if (e.key === 'ArrowLeft') slidePrev();
-        }
+    // Also re-calc powerslide on resize
+    window.addEventListener('resize', function() {
+        updatePowerslide();
     });
+
 </script>
 
 </body>
