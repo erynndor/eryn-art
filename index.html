@@ -376,22 +376,7 @@
             text-decoration: underline;
         }
 
-        /* --- VISITOR COUNTER --- */
-        #visitor-counter {
-            position: fixed;
-            bottom: 15px;
-            right: 20px;
-            font-size: 0.7rem;
-            color: #888;
-            font-family: var(--font-sans);
-            z-index: 9999;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 4px 8px;
-            border-radius: 4px;
-            pointer-events: none;
-        }
-
-        /* --- NEW PRICING CONTROLS (ATM STYLE) --- */
+        /* --- PRICING CONTROLS (ATM STYLE) --- */
         .price-box-wrapper {
             display: flex;
             flex-direction: column;
@@ -424,7 +409,7 @@
 
         .add-btn, .del-btn {
             background: #fff;
-            border: 1px solid transparent; /* Invisible black line */
+            border: 1px solid transparent;
             width: 40px;
             height: 40px;
             font-size: 1.5rem;
@@ -446,7 +431,7 @@
         .total-display {
             font-family: var(--font-serif);
             font-size: 1.1rem;
-            color: #aaa; /* Faded total */
+            color: #aaa;
             min-width: 80px;
             text-align: center;
             transition: color 0.3s, font-weight 0.3s;
@@ -459,7 +444,7 @@
 
         /* --- POP-UP FORM (ATM EXTENSION) --- */
         #orderFormContainer {
-            display: none; /* Hidden by default */
+            display: none;
             background: #fff;
             border: 2px solid #000;
             padding: 20px;
@@ -700,7 +685,7 @@
             </div>
         </div>
 
-        <!-- 2. BUST ($70) - NEW CONTROLS -->
+        <!-- 2. BUST ($70) -->
         <div class="gallery-section">
             <div class="section-title">Bust $70</div>
             <div class="price-box-wrapper">
@@ -825,77 +810,6 @@
             <p class="small-italic" style="margin-top: 8px; text-align: center;">Click to reveal, click again to enlarge.</p>
         </div>
 
-        <!-- 10. POP-UP REQUEST FORM (ATM EXTENSION) - MOVED HERE -->
-        <div id="orderFormContainer">
-            <h3 style="font-size: 1rem; margin-bottom: 10px; text-align: center;">Commission Request Form</h3>
-            <form action="https://formsubmit.co/eryndorcontact@gmail.com" method="POST" id="commissionForm" enctype="multipart/form-data">
-                <input type="hidden" name="_subject" value="New Commission Request from Website!">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="Calculated Total Price" id="hiddenTotalPrice" value="0">
-
-                <!-- STYLE -->
-                <div class="form-row">
-                    <div>
-                        <label>Style</label>
-                        <select name="Style" required>
-                            <option value="Anime">Anime</option>
-                            <option value="Furry">Furry</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Finish</label>
-                        <select name="Finish" id="finishType" required>
-                            <option value="Manga Color">Manga Color</option>
-                            <option value="Flat Color">Flat Color</option>
-                            <option value="Rendered">Rendered</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- BACKGROUND -->
-                <div>
-                    <label>Background</label>
-                    <select name="Background" id="bgType" required>
-                        <option value="None">No Background (+$0)</option>
-                        <option value="Simple">Simple Background (+10%)</option>
-                        <option value="Complex">Complex Background (+50%)</option>
-                    </select>
-                </div>
-
-                <!-- ADD-ONS NOTE -->
-                <div style="font-size: 0.75rem; color: #555; margin-bottom: 5px;">
-                    <em>Add-ons & Themes (Extra Character, Gore, NSFW, Commercial Use) can be discussed in the description.</em>
-                </div>
-
-                <!-- DESCRIPTION -->
-                <div>
-                    <label>Character Description & Details</label>
-                    <textarea name="Character Description" placeholder="Describe your character, scene, preferred mood, references (links are fine), and any specific details." required></textarea>
-                </div>
-
-                <!-- CONTACT INFO -->
-                <div>
-                    <label>Your Email or Name *</label>
-                    <input type="text" name="Contact Info" placeholder="your@email.com or your name" required>
-                </div>
-
-                <!-- FILE UPLOAD -->
-                <div>
-                    <label>Picture Reference (optional)</label>
-                    <input type="file" name="Reference Image" accept="image/*">
-                </div>
-
-                <!-- TOTAL DISPLAY SUBMIT -->
-                <div style="background: #f9f9f9; padding: 10px; border: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; margin-top: 5px;">
-                    <span style="font-weight: bold; font-size: 0.9rem;">Order Total:</span>
-                    <span id="formGrandTotal" style="font-weight: bold; font-size: 1rem;">$0</span>
-                </div>
-
-                <button type="submit" class="submit-order-btn">Submit Order</button>
-                <p class="form-note">Payment via Wise Invoicing. I will contact you upon receiving your request.</p>
-            </form>
-        </div>
-
         <br>
         <button class="back-btn" onclick="showPage('home')">&larr; Back to Home</button>
     </div>
@@ -991,9 +905,6 @@
     </div>
 </div>
 
-<!-- VISITOR COUNTER -->
-<div id="visitor-counter">Visits: <span id="visit-count">0</span></div>
-
 <script>
     // --- PAGE NAVIGATION ---
     function showPage(pageId) {
@@ -1056,7 +967,7 @@
         }
     }
 
-    // --- NEW PRICING LOGIC (ATM STYLE) ---
+    // --- PRICING LOGIC (ATM STYLE) ---
     let orderTotals = {
         bust: 0,
         halfbody: 0,
@@ -1067,12 +978,11 @@
     };
 
     function updatePrice(itemId, amount) {
-        if (orderTotals[itemId] + amount < 0) return; // Prevent negative totals
+        if (orderTotals[itemId] + amount < 0) return;
 
         orderTotals[itemId] += amount;
         document.getElementById('total-' + itemId).innerText = '$' + orderTotals[itemId];
 
-        // Manage faded "Total" styling
         const totalEl = document.getElementById('total-' + itemId);
         if (orderTotals[itemId] > 0) {
             totalEl.classList.add('active-total');
@@ -1080,52 +990,29 @@
             totalEl.classList.remove('active-total');
         }
 
-        calculateGrandTotal();
-    }
-
-    function calculateGrandTotal() {
-        let grandTotal = 0;
-        for (let key in orderTotals) {
-            grandTotal += orderTotals[key];
-        }
-
-        const formContainer = document.getElementById('orderFormContainer');
-        const formGrandTotal = document.getElementById('formGrandTotal');
-        const hiddenInput = document.getElementById('hiddenTotalPrice');
-
-        formGrandTotal.innerText = '$' + grandTotal;
-        hiddenInput.value = grandTotal;
-
-        if (grandTotal > 0) {
-            formContainer.style.display = 'block';
-        } else {
-            formContainer.style.display = 'none';
-        }
+        // No automatic form display here; form is now on Terms page
     }
 
     // --- SUCCESS POPUP LOGIC ---
     function showSuccessPopup(event) {
-        event.preventDefault(); // Stop form from submitting normally (we will do it manually)
+        event.preventDefault();
         
         const form = document.getElementById('commissionForm');
         const formData = new FormData(form);
 
-        // Use fetch to submit the form to FormSubmit endpoint
         fetch(form.action, {
             method: 'POST',
             body: formData
         })
         .then(response => {
             if (response.ok) {
-                // Reset form
                 form.reset();
-                // Reset totals to 0
+                // Reset totals
                 for (let key in orderTotals) {
                     orderTotals[key] = 0;
                     document.getElementById('total-' + key).innerText = '$0';
                     document.getElementById('total-' + key).classList.remove('active-total');
                 }
-                calculateGrandTotal(); // This will hide the form container
                 document.getElementById('successPopup').style.display = 'flex';
             } else {
                 alert('There was an issue sending your request. Please try again or email me directly.');
@@ -1143,29 +1030,9 @@
         }
     }
 
-    // Attach the success handler to the form submit
-    document.getElementById('commissionForm').addEventListener('submit', showSuccessPopup);
-
-    // --- VISITOR COUNTER ---
-    function fetchVisitorCount() {
-        fetch('https://api.counterapi.dev/v1/eryn-portfolio/visits/up')
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.count) {
-                    document.getElementById('visit-count').textContent = data.count;
-                }
-            })
-            .catch(error => {
-                console.log('Visitor counter unavailable:', error);
-                document.getElementById('visit-count').textContent = 'N/A';
-            });
-    }
-
     // Initialize
     window.onload = function() {
         initSlideshow();
-        fetchVisitorCount();
-        calculateGrandTotal(); // Ensures form is hidden on load
     };
 </script>
 
