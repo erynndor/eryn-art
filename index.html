@@ -173,6 +173,14 @@
             color: #fff;
         }
 
+        /* Small button variant for commission page */
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            width: auto;
+            display: inline-block;
+        }
+
         /* --- GALLERY --- */
         .gallery-section {
             margin-bottom: 30px;
@@ -459,20 +467,8 @@
             font-size: 0.8rem;
         }
 
-        /* --- VISITOR COUNTER --- */
-        #visitor-counter {
-            position: fixed;
-            bottom: 12px;
-            right: 15px;
-            font-size: 0.6rem;
-            color: #888;
-            font-family: var(--font-sans);
-            z-index: 9999;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 3px 6px;
-            border-radius: 3px;
-            pointer-events: none;
-        }
+        /* --- VISITOR COUNTER (REMOVED) --- */
+        /* Removed as per request */
 
         /* Make forms and TOS text smaller as requested */
         .tos-text p, .tos-text li {
@@ -587,32 +583,8 @@
             .nsfw-gallery { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* --- NEW: tiny TOS link at bottom of commission page --- */
-        .tos-footer-link {
-            text-align: center;
-            margin-top: 30px;
-            margin-bottom: 5px;
-            font-size: 0.7rem;
-            letter-spacing: 0.3px;
-        }
-        .tos-footer-link a {
-            color: #555;
-            text-decoration: none;
-            border-bottom: 1px solid #ccc;
-            transition: color 0.2s, border-color 0.2s;
-            font-family: var(--font-sans);
-            cursor: pointer;
-        }
-        .tos-footer-link a:hover {
-            color: #000;
-            border-bottom-color: #000;
-        }
-        /* subtle extra spacing for commission page bottom */
-        #commissions .tos-footer-link {
-            padding-top: 10px;
-            border-top: 1px solid #eee;
-            margin-top: 30px;
-        }
+        /* --- REMOVED TOS FOOTER LINK --- */
+        /* Removed as per request */
 
         /* --- NEW: centered navigation helpers --- */
         .nav-bottom {
@@ -864,14 +836,13 @@ alt="Art 8">
     </div>
 
     <br>
-    <!-- CENTERED "CLICK HERE FOR NEXT PAGE" + swipe hint -->
+    <!-- Swipe hint only, no button -->
     <div class="nav-bottom">
-        <button class="btn-nav" onclick="showPage('commissions')"><i>→</i> Click here for next page</button>
-        <div class="swipe-hint"><span>← swipe right to go back home</span></div>
+        <div class="swipe-hint"><span>→ swipe right for commission/tos</span></div>
     </div>
 </div>
 
-<!-- ================= PAGE 3: TERMS OF SERVICE / COMMISSIONS ================= -->
+<!-- ================= PAGE 3: COMMISSION / TOS ================= -->
 <div id="commissions" class="page">
     <h2>Terms of Service</h2>
     
@@ -944,7 +915,7 @@ alt="Art 8">
             <li>If wanting to purchase commercial rights, please discuss with me directly.</li>
             <li>Any additional characters after the first are at full price (example: knee up commission with two characters 120+60 vs knee up commission with 3 characters 120+60+120).</li>
             <li>Character prices are based on how they appear in frame (example: one character is half body and 2 other characters are only slightly in frame it would be 100+35+70 (half body, bust(50% off), bust)).</li>
-            <li>Payments through Wise only.</li>
+            <li>Payments processed through PayPal, Wise and Kofi. If they're unavailable, we can/will rearrange an alternative method upon contact.</li>
         </ul>
 
         <p><strong>Edits</strong></p>
@@ -1045,21 +1016,18 @@ alt="Art 8">
         </div>
 
         <div class="form-group" style="background: #f9f9f9; padding: 15px; border: 1px solid #eee;">
-            <p class="small-italic"><strong>Payment Note:</strong> Payments are currently processed via Wise (Invoicing). If Wise is unavailable, we will arrange an alternative method upon contact.</p>
+            <p class="small-italic"><strong>Payment Note:</strong> Payments are processed via PayPal, Wise and Kofi. If they're unavailable, we can/will rearrange an alternative method upon contact.</p>
         </div>
 
-        <button type="submit" class="btn" style="width: 100%; font-size:0.9rem;">Submit Request</button>
+        <button type="submit" class="btn btn-small" style="font-size:0.85rem; padding:8px 24px;">Submit Request</button>
     </form>
 
-    <!-- CENTERED "BACK TO HOME" -->
-    <div class="nav-bottom">
-        <button class="btn-nav" onclick="showPage('home')"><i>←</i> Back to Home</button>
+    <!-- Small "Back to Home" button, no container -->
+    <div style="margin-top: 20px;">
+        <button class="btn btn-small" onclick="showPage('home')" style="font-size:0.8rem; padding:6px 20px;">← Back to Home</button>
     </div>
 
-    <!-- REMOVED back-btn, ADDED tiny TOS footer link -->
-    <div class="tos-footer-link">
-        <a href="#" onclick="showPage('commissions'); return false;">read terms of service and commission an order here</a>
-    </div>
+    <!-- TOS footer link REMOVED as per request -->
 </div>
 
 <!-- THANK YOU POPUP -->
@@ -1073,8 +1041,7 @@ alt="Art 8">
     </div>
 </div>
 
-<!-- VISITOR COUNTER -->
-<div id="visitor-counter">Visits: <span id="visit-count">0</span></div>
+<!-- VISITOR COUNTER REMOVED as per request -->
 
 <script>
     // --- PAGE NAVIGATION ---
@@ -1165,22 +1132,9 @@ alt="Art 8">
         if (e.target === this) { closeThankyou(); }
     });
 
-    // --- VISITOR COUNTER ---
-    function fetchVisitorCount() {
-        fetch('https://api.counterapi.dev/v1/eryn-portfolio/visits/up')
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.count) {
-                    document.getElementById('visit-count').textContent = data.count;
-                }
-            })
-            .catch(error => {
-                console.log('Visitor counter unavailable:', error);
-                document.getElementById('visit-count').textContent = 'N/A';
-            });
-    }
+    // --- VISITOR COUNTER REMOVED ---
 
-    // --- SWIPE RIGHT GESTURE (GALLERY → HOME) ---
+    // --- SWIPE RIGHT GESTURE (GALLERY → COMMISSIONS) ---
     let touchStartX = 0;
     let touchEndX = 0;
     const galleryPage = document.getElementById('gallery');
@@ -1193,9 +1147,9 @@ alt="Art 8">
         touchEndX = e.changedTouches[0].screenX;
         // Swipe right: startX < endX  (finger moves from left to right)
         if (touchEndX - touchStartX > 80) {
-            // Only go home if gallery is currently active
+            // Only go to commissions if gallery is currently active
             if (galleryPage.classList.contains('active')) {
-                showPage('home');
+                showPage('commissions');
             }
         }
     }, { passive: true });
@@ -1204,7 +1158,7 @@ alt="Art 8">
     window.onload = function() {
         initSlideshow();
         updateHiddenTotal();
-        fetchVisitorCount();
+        // fetchVisitorCount(); REMOVED
     };
 </script>
 
