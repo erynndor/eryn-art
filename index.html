@@ -173,14 +173,6 @@
             color: #fff;
         }
 
-        /* Small button variant for commission page */
-        .btn-small {
-            padding: 8px 16px;
-            font-size: 0.8rem;
-            width: auto;
-            display: inline-block;
-        }
-
         /* --- GALLERY --- */
         .gallery-section {
             margin-bottom: 30px;
@@ -467,9 +459,6 @@
             font-size: 0.8rem;
         }
 
-        /* --- VISITOR COUNTER (REMOVED) --- */
-        /* Removed as per request */
-
         /* Make forms and TOS text smaller as requested */
         .tos-text p, .tos-text li {
             font-size: 0.8rem;
@@ -496,85 +485,6 @@
             border: none;
         }
 
-        /* Thank you popup */
-        .thankyou-popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .thankyou-popup.active {
-            display: flex;
-        }
-
-        .thankyou-content {
-            background: #fff;
-            padding: 35px 40px;
-            border-radius: 12px;
-            max-width: 420px;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            animation: popIn 0.3s ease;
-        }
-
-        @keyframes popIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .thankyou-content .checkmark {
-            display: block;
-            font-size: 3.5rem;
-            color: #2ecc71;
-            margin-bottom: 10px;
-            line-height: 1;
-        }
-
-        .thankyou-content h3 {
-            font-family: var(--font-serif);
-            font-size: 1.6rem;
-            margin-bottom: 12px;
-            color: #111;
-        }
-
-        .thankyou-content p {
-            font-size: 0.95rem;
-            color: #333;
-            margin-bottom: 8px;
-            line-height: 1.5;
-        }
-
-        .thankyou-content .email-highlight {
-            font-weight: bold;
-            color: #111;
-            font-size: 0.95rem;
-            word-break: break-all;
-        }
-
-        .thankyou-content .btn-close-popup {
-            margin-top: 18px;
-            padding: 10px 30px;
-            background: #111;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            font-family: var(--font-sans);
-            transition: background 0.2s;
-        }
-
-        .thankyou-content .btn-close-popup:hover {
-            background: #333;
-        }
-
         /* Responsive */
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
@@ -583,10 +493,7 @@
             .nsfw-gallery { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* --- REMOVED TOS FOOTER LINK --- */
-        /* Removed as per request */
-
-        /* --- NEW: centered navigation helpers --- */
+        /* --- Navigation helpers --- */
         .nav-bottom {
             text-align: center;
             margin-top: 30px;
@@ -630,6 +537,37 @@
             0% { transform: translateX(0); }
             50% { transform: translateX(-5px); }
             100% { transform: translateX(0); }
+        }
+
+        /* Small submit button */
+        .btn-small {
+            display: inline-block;
+            width: auto;
+            padding: 8px 28px;
+            font-size: 0.85rem;
+        }
+
+        /* Small back button centered */
+        .back-home-container {
+            text-align: center;
+            margin-top: 25px;
+        }
+        .btn-back-small {
+            display: inline-block;
+            padding: 8px 22px;
+            font-family: var(--font-serif);
+            font-size: 0.85rem;
+            color: var(--text-color);
+            background: transparent;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+        .btn-back-small:hover {
+            background: var(--border-color);
+            color: #fff;
         }
     </style>
 </head>
@@ -836,13 +774,13 @@ alt="Art 8">
     </div>
 
     <br>
-    <!-- Swipe hint only, no button -->
+    <!-- SWIPE HINT: replace the old button -->
     <div class="nav-bottom">
-        <div class="swipe-hint"><span>→ swipe right for commission/tos</span></div>
+        <div class="swipe-hint"><span>← swipe left for commission / TOS</span></div>
     </div>
 </div>
 
-<!-- ================= PAGE 3: COMMISSION / TOS ================= -->
+<!-- ================= PAGE 3: TERMS OF SERVICE / COMMISSIONS ================= -->
 <div id="commissions" class="page">
     <h2>Terms of Service</h2>
     
@@ -915,7 +853,7 @@ alt="Art 8">
             <li>If wanting to purchase commercial rights, please discuss with me directly.</li>
             <li>Any additional characters after the first are at full price (example: knee up commission with two characters 120+60 vs knee up commission with 3 characters 120+60+120).</li>
             <li>Character prices are based on how they appear in frame (example: one character is half body and 2 other characters are only slightly in frame it would be 100+35+70 (half body, bust(50% off), bust)).</li>
-            <li>Payments processed through PayPal, Wise and Kofi. If they're unavailable, we can/will rearrange an alternative method upon contact.</li>
+            <li>Payments through PayPal, Wise and Ko-fi. If they're unavailable, we can rearrange an alternative method upon contact.</li>
         </ul>
 
         <p><strong>Edits</strong></p>
@@ -1016,32 +954,20 @@ alt="Art 8">
         </div>
 
         <div class="form-group" style="background: #f9f9f9; padding: 15px; border: 1px solid #eee;">
-            <p class="small-italic"><strong>Payment Note:</strong> Payments are processed via PayPal, Wise and Kofi. If they're unavailable, we can/will rearrange an alternative method upon contact.</p>
+            <p class="small-italic"><strong>Payment Note:</strong> Payments are currently processed via PayPal, Wise and Ko-fi. If they're unavailable, we can rearrange an alternative method upon contact.</p>
         </div>
 
-        <button type="submit" class="btn btn-small" style="font-size:0.85rem; padding:8px 24px;">Submit Request</button>
+        <!-- Small submit button, centered -->
+        <div style="text-align: center;">
+            <button type="submit" class="btn btn-small">Submit Request</button>
+        </div>
     </form>
 
-    <!-- Small "Back to Home" button, no container -->
-    <div style="margin-top: 20px;">
-        <button class="btn btn-small" onclick="showPage('home')" style="font-size:0.8rem; padding:6px 20px;">← Back to Home</button>
-    </div>
-
-    <!-- TOS footer link REMOVED as per request -->
-</div>
-
-<!-- THANK YOU POPUP -->
-<div id="thankyouPopup" class="thankyou-popup">
-    <div class="thankyou-content">
-        <span class="checkmark">✓</span>
-        <h3>Thank you for commissioning me!</h3>
-        <p>Please contact and reach me in email:</p>
-        <p class="email-highlight">contacteryndor@gmail.com</p>
-        <button class="btn-close-popup" onclick="closeThankyou()">Close</button>
+    <!-- Small back button, centered, no container -->
+    <div class="back-home-container">
+        <button class="btn-back-small" onclick="showPage('home')">← Back to Home</button>
     </div>
 </div>
-
-<!-- VISITOR COUNTER REMOVED as per request -->
 
 <script>
     // --- PAGE NAVIGATION ---
@@ -1099,12 +1025,11 @@ alt="Art 8">
         document.getElementById('hiddenTotalPrice').value = finalPrice.toFixed(2);
     }
 
-    // --- THANK YOU POPUP & FORM SUBMISSION ---
+    // --- FORM SUBMISSION (no popup) ---
     const form = document.getElementById('commissionForm');
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        document.getElementById('thankyouPopup').classList.add('active');
 
         const formData = new FormData(form);
         fetch(form.action, {
@@ -1114,43 +1039,47 @@ alt="Art 8">
         })
         .then(response => {
             if (!response.ok) { console.warn('Form submission status:', response.status); }
-        })
-        .catch(error => { console.error('Error submitting form:', error); });
-
-        setTimeout(() => {
+            alert('Request submitted! I will get back to you soon.');
             form.reset();
             document.getElementById('hiddenTotalPrice').value = '0';
-        }, 500);
+            showPage('home');
+        })
+        .catch(error => {
+            console.error('Error submitting form:', error);
+            alert('There was an error submitting your request. Please try again or email contacteryndor@gmail.com directly.');
+        });
     });
 
-    function closeThankyou() {
-        document.getElementById('thankyouPopup').classList.remove('active');
-        showPage('home');
-    }
-
-    document.getElementById('thankyouPopup').addEventListener('click', function(e) {
-        if (e.target === this) { closeThankyou(); }
-    });
-
-    // --- VISITOR COUNTER REMOVED ---
-
-    // --- SWIPE RIGHT GESTURE (GALLERY → COMMISSIONS) ---
+    // --- SWIPE GESTURES ---
     let touchStartX = 0;
     let touchEndX = 0;
     const galleryPage = document.getElementById('gallery');
+    const commissionsPage = document.getElementById('commissions');
 
+    // Swipe on gallery: right → home, left → commissions
     galleryPage.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
 
     galleryPage.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
-        // Swipe right: startX < endX  (finger moves from left to right)
-        if (touchEndX - touchStartX > 80) {
-            // Only go to commissions if gallery is currently active
-            if (galleryPage.classList.contains('active')) {
-                showPage('commissions');
-            }
+        const diff = touchEndX - touchStartX;
+        if (diff > 80 && galleryPage.classList.contains('active')) {
+            showPage('home');
+        } else if (diff < -80 && galleryPage.classList.contains('active')) {
+            showPage('commissions');
+        }
+    }, { passive: true });
+
+    // Swipe on commissions: right → home
+    commissionsPage.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    commissionsPage.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        if (touchEndX - touchStartX > 80 && commissionsPage.classList.contains('active')) {
+            showPage('home');
         }
     }, { passive: true });
 
@@ -1158,7 +1087,6 @@ alt="Art 8">
     window.onload = function() {
         initSlideshow();
         updateHiddenTotal();
-        // fetchVisitorCount(); REMOVED
     };
 </script>
 
