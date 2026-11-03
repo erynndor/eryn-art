@@ -193,7 +193,6 @@
             margin: 15px auto;
             overflow: hidden;
             border: 1px solid #ddd;
-            cursor: pointer;
             background: #f9f9f9;
         }
 
@@ -225,7 +224,6 @@
             width: 100%;
             margin-bottom: 15px;
             border: 1px solid #ddd;
-            cursor: pointer;
             overflow: hidden;
             background: #f9f9f9;
         }
@@ -249,7 +247,6 @@
             height: auto;
             object-fit: contain;
             border: 1px solid #ddd;
-            cursor: pointer;
             transition: transform 0.2s;
             display: block;
         }
@@ -272,7 +269,6 @@
             object-fit: cover;
             border: 1px solid #ddd;
             border-radius: 4px;
-            cursor: pointer;
             transition: transform 0.2s, filter 0.3s;
             filter: blur(10px);
         }
@@ -285,7 +281,7 @@
             transform: scale(1.05);
         }
 
-        /* --- LIGHTBOX --- */
+        /* --- LIGHTBOX (kept for gallery, but removed interaction) --- */
         .lightbox {
             display: none;
             position: fixed;
@@ -503,6 +499,85 @@
             border: none;
         }
 
+        /* Thank you popup */
+        .thankyou-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .thankyou-popup.active {
+            display: flex;
+        }
+
+        .thankyou-content {
+            background: #fff;
+            padding: 35px 40px;
+            border-radius: 12px;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: popIn 0.3s ease;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .thankyou-content .checkmark {
+            display: block;
+            font-size: 3.5rem;
+            color: #2ecc71;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .thankyou-content h3 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            color: #111;
+        }
+
+        .thankyou-content p {
+            font-size: 0.95rem;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .thankyou-content .email-highlight {
+            font-weight: bold;
+            color: #111;
+            font-size: 0.95rem;
+            word-break: break-all;
+        }
+
+        .thankyou-content .btn-close-popup {
+            margin-top: 18px;
+            padding: 10px 30px;
+            background: #111;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            transition: background 0.2s;
+        }
+
+        .thankyou-content .btn-close-popup:hover {
+            background: #333;
+        }
+
         /* Responsive */
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
@@ -557,7 +632,7 @@
             <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             <span class="tooltip-text">YouTube</span>
         </a>
-        <a href="mailto:eryndorcontact@gmail.com" title="Email">
+        <a href="mailto:contacteryndor@gmail.com" title="Email">
             <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             <span class="tooltip-text">Email</span>
         </a>
@@ -583,7 +658,7 @@
     <div class="main-buttons">
         <a href="#" class="btn" onclick="showPage('gallery')">Gallery</a>
         <a href="#" class="btn" onclick="showPage('commissions')">Commission</a>
-        <a href="mailto:eryndorcontact@gmail.com" class="btn">Email</a>
+        <a href="mailto:contacteryndor@gmail.com" class="btn">Email</a>
     </div>
 </div>
 
@@ -595,7 +670,7 @@
     <!-- Featured Slideshow -->
     <div class="gallery-section">
         <div class="section-title">Featured Works</div>
-        <div class="slideshow-container" onclick="openLightbox(this.querySelector('.slide.active img').src)">
+        <div class="slideshow-container">
             <div class="slide active">
                 <img src="https://i.imgur.com/3b68EGu.jpeg" alt="Featured 1">
             </div>
@@ -619,25 +694,21 @@
     <!-- BUST -->
     <div class="gallery-section">
         <div class="section-title">Bust — $70</div>
-        <div class="full-img-container" onclick="openLightbox('https://i.imgur.com/dfUFQ7I.jpeg')">
-            <img src="https://i.imgur.com/dfUFQ7I.jpeg"
-alt="Bust Showcase">
-<div class="full-img-container" onclick="openLightbox('https://i.imgur.com/wyRBFQe.jpeg')">
-<img
-src="https://i.imgur.com/wyRBFQe.jpeg"
-alt="Bust Showcase">
-<div class="full-img-container"
-onclick="openLightbox('https://i.imgur.com/m26K2Uu.jpeg')">
-<img
-src="https://i.imgur.com/m26K2Uu.jpeg"
- alt="Bust Showcase">
+        <div class="full-img-container">
+            <img src="https://i.imgur.com/dfUFQ7I.jpeg" alt="Bust Showcase">
+        </div>
+        <div class="full-img-container">
+            <img src="https://i.imgur.com/wyRBFQe.jpeg" alt="Bust Showcase">
+        </div>
+        <div class="full-img-container">
+            <img src="https://i.imgur.com/m26K2Uu.jpeg" alt="Bust Showcase">
         </div>
     </div>
 
     <!-- HALF BODY -->
     <div class="gallery-section">
         <div class="section-title">Half Body — $100</div>
-        <div class="full-img-container" onclick="openLightbox('https://i.imgur.com/ktrfwYe.jpeg')">
+        <div class="full-img-container">
             <img src="https://i.imgur.com/ktrfwYe.jpeg" alt="Half Body Showcase"> 
         </div>
     </div>
@@ -645,7 +716,7 @@ src="https://i.imgur.com/m26K2Uu.jpeg"
     <!-- KNEE UP (new) -->
     <div class="gallery-section">
         <div class="section-title">Knee Up — $120</div>
-        <div class="full-img-container" onclick="openLightbox('https://i.imgur.com/l7v9TVs.jpeg')">
+        <div class="full-img-container">
             <img src="https://i.imgur.com/l7v9TVs.jpeg" alt="Knee Up Showcase">
         </div>
     </div>
@@ -653,7 +724,7 @@ src="https://i.imgur.com/m26K2Uu.jpeg"
     <!-- FULL BODY -->
     <div class="gallery-section">
         <div class="section-title">Full Body — $170</div>
-        <div class="full-img-container" onclick="openLightbox('https://i.imgur.com/IBZxgAh.jpeg')">
+        <div class="full-img-container">
             <img src="https://i.imgur.com/IBZxgAh.jpeg" alt="Full Body Showcase">
         </div>
     </div>
@@ -661,7 +732,7 @@ src="https://i.imgur.com/m26K2Uu.jpeg"
     <!-- CHIBI -->
     <div class="gallery-section">
         <div class="section-title">Chibi — $70</div>
-        <div class="full-img-container" onclick="openLightbox('https://i.imgur.com/xfHbafh.jpeg')">
+        <div class="full-img-container">
             <img src="https://i.imgur.com/xfHbafh.jpeg" alt="Chibi Showcase">
         </div>
     </div>
@@ -670,7 +741,7 @@ src="https://i.imgur.com/m26K2Uu.jpeg"
     <div class="gallery-section">
         <div class="section-title">Character Ref Sheet — $150</div>
         <p class="small-italic" style="text-align:center; margin-bottom:10px;">Side view +$60 · Extra bust sketches +$40 each</p>
-        <div class="full-img-container" onclick="openLightbox('https://i.imgur.com/YWpViwt.jpeg')">
+        <div class="full-img-container">
             <img src="https://i.imgur.com/YWpViwt.jpeg" alt="Character Ref Sheet">
         </div>
     </div>
@@ -681,19 +752,19 @@ src="https://i.imgur.com/m26K2Uu.jpeg"
     <div class="gallery-section">
         <div class="section-title">More Art</div>
         <div class="grid-gallery">
-            <img src="https://i.imgur.com/Yjajqr4.jpeg" alt="Art 1" onclick="openLightbox(this.src)">
-            <img src="https://i.imgur.com/1cYShvb.jpeg" alt="Art 2" onclick="openLightbox(this.src)">
-            <img src="https://i.imgur.com/qxLsF1Z.jpeg" alt="Art 3" onclick="openLightbox(this.src)">
-            <img src="https://i.imgur.com/d7lqPmU.jpeg" alt="Art 4" onclick="openLightbox(this.src)">
-            <img src="https://i.imgur.com/XoVg5CR.jpeg" alt="Art 5" onclick="openLightbox(this.src)">
-            <img src="https://i.imgur.com/WbwyGHA.jpeg" alt="Art 6" onclick="openLightbox(this.src)">
-            <img src="https://i.imgur.com/DGWFFMd.jpeg" alt="Art 7" onclick="openLightbox(this.src)">
-            <img src="https://i.imgur.com/a0KUP6J.jpeg" alt="Art 8" onclick="openLightbox(this.src)">
-            <img src="https://i.imgur.com/JOKHwaO.jpeg" alt="Art 9" onclick="openLightbox(this.src)">
-            <img src="https://i.imgur.com/4Jguddb.jpeg" alt="Art 10" onclick="openLightbox(this.src)">
-            <img src="https://i.imgur.com/Qm9kt0u.jpeg" alt="Art 11" onclick="openLightbox(this.src)">
-            <img src="https://i.imgur.com/HJAscJ3.jpeg" alt="Art 12" onclick="openLightbox(this.src)">
-            <img src="https://i.imgur.com/rXRWRIW.jpeg" alt="Art 13" onclick="openLightbox(this.src)">
+            <img src="https://i.imgur.com/Yjajqr4.jpeg" alt="Art 1">
+            <img src="https://i.imgur.com/1cYShvb.jpeg" alt="Art 2">
+            <img src="https://i.imgur.com/qxLsF1Z.jpeg" alt="Art 3">
+            <img src="https://i.imgur.com/d7lqPmU.jpeg" alt="Art 4">
+            <img src="https://i.imgur.com/XoVg5CR.jpeg" alt="Art 5">
+            <img src="https://i.imgur.com/WbwyGHA.jpeg" alt="Art 6">
+            <img src="https://i.imgur.com/DGWFFMd.jpeg" alt="Art 7">
+            <img src="https://i.imgur.com/a0KUP6J.jpeg" alt="Art 8">
+            <img src="https://i.imgur.com/JOKHwaO.jpeg" alt="Art 9">
+            <img src="https://i.imgur.com/4Jguddb.jpeg" alt="Art 10">
+            <img src="https://i.imgur.com/Qm9kt0u.jpeg" alt="Art 11">
+            <img src="https://i.imgur.com/HJAscJ3.jpeg" alt="Art 12">
+            <img src="https://i.imgur.com/rXRWRIW.jpeg" alt="Art 13">
         </div>
     </div>
 
@@ -703,19 +774,19 @@ src="https://i.imgur.com/m26K2Uu.jpeg"
     <div class="gallery-section">
         <div class="section-title">NSFW / Gore / Themes</div>
         <div class="nsfw-gallery">
-            <img src="https://i.imgur.com/apOlXA9.jpeg" alt="NSFW 1" class="nsfw-img" onclick="handleNsfwClick(this, event)">
-            <img src="https://i.imgur.com/zQqoV9e.jpeg" alt="NSFW 2" class="nsfw-img" onclick="handleNsfwClick(this, event)">
-            <img src="https://i.imgur.com/cwraQ4D.jpeg" alt="NSFW 3" class="nsfw-img" onclick="handleNsfwClick(this, event)">
-            <img src="https://i.imgur.com/BlgWaeM.jpeg" alt="NSFW 4" class="nsfw-img" onclick="handleNsfwClick(this, event)">
+            <img src="https://i.imgur.com/apOlXA9.jpeg" alt="NSFW 1" class="nsfw-img" onclick="handleNsfwClick(this)">
+            <img src="https://i.imgur.com/zQqoV9e.jpeg" alt="NSFW 2" class="nsfw-img" onclick="handleNsfwClick(this)">
+            <img src="https://i.imgur.com/cwraQ4D.jpeg" alt="NSFW 3" class="nsfw-img" onclick="handleNsfwClick(this)">
+            <img src="https://i.imgur.com/BlgWaeM.jpeg" alt="NSFW 4" class="nsfw-img" onclick="handleNsfwClick(this)">
         </div>
-        <p class="small-italic" style="margin-top: 8px; text-align: center;">Click to reveal, click again to enlarge.</p>
+        <p class="small-italic" style="margin-top: 8px; text-align: center;">Click to reveal.</p>
     </div>
 
     <br>
     <button class="back-btn" onclick="showPage('home')">&larr; Back to Home</button>
 </div>
 
-<!-- ================= PAGE 3: TERMS OF SERVICE ================= -->
+<!-- ================= PAGE 3: TERMS OF SERVICE / COMMISSIONS ================= -->
 <div id="commissions" class="page">
     <h2>Terms of Service</h2>
     
@@ -814,7 +885,7 @@ src="https://i.imgur.com/m26K2Uu.jpeg"
     </div>
 
     <!-- COMMISSION FORM (small font) -->
-    <form action="https://formsubmit.co/eryndorcontact@gmail.com" method="POST" id="commissionForm" enctype="multipart/form-data">
+    <form action="https://formsubmit.co/contacteryndor@gmail.com" method="POST" id="commissionForm" enctype="multipart/form-data">
         <input type="hidden" name="_subject" value="New Commission Request from Website!">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="Calculated Total Price" id="hiddenTotalPrice" value="0">
@@ -833,7 +904,6 @@ src="https://i.imgur.com/m26K2Uu.jpeg"
             </select>
         </div>
 
-        <!-- STYLE: only anime and furry -->
         <div class="form-group">
             <label>Style</label>
             <select name="Style" required>
@@ -842,7 +912,6 @@ src="https://i.imgur.com/m26K2Uu.jpeg"
             </select>
         </div>
 
-        <!-- FINISH: no percentages -->
         <div class="form-group">
             <label>Finish</label>
             <select name="Finish" id="finishType" required onchange="updateHiddenTotal()">
@@ -861,7 +930,6 @@ src="https://i.imgur.com/m26K2Uu.jpeg"
             </select>
         </div>
 
-        <!-- ADD-ONS as plain list (no checkboxes), small font -->
         <div class="form-group">
             <label style="font-size:0.8rem;">Add-ons & Themes (Select all that apply) — note these in your description</label>
             <ul class="tos-small-list" style="font-size:0.75rem; margin-top:5px;">
@@ -901,10 +969,15 @@ src="https://i.imgur.com/m26K2Uu.jpeg"
     <button class="back-btn" onclick="showPage('home')">&larr; Back to Home</button>
 </div>
 
-<!-- LIGHTBOX OVERLAY -->
-<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
-    <img id="lightboxImg" src="" alt="Zoomed Artwork">
-    <button class="lightbox-close" onclick="closeLightbox(event)">Back to Gallery</button>
+<!-- THANK YOU POPUP -->
+<div id="thankyouPopup" class="thankyou-popup">
+    <div class="thankyou-content">
+        <span class="checkmark">✓</span>
+        <h3>Thank you for commissioning me!</h3>
+        <p>Please contact and reach me in email:</p>
+        <p class="email-highlight">contacteryndor@gmail.com</p>
+        <button class="btn-close-popup" onclick="closeThankyou()">Close</button>
+    </div>
 </div>
 
 <!-- VISITOR COUNTER -->
@@ -944,32 +1017,9 @@ src="https://i.imgur.com/m26K2Uu.jpeg"
         }
     }
 
-    // --- LIGHTBOX ---
-    function openLightbox(src) {
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-        lightboxImg.src = src;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox(event) {
-        if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    }
-
-    // --- NSFW BLUR + ZOOM ---
-    function handleNsfwClick(img, event) {
-        event.stopPropagation();
-        if (!img.classList.contains('unblurred')) {
-            img.classList.add('unblurred');
-            img.style.filter = 'blur(0px)';
-        } else {
-            openLightbox(img.src);
-        }
+    // --- NSFW BLUR (no lightbox) ---
+    function handleNsfwClick(img) {
+        img.classList.toggle('unblurred');
     }
 
     // --- PRICE CALCULATION (hidden) ---
@@ -983,13 +1033,62 @@ src="https://i.imgur.com/m26K2Uu.jpeg"
         const bgSelect = document.getElementById('bgType');
         const bgMultiplier = parseFloat(bgSelect.options[bgSelect.selectedIndex].getAttribute('data-price')) / 100;
         
-        // no checkboxes anymore – addons are not calculated here since they are plain text
-        // calculation simplified: base * finish + base * bg%
         let finalPrice = basePrice * finishMultiplier;
         finalPrice += basePrice * bgMultiplier;
 
         document.getElementById('hiddenTotalPrice').value = finalPrice.toFixed(2);
     }
+
+    // --- THANK YOU POPUP & FORM SUBMISSION ---
+    const form = document.getElementById('commissionForm');
+
+    form.addEventListener('submit', function(e) {
+        // Prevent default form submission (will handle via fetch to avoid redirect)
+        e.preventDefault();
+
+        // Show popup immediately
+        document.getElementById('thankyouPopup').classList.add('active');
+
+        // Prepare form data
+        const formData = new FormData(form);
+
+        // Send data to FormSubmit via fetch (no redirect)
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                console.warn('Form submission status:', response.status);
+            }
+        })
+        .catch(error => {
+            console.error('Error submitting form:', error);
+        });
+
+        // Reset the form after a short delay
+        setTimeout(() => {
+            form.reset();
+            // Reset hidden price field
+            document.getElementById('hiddenTotalPrice').value = '0';
+        }, 500);
+    });
+
+    function closeThankyou() {
+        document.getElementById('thankyouPopup').classList.remove('active');
+        // Navigate back to home or stay on commissions
+        showPage('home');
+    }
+
+    // Close popup when clicking outside content
+    document.getElementById('thankyouPopup').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeThankyou();
+        }
+    });
 
     // --- VISITOR COUNTER ---
     function fetchVisitorCount() {
