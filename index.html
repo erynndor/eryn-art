@@ -32,9 +32,10 @@
             justify-content: center;
             padding: 20px;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* --- MAIN CONTAINER (removed, using page wrappers instead) --- */
+        /* --- MAIN CONTAINER --- */
         .container {
             background-color: var(--card-bg);
             width: 100%;
@@ -612,6 +613,52 @@
             border-top: 1px solid #eee;
             margin-top: 30px;
         }
+
+        /* --- NEW: centered navigation helpers --- */
+        .nav-bottom {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        .nav-bottom .btn-nav {
+            display: inline-block;
+            padding: 10px 28px;
+            font-family: var(--font-serif);
+            font-size: 0.95rem;
+            color: var(--text-color);
+            background: transparent;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+        .nav-bottom .btn-nav:hover {
+            background: var(--border-color);
+            color: #fff;
+        }
+        .nav-bottom .btn-nav i {
+            font-style: normal;
+            margin-right: 6px;
+        }
+        /* Swipe hint */
+        .swipe-hint {
+            text-align: center;
+            font-size: 0.65rem;
+            color: #999;
+            margin-top: 6px;
+            font-family: var(--font-sans);
+            letter-spacing: 0.3px;
+        }
+        .swipe-hint span {
+            display: inline-block;
+            animation: slideHint 2s infinite;
+        }
+        @keyframes slideHint {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
     </style>
 </head>
 <body>
@@ -817,7 +864,11 @@ alt="Art 8">
     </div>
 
     <br>
-    <button class="back-btn" onclick="showPage('home')">&larr; Back to Home</button>
+    <!-- CENTERED "CLICK HERE FOR NEXT PAGE" + swipe hint -->
+    <div class="nav-bottom">
+        <button class="btn-nav" onclick="showPage('commissions')"><i>→</i> Click here for next page</button>
+        <div class="swipe-hint"><span>← swipe right to go back home</span></div>
+    </div>
 </div>
 
 <!-- ================= PAGE 3: TERMS OF SERVICE / COMMISSIONS ================= -->
@@ -910,6 +961,7 @@ alt="Art 8">
         <br>
         <p><strong>Add-ons & Themes (Select all that apply in the form)</strong></p>
         <ul class="tos-small-list">
+<li>Furnitures or props (+10%-30%)</li>
             <li>Extra Character (+50%)</li>
             <li>Gore (+100%)</li>
             <li>NSFW (+50%)</li>
@@ -999,6 +1051,11 @@ alt="Art 8">
         <button type="submit" class="btn" style="width: 100%; font-size:0.9rem;">Submit Request</button>
     </form>
 
+    <!-- CENTERED "BACK TO HOME" -->
+    <div class="nav-bottom">
+        <button class="btn-nav" onclick="showPage('home')"><i>←</i> Back to Home</button>
+    </div>
+
     <!-- REMOVED back-btn, ADDED tiny TOS footer link -->
     <div class="tos-footer-link">
         <a href="#" onclick="showPage('commissions'); return false;">read terms of service and commission an order here</a>
@@ -1079,51 +1136,33 @@ alt="Art 8">
     const form = document.getElementById('commissionForm');
 
     form.addEventListener('submit', function(e) {
-        // Prevent default form submission (will handle via fetch to avoid redirect)
         e.preventDefault();
-
-        // Show popup immediately
         document.getElementById('thankyouPopup').classList.add('active');
 
-        // Prepare form data
         const formData = new FormData(form);
-
-        // Send data to FormSubmit via fetch (no redirect)
         fetch(form.action, {
             method: 'POST',
             body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
+            headers: { 'Accept': 'application/json' }
         })
         .then(response => {
-            if (!response.ok) {
-                console.warn('Form submission status:', response.status);
-            }
+            if (!response.ok) { console.warn('Form submission status:', response.status); }
         })
-        .catch(error => {
-            console.error('Error submitting form:', error);
-        });
+        .catch(error => { console.error('Error submitting form:', error); });
 
-        // Reset the form after a short delay
         setTimeout(() => {
             form.reset();
-            // Reset hidden price field
             document.getElementById('hiddenTotalPrice').value = '0';
         }, 500);
     });
 
     function closeThankyou() {
         document.getElementById('thankyouPopup').classList.remove('active');
-        // Navigate back to home or stay on commissions
         showPage('home');
     }
 
-    // Close popup when clicking outside content
     document.getElementById('thankyouPopup').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeThankyou();
-        }
+        if (e.target === this) { closeThankyou(); }
     });
 
     // --- VISITOR COUNTER ---
@@ -1141,7 +1180,27 @@ alt="Art 8">
             });
     }
 
-    // Initialize
+    // --- SWIPE RIGHT GESTURE (GALLERY → HOME) ---
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const galleryPage = document.getElementById('gallery');
+
+    galleryPage.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    galleryPage.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        // Swipe right: startX < endX  (finger moves from left to right)
+        if (touchEndX - touchStartX > 80) {
+            // Only go home if gallery is currently active
+            if (galleryPage.classList.contains('active')) {
+                showPage('home');
+            }
+        }
+    }, { passive: true });
+
+    // --- INITIALIZE ---
     window.onload = function() {
         initSlideshow();
         updateHiddenTotal();
