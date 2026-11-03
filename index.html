@@ -282,50 +282,6 @@
             transform: scale(1.05);
         }
 
-        /* --- LIGHTBOX (kept for gallery, but removed interaction) --- */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: 20px;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox img {
-            max-width: 95%;
-            max-height: 80vh;
-            object-fit: contain;
-            border: 2px solid #fff;
-        }
-
-        .lightbox-close {
-            margin-top: 20px;
-            padding: 10px 30px;
-            background: #fff;
-            color: #000;
-            border: none;
-            font-size: 1rem;
-            cursor: pointer;
-            font-family: var(--font-sans);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .lightbox-close:hover {
-            background: #ccc;
-        }
-
         /* --- COMMISSION / TOS PAGE --- */
         .tos-text {
             font-size: 0.85rem;
@@ -384,28 +340,6 @@
             font-size: 0.75rem;
             font-style: italic;
             color: #555;
-        }
-
-        /* Hide old estimator */
-        .price-estimator {
-            display: none;
-        }
-
-        .back-btn {
-            display: inline-block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: #666;
-            font-size: 0.85rem;
-            cursor: pointer;
-            border: none;
-            background: none;
-            font-family: var(--font-sans);
-        }
-
-        .back-btn:hover {
-            color: #000;
-            text-decoration: underline;
         }
 
         /* Pages */
@@ -493,81 +427,70 @@
             .nsfw-gallery { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* --- Navigation helpers --- */
+        /* --- Centered navigation helpers --- */
         .nav-bottom {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 20px;
             margin-bottom: 10px;
         }
-        .nav-bottom .btn-nav {
+
+        /* Small centered buttons */
+        .btn-small {
             display: inline-block;
-            padding: 10px 28px;
+            padding: 6px 18px;
             font-family: var(--font-serif);
-            font-size: 0.95rem;
+            font-size: 0.75rem;
             color: var(--text-color);
             background: transparent;
             border: 1px solid var(--border-color);
             cursor: pointer;
             transition: background 0.3s, color 0.3s;
             text-decoration: none;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
-        .nav-bottom .btn-nav:hover {
+
+        .btn-small:hover {
             background: var(--border-color);
             color: #fff;
         }
-        .nav-bottom .btn-nav i {
-            font-style: normal;
-            margin-right: 6px;
-        }
+
         /* Swipe hint */
         .swipe-hint {
             text-align: center;
             font-size: 0.65rem;
             color: #999;
-            margin-top: 6px;
+            margin-top: 8px;
             font-family: var(--font-sans);
             letter-spacing: 0.3px;
         }
+
         .swipe-hint span {
             display: inline-block;
-            animation: slideHint 2s infinite;
-        }
-        @keyframes slideHint {
-            0% { transform: translateX(0); }
-            50% { transform: translateX(-5px); }
-            100% { transform: translateX(0); }
         }
 
         /* Small submit button */
-        .btn-small {
+        .btn-submit-small {
             display: inline-block;
-            width: auto;
-            padding: 8px 28px;
-            font-size: 0.85rem;
-        }
-
-        /* Small back button centered */
-        .back-home-container {
-            text-align: center;
-            margin-top: 25px;
-        }
-        .btn-back-small {
-            display: inline-block;
-            padding: 8px 22px;
+            padding: 6px 20px;
             font-family: var(--font-serif);
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--text-color);
             background: transparent;
             border: 1px solid var(--border-color);
             cursor: pointer;
             transition: background 0.3s, color 0.3s;
-            text-decoration: none;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
+            margin-top: 5px;
         }
-        .btn-back-small:hover {
+
+        .btn-submit-small:hover {
             background: var(--border-color);
             color: #fff;
+        }
+
+        .form-submit-center {
+            text-align: center;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -728,11 +651,9 @@
         <div class="full-img-container">
             <img src="https://i.imgur.com/YWpViwt.jpeg" alt="Character Ref Sheet">
         </div>
-<div class="full-img-container">
-<img
-src="https://i.imgur.com/wCjrpgK.jpeg"
-alt="Character Ref Sheet">
-</div>
+        <div class="full-img-container">
+            <img src="https://i.imgur.com/wCjrpgK.jpeg" alt="Character Ref Sheet">
+        </div>
     </div>
 
     <hr class="divider">
@@ -746,11 +667,9 @@ alt="Character Ref Sheet">
             <img src="https://i.imgur.com/qxLsF1Z.jpeg" alt="Art 3">
             <img src="https://i.imgur.com/d7lqPmU.jpeg" alt="Art 4">
             <img src="https://i.imgur.com/8nvfaPM.jpeg" alt="Art 5">
-            <img src="https://i.imgur.com/zOWH4m9.jpeg
-alt="Art 6">
+            <img src="https://i.imgur.com/zOWH4m9.jpeg" alt="Art 6">
             <img src="https://i.imgur.com/Z3oZx5X.jpeg" alt="Art 7">
-            <img src="https://i.imgur.com/q6LZgo0.jpeg" 
-alt="Art 8">
+            <img src="https://i.imgur.com/q6LZgo0.jpeg" alt="Art 8">
             <img src="https://i.imgur.com/JOKHwaO.jpeg" alt="Art 9">
             <img src="https://i.imgur.com/4Jguddb.jpeg" alt="Art 10">
             <img src="https://i.imgur.com/Qm9kt0u.jpeg" alt="Art 11">
@@ -774,9 +693,10 @@ alt="Art 8">
     </div>
 
     <br>
-    <!-- SWIPE HINT: replace the old button -->
+    <!-- Swipe hints -->
     <div class="nav-bottom">
-        <div class="swipe-hint"><span>← swipe left for commission / TOS</span></div>
+        <div class="swipe-hint"><span>← swipe right for back home</span></div>
+        <div class="swipe-hint"><span>swipe left for commission/tos →</span></div>
     </div>
 </div>
 
@@ -853,7 +773,7 @@ alt="Art 8">
             <li>If wanting to purchase commercial rights, please discuss with me directly.</li>
             <li>Any additional characters after the first are at full price (example: knee up commission with two characters 120+60 vs knee up commission with 3 characters 120+60+120).</li>
             <li>Character prices are based on how they appear in frame (example: one character is half body and 2 other characters are only slightly in frame it would be 100+35+70 (half body, bust(50% off), bust)).</li>
-            <li>Payments through PayPal, Wise and Ko-fi. If they're unavailable, we can rearrange an alternative method upon contact.</li>
+            <li>Payments processed through <strong>PayPal, Wise, and Kofi</strong>. If they're unavailable, we can/will rearrange an alternative method upon contact.</li>
         </ul>
 
         <p><strong>Edits</strong></p>
@@ -870,7 +790,7 @@ alt="Art 8">
         <br>
         <p><strong>Add-ons & Themes (Select all that apply in the form)</strong></p>
         <ul class="tos-small-list">
-<li>Furnitures or props (+10%-30%)</li>
+            <li>Furnitures or props (+10%-30%)</li>
             <li>Extra Character (+50%)</li>
             <li>Gore (+100%)</li>
             <li>NSFW (+50%)</li>
@@ -954,18 +874,18 @@ alt="Art 8">
         </div>
 
         <div class="form-group" style="background: #f9f9f9; padding: 15px; border: 1px solid #eee;">
-            <p class="small-italic"><strong>Payment Note:</strong> Payments are currently processed via PayPal, Wise and Ko-fi. If they're unavailable, we can rearrange an alternative method upon contact.</p>
+            <p class="small-italic"><strong>Payment Note:</strong> Payments are processed via <strong>PayPal, Wise, and Kofi</strong>. If they're unavailable, we can/will rearrange an alternative method upon contact.</p>
         </div>
 
-        <!-- Small submit button, centered -->
-        <div style="text-align: center;">
-            <button type="submit" class="btn btn-small">Submit Request</button>
+        <!-- Small centered submit button -->
+        <div class="form-submit-center">
+            <button type="submit" class="btn-submit-small">Submit Request</button>
         </div>
     </form>
 
-    <!-- Small back button, centered, no container -->
-    <div class="back-home-container">
-        <button class="btn-back-small" onclick="showPage('home')">← Back to Home</button>
+    <!-- Small centered back to home button -->
+    <div class="nav-bottom" style="margin-top: 25px;">
+        <button class="btn-small" onclick="showPage('home')">← Back to Home</button>
     </div>
 </div>
 
@@ -1003,7 +923,7 @@ alt="Art 8">
         }
     }
 
-    // --- NSFW BLUR (no lightbox) ---
+    // --- NSFW BLUR ---
     function handleNsfwClick(img) {
         img.classList.toggle('unblurred');
     }
@@ -1025,61 +945,60 @@ alt="Art 8">
         document.getElementById('hiddenTotalPrice').value = finalPrice.toFixed(2);
     }
 
-    // --- FORM SUBMISSION (no popup) ---
+    // --- FORM SUBMISSION (no popup, direct to email) ---
     const form = document.getElementById('commissionForm');
 
     form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const formData = new FormData(form);
-        fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        })
-        .then(response => {
-            if (!response.ok) { console.warn('Form submission status:', response.status); }
-            alert('Request submitted! I will get back to you soon.');
+        // Let the form submit normally to FormSubmit.co
+        // After submission, FormSubmit will redirect to a thank you page or back
+        // We just reset the form after a short delay for when the user returns
+        setTimeout(() => {
             form.reset();
             document.getElementById('hiddenTotalPrice').value = '0';
-            showPage('home');
-        })
-        .catch(error => {
-            console.error('Error submitting form:', error);
-            alert('There was an error submitting your request. Please try again or email contacteryndor@gmail.com directly.');
-        });
+        }, 500);
     });
 
     // --- SWIPE GESTURES ---
     let touchStartX = 0;
     let touchEndX = 0;
-    const galleryPage = document.getElementById('gallery');
-    const commissionsPage = document.getElementById('commissions');
 
-    // Swipe on gallery: right → home, left → commissions
+    // Gallery: swipe right → home
+    const galleryPage = document.getElementById('gallery');
     galleryPage.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
-
     galleryPage.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
-        const diff = touchEndX - touchStartX;
-        if (diff > 80 && galleryPage.classList.contains('active')) {
-            showPage('home');
-        } else if (diff < -80 && galleryPage.classList.contains('active')) {
-            showPage('commissions');
+        if (touchEndX - touchStartX > 80) {
+            if (galleryPage.classList.contains('active')) {
+                showPage('home');
+            }
+        }
+        // Swipe left → commissions
+        if (touchStartX - touchEndX > 80) {
+            if (galleryPage.classList.contains('active')) {
+                showPage('commissions');
+            }
         }
     }, { passive: true });
 
-    // Swipe on commissions: right → home
+    // Commissions: swipe right → home
+    const commissionsPage = document.getElementById('commissions');
     commissionsPage.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
-
     commissionsPage.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
-        if (touchEndX - touchStartX > 80 && commissionsPage.classList.contains('active')) {
-            showPage('home');
+        if (touchEndX - touchStartX > 80) {
+            if (commissionsPage.classList.contains('active')) {
+                showPage('home');
+            }
+        }
+        // Swipe left → gallery
+        if (touchStartX - touchEndX > 80) {
+            if (commissionsPage.classList.contains('active')) {
+                showPage('gallery');
+            }
         }
     }, { passive: true });
 
