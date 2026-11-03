@@ -585,6 +585,33 @@
             .page { padding: 20px 15px; }
             .nsfw-gallery { grid-template-columns: repeat(2, 1fr); }
         }
+
+        /* --- NEW: tiny TOS link at bottom of commission page --- */
+        .tos-footer-link {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 5px;
+            font-size: 0.7rem;
+            letter-spacing: 0.3px;
+        }
+        .tos-footer-link a {
+            color: #555;
+            text-decoration: none;
+            border-bottom: 1px solid #ccc;
+            transition: color 0.2s, border-color 0.2s;
+            font-family: var(--font-sans);
+            cursor: pointer;
+        }
+        .tos-footer-link a:hover {
+            color: #000;
+            border-bottom-color: #000;
+        }
+        /* subtle extra spacing for commission page bottom */
+        #commissions .tos-footer-link {
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
@@ -744,6 +771,11 @@
         <div class="full-img-container">
             <img src="https://i.imgur.com/YWpViwt.jpeg" alt="Character Ref Sheet">
         </div>
+<div class="full-img-container">
+<img
+src="https://i.imgur.com/wCjrpgK.jpeg"
+alt="Character Ref Sheet">
+</div>
     </div>
 
     <hr class="divider">
@@ -756,10 +788,12 @@
             <img src="https://i.imgur.com/1cYShvb.jpeg" alt="Art 2">
             <img src="https://i.imgur.com/qxLsF1Z.jpeg" alt="Art 3">
             <img src="https://i.imgur.com/d7lqPmU.jpeg" alt="Art 4">
-            <img src="https://i.imgur.com/XoVg5CR.jpeg" alt="Art 5">
-            <img src="https://i.imgur.com/WbwyGHA.jpeg" alt="Art 6">
-            <img src="https://i.imgur.com/DGWFFMd.jpeg" alt="Art 7">
-            <img src="https://i.imgur.com/a0KUP6J.jpeg" alt="Art 8">
+            <img src="https://i.imgur.com/8nvfaPM.jpeg" alt="Art 5">
+            <img src="https://i.imgur.com/zOWH4m9.jpeg
+alt="Art 6">
+            <img src="https://i.imgur.com/Z3oZx5X.jpeg" alt="Art 7">
+            <img src="https://imgur.com/a/NFCsnRY" 
+alt="Art 8">
             <img src="https://i.imgur.com/JOKHwaO.jpeg" alt="Art 9">
             <img src="https://i.imgur.com/4Jguddb.jpeg" alt="Art 10">
             <img src="https://i.imgur.com/Qm9kt0u.jpeg" alt="Art 11">
@@ -965,8 +999,10 @@
         <button type="submit" class="btn" style="width: 100%; font-size:0.9rem;">Submit Request</button>
     </form>
 
-    <br>
-    <button class="back-btn" onclick="showPage('home')">&larr; Back to Home</button>
+    <!-- REMOVED back-btn, ADDED tiny TOS footer link -->
+    <div class="tos-footer-link">
+        <a href="#" onclick="showPage('commissions'); return false;">read terms of service and commission an order here</a>
+    </div>
 </div>
 
 <!-- THANK YOU POPUP -->
