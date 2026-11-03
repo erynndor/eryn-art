@@ -34,6 +34,7 @@
             line-height: 1.6;
         }
 
+        /* --- MAIN CONTAINER --- */
         .container {
             width: 100%;
             max-width: 900px;
@@ -41,6 +42,7 @@
             position: relative;
         }
 
+        /* --- TYPOGRAPHY --- */
         h1 {
             font-family: var(--font-serif);
             font-size: 3rem;
@@ -77,7 +79,7 @@
             line-height: 1.5;
         }
 
-        /* --- SOCIAL ICONS --- */
+        /* --- SOCIAL ICONS & TOOLTIPS --- */
         .social-icons {
             display: flex;
             justify-content: center;
@@ -191,6 +193,7 @@
             cursor: pointer;
         }
 
+        /* Slideshow */
         .slideshow-container {
             position: relative;
             max-width: 100%;
@@ -223,6 +226,7 @@
             to { opacity: 1; }
         }
 
+        /* Grid Gallery */
         .grid-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -315,7 +319,7 @@
             background: #ccc;
         }
 
-        /* --- TERMS PAGE --- */
+        /* --- COMMISSION/TERMS PAGE --- */
         .terms-text {
             font-size: 0.9rem;
             margin-bottom: 20px;
@@ -351,12 +355,41 @@
             margin-bottom: 3px;
         }
 
-        .page {
-            display: none;
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+            font-size: 0.9rem;
         }
 
-        .page.active {
+        .form-group label {
             display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-family: var(--font-serif);
+            font-size: 0.9rem;
+        }
+
+        .form-group select, 
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            background: #fff;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .small-italic {
+            font-size: 0.75rem;
+            font-style: italic;
+            color: #555;
         }
 
         .back-btn {
@@ -376,207 +409,272 @@
             text-decoration: underline;
         }
 
-        /* --- PRICING CONTROLS (ATM STYLE) --- */
-        .price-box-wrapper {
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .checkbox-row {
             display: flex;
             flex-direction: column;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .checkbox-row label {
+            font-weight: normal;
+            display: flex;
             align-items: center;
-            justify-content: center;
-            background: #fff;
-            padding: 15px;
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-        }
-
-        .price-image-container {
-            width: 100%;
-            margin-bottom: 15px;
+            gap: 8px;
             cursor: pointer;
+            font-size: 0.85rem;
         }
 
-        .price-image-container img {
+        .checkbox-row input[type="checkbox"] {
+            width: auto;
+            transform: scale(1.1);
+            margin: 0;
+        }
+
+        input[type="file"] {
+            padding: 8px;
+            background: #f9f9f9;
+        }
+
+        /* --- VISITOR COUNTER --- */
+        #visitor-counter {
+            position: fixed;
+            bottom: 15px;
+            right: 20px;
+            font-size: 0.7rem;
+            color: #888;
+            font-family: var(--font-sans);
+            z-index: 9999;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 4px 8px;
+            border-radius: 4px;
+            pointer-events: none;
+        }
+
+        .full-width-wrapper {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            background: #fff;
+            padding: 5px;
+        }
+
+        .full-width-wrapper img {
             width: 100%;
             height: auto;
             display: block;
-        }
-
-        .price-controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        .add-btn, .del-btn {
-            background: #fff;
-            border: 1px solid transparent;
-            width: 40px;
-            height: 40px;
-            font-size: 1.5rem;
-            font-weight: bold;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-sans);
-            color: #111;
-            transition: transform 0.1s;
-            user-select: none;
         }
 
-        .add-btn:active, .del-btn:active {
-            transform: scale(0.95);
-        }
-
-        .total-display {
+        .price-tag {
+            text-align: center;
             font-family: var(--font-serif);
             font-size: 1.1rem;
-            color: #aaa;
-            min-width: 80px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .ref-sheet-info {
             text-align: center;
-            transition: color 0.3s, font-weight 0.3s;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: #555;
         }
 
-        .total-display.active-total {
-            color: #000;
-            font-weight: bold;
-        }
-
-        /* --- COMMISSION REQUEST FORM (INSIDE TERMS) --- */
-        #orderFormContainer {
-            background: #fff;
-            border: 2px solid #000;
-            padding: 20px;
-            margin-top: 25px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            font-size: 0.85rem;
-            animation: slideUp 0.4s ease-out;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        #orderFormContainer form {
+        /* --- ADD / DELETE / TOTAL (NEW) --- */
+        .item-controls {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 10px 0 15px 0;
+            flex-wrap: wrap;
         }
 
-        #orderFormContainer label {
-            font-weight: bold;
-            font-family: var(--font-serif);
-            font-size: 0.8rem;
-            margin-bottom: 2px;
-            display: block;
-        }
-
-        #orderFormContainer input[type="text"],
-        #orderFormContainer input[type="email"],
-        #orderFormContainer textarea,
-        #orderFormContainer select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
+        .item-controls button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 6px 14px;
             font-family: var(--font-sans);
-            font-size: 0.8rem;
-            background: #fafafa;
+            font-size: 0.85rem;
+            background: #fff;
+            border: 1px solid #000;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            border-radius: 2px;
         }
 
-        #orderFormContainer textarea {
-            resize: vertical;
-            min-height: 60px;
-        }
-
-        #orderFormContainer .form-row {
-            display: flex;
-            gap: 10px;
-        }
-
-        #orderFormContainer .form-row > div {
-            flex: 1;
-        }
-
-        .submit-order-btn {
-            background: #111;
+        .item-controls button:hover {
+            background: #000;
             color: #fff;
-            border: none;
-            padding: 12px;
+        }
+
+        /* WHITE SQUARE ICON */
+        .square-icon {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background: #fff;
+            border: 1.5px solid #000;
+            border-radius: 1px;
+            flex-shrink: 0;
+        }
+
+        .item-controls button:hover .square-icon {
+            border-color: #fff;
+            background: transparent;
+        }
+
+        .item-total {
             font-family: var(--font-serif);
             font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.2s;
-            margin-top: 10px;
+            font-weight: 700;
+            min-width: 55px;
+            text-align: center;
+            border: 1px solid #000;
+            padding: 4px 10px;
+            background: #fff;
+            border-radius: 2px;
         }
 
-        .submit-order-btn:hover {
+        .grand-total-box {
+            background: #fff;
+            border: 2px solid #000;
+            padding: 15px 20px;
+            margin: 20px 0 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+        }
+
+        .grand-total-box span:last-child {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .form-container {
+            margin-top: 25px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+
+        .form-container h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* POPUP */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        .popup-box {
+            background: #fff;
+            padding: 30px 35px;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            border: 1px solid #eee;
+        }
+
+        .popup-box .checkmark {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #28a745;
+            color: #fff;
+            font-size: 30px;
+            line-height: 50px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .popup-box p {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .popup-box .contact-email {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .popup-close-btn {
+            margin-top: 18px;
+            padding: 8px 28px;
+            background: #000;
+            color: #fff;
+            border: none;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        .popup-close-btn:hover {
             background: #333;
         }
 
-        .form-note {
-            font-size: 0.7rem;
-            color: #666;
-            margin-top: 5px;
-            font-style: italic;
+        .ordered-items-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+            font-size: 0.8rem;
+            text-align: left;
+            max-height: 140px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            padding: 8px 10px;
+            background: #fafafa;
+            border-radius: 3px;
         }
 
-        /* --- SUCCESS POPUP --- */
-        #successPopup {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .success-box {
-            background: #fff;
-            padding: 30px 40px;
-            border-radius: 8px;
-            text-align: center;
-            max-width: 400px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: popIn 0.3s ease-out;
-        }
-
-        @keyframes popIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .success-icon {
-            width: 60px;
-            height: 60px;
-            background: #4CAF50;
-            border-radius: 50%;
+        .ordered-items-list li {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            color: #fff;
-            font-size: 2rem;
-            font-weight: bold;
+            justify-content: space-between;
+            padding: 3px 0;
+            border-bottom: 1px solid #eee;
         }
 
-        .success-box h3 {
-            font-family: var(--font-serif);
-            margin-bottom: 10px;
-            font-size: 1.2rem;
+        .ordered-items-list li:last-child {
+            border-bottom: none;
         }
 
-        .success-box p {
-            font-size: 0.9rem;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .success-box a {
-            color: #111;
-            font-weight: bold;
-            text-decoration: none;
+        .item-price-label {
+            font-weight: 700;
         }
     </style>
 </head>
@@ -627,7 +725,7 @@
                 <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 <span class="tooltip-text">YouTube</span>
             </a>
-            <a href="mailto:eryndorcontact@gmail.com" title="Email">
+            <a href="mailto:contacteryndor@gmail.com" title="Email">
                 <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                 <span class="tooltip-text">Email</span>
             </a>
@@ -653,7 +751,7 @@
         <div class="main-buttons">
             <a href="#" class="btn" onclick="showPage('gallery')">Commission</a>
             <a href="#" class="btn" onclick="showPage('commissions')">Terms of Service</a>
-            <a href="mailto:eryndorcontact@gmail.com" class="btn">Email</a>
+            <a href="mailto:contacteryndor@gmail.com" class="btn">Email</a>
         </div>
     </div>
 
@@ -687,75 +785,65 @@
         <!-- 2. BUST ($70) -->
         <div class="gallery-section">
             <div class="section-title">Bust $70</div>
-            <div class="price-box-wrapper">
-                <div class="price-image-container" onclick="openLightbox('https://i.imgur.com/0v1wJ7n.jpeg')">
-                    <img src="https://i.imgur.com/0vlwJ7n.jpeg" alt="Bust Showcase">
-                </div>
-                <div class="price-controls">
-                    <button class="add-btn" onclick="updatePrice('bust', 70)">+</button>
-                    <div class="total-display" id="total-bust">$0</div>
-                    <button class="del-btn" onclick="updatePrice('bust', -70)">-</button>
-                </div>
+            <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/0v1wJ7n.jpeg')">
+                <img src="https://i.imgur.com/0v1wJ7n.jpeg" alt="Bust Showcase">
+            </div>
+            <div class="item-controls" data-item="bust" data-price="70">
+                <button class="add-btn" onclick="adjustTotal('bust', 1, 70)"><span class="square-icon"></span> Add</button>
+                <button class="delete-btn" onclick="adjustTotal('bust', -1, 70)"><span class="square-icon"></span> Delete</button>
+                <span class="item-total" id="total-bust">$0</span>
             </div>
         </div>
 
-        <!-- 3. HALF BODY ($90) -->
+        <!-- 3. HALF BODY ($80) -->
         <div class="gallery-section">
-            <div class="section-title">Half Body $90</div>
-            <div class="price-box-wrapper">
-                <div class="price-image-container" onclick="openLightbox('https://i.imgur.com/ktrfwYe.jpeg')">
-                    <img src="https://i.imgur.com/ktrfwYe.jpeg" alt="Half Body Showcase">
-                </div>
-                <div class="price-controls">
-                    <button class="add-btn" onclick="updatePrice('halfbody', 90)">+</button>
-                    <div class="total-display" id="total-halfbody">$0</div>
-                    <button class="del-btn" onclick="updatePrice('halfbody', -90)">-</button>
-                </div>
+            <div class="section-title">Half Body $80</div>
+            <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/ktrfwYe.jpeg')">
+                <img src="https://i.imgur.com/ktrfwYe.jpeg" alt="Half Body Showcase">
+            </div>
+            <div class="item-controls" data-item="halfbody" data-price="80">
+                <button class="add-btn" onclick="adjustTotal('halfbody', 1, 80)"><span class="square-icon"></span> Add</button>
+                <button class="delete-btn" onclick="adjustTotal('halfbody', -1, 80)"><span class="square-icon"></span> Delete</button>
+                <span class="item-total" id="total-halfbody">$0</span>
             </div>
         </div>
 
-        <!-- 4. KNEE UP ($100) -->
+        <!-- 4. KNEE UP ($90) -->
         <div class="gallery-section">
-            <div class="section-title">Knee Up $100</div>
-            <div class="price-box-wrapper">
-                <div class="price-image-container" onclick="openLightbox('https://i.imgur.com/dERTAci.jpeg')">
-                    <img src="https://i.imgur.com/dERTAci.jpeg" alt="Knee Up Showcase">
-                </div>
-                <div class="price-controls">
-                    <button class="add-btn" onclick="updatePrice('kneeup', 100)">+</button>
-                    <div class="total-display" id="total-kneeup">$0</div>
-                    <button class="del-btn" onclick="updatePrice('kneeup', -100)">-</button>
-                </div>
+            <div class="section-title">Knee Up $90</div>
+            <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/dERTAci.jpeg')">
+                <img src="https://i.imgur.com/dERTAci.jpeg" alt="Knee Up Showcase">
+            </div>
+            <div class="item-controls" data-item="kneeup" data-price="90">
+                <button class="add-btn" onclick="adjustTotal('kneeup', 1, 90)"><span class="square-icon"></span> Add</button>
+                <button class="delete-btn" onclick="adjustTotal('kneeup', -1, 90)"><span class="square-icon"></span> Delete</button>
+                <span class="item-total" id="total-kneeup">$0</span>
             </div>
         </div>
 
-        <!-- 5. FULL BODY ($120) -->
+        <!-- 5. FULL BODY ($100) -->
         <div class="gallery-section">
-            <div class="section-title">Full Body $120</div>
-            <div class="price-box-wrapper">
-                <div class="price-image-container" onclick="openLightbox('https://i.imgur.com/IBZxgAh.jpeg')">
-                    <img src="https://i.imgur.com/IBZxgAh.jpeg" alt="Full Body Showcase">
-                </div>
-                <div class="price-controls">
-                    <button class="add-btn" onclick="updatePrice('fullbody', 120)">+</button>
-                    <div class="total-display" id="total-fullbody">$0</div>
-                    <button class="del-btn" onclick="updatePrice('fullbody', -120)">-</button>
-                </div>
+            <div class="section-title">Full Body $100</div>
+            <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/IBZxgAh.jpeg')">
+                <img src="https://i.imgur.com/IBZxgAh.jpeg" alt="Full Body Showcase">
+            </div>
+            <div class="item-controls" data-item="fullbody" data-price="100">
+                <button class="add-btn" onclick="adjustTotal('fullbody', 1, 100)"><span class="square-icon"></span> Add</button>
+                <button class="delete-btn" onclick="adjustTotal('fullbody', -1, 100)"><span class="square-icon"></span> Delete</button>
+                <span class="item-total" id="total-fullbody">$0</span>
             </div>
         </div>
 
         <!-- 6. CHIBI ($70) -->
         <div class="gallery-section">
             <div class="section-title">Chibi $70</div>
-            <div class="price-box-wrapper">
-                <div class="price-image-container" onclick="openLightbox('https://i.imgur.com/xfHbafh.jpeg')">
-                    <img src="https://i.imgur.com/xfHbafh.jpeg" alt="Chibi Showcase">
-                </div>
-                <div class="price-controls">
-                    <button class="add-btn" onclick="updatePrice('chibi', 70)">+</button>
-                    <div class="total-display" id="total-chibi">$0</div>
-                    <button class="del-btn" onclick="updatePrice('chibi', -70)">-</button>
-                </div>
+            <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/2WxNyXM.jpeg')">
+                <img src="https://i.imgur.com/2WxNyXM.jpeg" alt="Chibi Showcase">
+            </div>
+            <div class="item-controls" data-item="chibi" data-price="70">
+                <button class="add-btn" onclick="adjustTotal('chibi', 1, 70)"><span class="square-icon"></span> Add</button>
+                <button class="delete-btn" onclick="adjustTotal('chibi', -1, 70)"><span class="square-icon"></span> Delete</button>
+                <span class="item-total" id="total-chibi">$0</span>
             </div>
         </div>
 
@@ -766,15 +854,13 @@
                 Side view +$60<br>
                 Extra bust sketches +$40 each
             </div>
-            <div class="price-box-wrapper">
-                <div class="price-image-container" onclick="openLightbox('https://i.imgur.com/wCjrpgK.jpeg')">
-                    <img src="https://i.imgur.com/wCjrpgK.jpeg" alt="Character Ref Sheet Showcase">
-                </div>
-                <div class="price-controls">
-                    <button class="add-btn" onclick="updatePrice('refsheet', 150)">+</button>
-                    <div class="total-display" id="total-refsheet">$0</div>
-                    <button class="del-btn" onclick="updatePrice('refsheet', -150)">-</button>
-                </div>
+            <div class="full-width-wrapper" onclick="openLightbox('https://i.imgur.com/wCjrpgK.jpeg')">
+                <img src="https://i.imgur.com/wCjrpgK.jpeg" alt="Character Ref Sheet Showcase">
+            </div>
+            <div class="item-controls" data-item="refsheet" data-price="150">
+                <button class="add-btn" onclick="adjustTotal('refsheet', 1, 150)"><span class="square-icon"></span> Add</button>
+                <button class="delete-btn" onclick="adjustTotal('refsheet', -1, 150)"><span class="square-icon"></span> Delete</button>
+                <span class="item-total" id="total-refsheet">$0</span>
             </div>
         </div>
 
@@ -785,9 +871,9 @@
                 <img src="https://i.imgur.com/1cYShvb.jpeg" alt="Art 1" onclick="openLightbox(this.src)">
                 <img src="https://i.imgur.com/qxLsF1Z.jpeg" alt="Art 2" onclick="openLightbox(this.src)">
                 <img src="https://i.imgur.com/CiWB6Nx.jpeg" alt="Art 3" onclick="openLightbox(this.src)">
-                <img src="https://i.imgur.com/8nvfaPM.jpeg" alt="Art 4" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/VXGuaDh.jpeg" alt="Art 4" onclick="openLightbox(this.src)">
                 <img src="https://i.imgur.com/ROxi7Mm.jpeg" alt="Art 5" onclick="openLightbox(this.src)">
-                <img src="https://i.imgur.com/zOWH4m9.jpeg" alt="Art 6" onclick="openLightbox(this.src)">
+                <img src="https://i.imgur.com/DGWFFMd.jpeg" alt="Art 6" onclick="openLightbox(this.src)">
                 <img src="https://i.imgur.com/a0KUP6J.jpeg" alt="Art 7" onclick="openLightbox(this.src)">
                 <img src="https://i.imgur.com/qeKhkiQ.jpeg" alt="Art 8" onclick="openLightbox(this.src)">
                 <img src="https://i.imgur.com/4Jguddb.jpeg" alt="Art 9" onclick="openLightbox(this.src)">
@@ -809,11 +895,95 @@
             <p class="small-italic" style="margin-top: 8px; text-align: center;">Click to reveal, click again to enlarge.</p>
         </div>
 
+        <!-- ===== GRAND TOTAL & ORDER SECTION (on commission page) ===== -->
+        <div class="grand-total-box" id="grandTotalBox">
+            <span>Grand Total</span>
+            <span id="grandTotalValue">$0</span>
+        </div>
+
+        <!-- Ordered items display -->
+        <div style="font-size: 0.8rem; margin: 15px 0 5px 0; font-weight: 700; font-family: var(--font-serif);">Ordered Items:</div>
+        <ul class="ordered-items-list" id="orderedItemsList">
+            <li style="color: #aaa; justify-content: center; border-bottom: none; font-style: italic;">No items added yet.</li>
+        </ul>
+
+        <!-- ===== REQUEST FORM (moved here, small letters) ===== -->
+        <div class="form-container">
+            <h3>Commission Request Form</h3>
+            <form action="https://formsubmit.co/contacteryndor@gmail.com" method="POST" id="commissionForm" enctype="multipart/form-data">
+                <input type="hidden" name="_subject" value="New Commission Request from Website!">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="Calculated Total Price" id="hiddenTotalPrice" value="0">
+                <input type="hidden" name="Ordered Items" id="hiddenOrderedItems" value="">
+
+                <div class="form-group" style="font-size: 0.8rem;">
+                    <label>Style</label>
+                    <select name="Style" required>
+                        <option value="Anime">Anime</option>
+                        <option value="Furry">Furry</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="font-size: 0.8rem;">
+                    <label>Finish</label>
+                    <select name="Finish" id="finishType" required>
+                        <option value="Manga Color">Manga Color</option>
+                        <option value="Flat Color">Flat Color</option>
+                        <option value="Rendered">Rendered</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="font-size: 0.8rem;">
+                    <label>Background</label>
+                    <select name="Background" id="bgType" required>
+                        <option value="None">No Background (+$0)</option>
+                        <option value="Simple">Simple Background (+10%)</option>
+                        <option value="Complex">Complex Background (+50%)</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="font-size: 0.8rem;">
+                    <label>Add-ons & Themes</label>
+                    <div style="font-size: 0.75rem; line-height: 1.4; color: #444;">
+                        Extra Character (+50%)<br>
+                        Gore (+50%)<br>
+                        NSFW (+50%)<br>
+                        Commercial Use (+50%)<br>
+                        Commercial Merchandising (+100%)
+                    </div>
+                </div>
+
+                <div class="form-group" style="font-size: 0.8rem;">
+                    <label for="description">Character Description & Details</label>
+                    <textarea id="description" name="Character Description" placeholder="Describe your character, scene, preferred mood, references (links are fine), and any specific details." required style="font-size: 0.8rem;"></textarea>
+                </div>
+
+                <div class="form-group" style="font-size: 0.8rem;">
+                    <label for="contact">Your Email or Your Name *</label>
+                    <input type="text" id="contact" name="Contact Info" placeholder="e.g., your@email.com or your name" required style="font-size: 0.8rem;">
+                    <p class="small-italic" style="margin-top: 4px;">Required — so I can reach you.</p>
+                </div>
+
+                <div class="form-group" style="font-size: 0.8rem;">
+                    <label for="reference">Picture Reference (optional)</label>
+                    <input type="file" id="reference" name="Reference Image" accept="image/*" style="font-size: 0.8rem;">
+                    <p class="small-italic" style="margin-top: 4px;">One image is enough. If not, describe everything in the description box above.</p>
+                </div>
+
+                <div class="form-group" style="background: #f9f9f9; padding: 15px; border: 1px solid #eee; font-size: 0.8rem;">
+                    <p class="small-italic"><strong>Payment Note:</strong> Payments are currently processed via Wise (Invoicing). If Wise is unavailable, we will arrange an alternative method upon contact.</p>
+                </div>
+
+                <!-- Submit Order button -->
+                <button type="submit" class="btn" style="width: 100%; font-size: 0.85rem;">Submit Order</button>
+            </form>
+        </div>
+
         <br>
         <button class="back-btn" onclick="showPage('home')">&larr; Back to Home</button>
     </div>
 
-    <!-- ================= PAGE 3: TERMS OF SERVICE (WITH FORM) ================= -->
+    <!-- ================= PAGE 3: TERMS OF SERVICE ================= -->
     <div id="commissions" class="page">
         <h2>Terms of Service</h2>
         
@@ -870,7 +1040,6 @@
                 <li>If wanting to purchase commercial rights, please discuss with me directly.</li>
                 <li>Any additional characters after the first are at full price (example: knee up commission with two characters 120+60 vs knee up commission with 3 characters 120+60+120).</li>
                 <li>Character prices are based on how they appear in frame (example: one character is half body and 2 other characters are only slightly in frame it would be 100+70+70(half body, bust(50% off), bust).</li>
-                <li>Any props are additional 20% - 50% depending on how complex the design. Gun %20, couch is %30. </li>
                 <li>Payments through wise only.</li>
             </ul>
 
@@ -881,78 +1050,6 @@
             
             <p>Commissioned artwork is for your personal use and must not be resold or used for commercial purposes unless given explicit permission to do so.</p>
         </div>
-
-        <!-- ===== COMMISSION REQUEST FORM (MOVED HERE) ===== -->
-        <div id="orderFormContainer">
-            <h3 style="font-size: 1.1rem; margin-bottom: 15px; text-align: center;">Commission Request Form</h3>
-            <form action="https://formsubmit.co/eryndorcontact@gmail.com" method="POST" id="commissionForm" enctype="multipart/form-data">
-                <input type="hidden" name="_subject" value="New Commission Request from Website!">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="Calculated Total Price" id="hiddenTotalPrice" value="0">
-
-                <!-- STYLE -->
-                <div class="form-row">
-                    <div>
-                        <label>Style</label>
-                        <select name="Style" required>
-                            <option value="Anime">Anime</option>
-                            <option value="Furry">Furry</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Finish</label>
-                        <select name="Finish" id="finishType" required>
-                            <option value="Manga Color">Manga Color</option>
-                            <option value="Flat Color">Flat Color</option>
-                            <option value="Rendered">Rendered</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- BACKGROUND -->
-                <div>
-                    <label>Background</label>
-                    <select name="Background" id="bgType" required>
-                        <option value="None">No Background (+$0)</option>
-                        <option value="Simple">Simple Background (+10%)</option>
-                        <option value="Complex">Complex Background (+50%)</option>
-                    </select>
-                </div>
-
-                <!-- ADD-ONS NOTE -->
-                <div style="font-size: 0.75rem; color: #555; margin-bottom: 5px;">
-                    <em>Add-ons & Themes (Extra Character, Gore, NSFW, Commercial Use) can be discussed in the description.</em>
-                </div>
-
-                <!-- DESCRIPTION -->
-                <div>
-                    <label>Character Description & Details</label>
-                    <textarea name="Character Description" placeholder="Describe your character, scene, preferred mood, references (links are fine), and any specific details." required></textarea>
-                </div>
-
-                <!-- CONTACT INFO -->
-                <div>
-                    <label>Your Email or Name *</label>
-                    <input type="text" name="Contact Info" placeholder="your@email.com or your name" required>
-                </div>
-
-                <!-- FILE UPLOAD -->
-                <div>
-                    <label>Picture Reference (optional)</label>
-                    <input type="file" name="Reference Image" accept="image/*">
-                </div>
-
-                <!-- TOTAL DISPLAY SUBMIT -->
-                <div style="background: #f9f9f9; padding: 10px; border: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; margin-top: 5px;">
-                    <span style="font-weight: bold; font-size: 0.9rem;">Order Total:</span>
-                    <span id="formGrandTotal" style="font-weight: bold; font-size: 1rem;">$0</span>
-                </div>
-
-                <button type="submit" class="submit-order-btn">Submit Order</button>
-                <p class="form-note">Payment via Wise Invoicing. I will contact you upon receiving your request.</p>
-            </form>
-        </div>
-        <!-- ===== END FORM ===== -->
 
         <br>
         <button class="back-btn" onclick="showPage('home')">&larr; Back to Home</button>
@@ -966,13 +1063,17 @@
     <button class="lightbox-close" onclick="closeLightbox(event)">Back to Gallery</button>
 </div>
 
-<!-- SUCCESS POPUP -->
-<div id="successPopup" onclick="closeSuccessPopup(event)">
-    <div class="success-box" onclick="event.stopPropagation()">
-        <div class="success-icon">✓</div>
-        <h3>Thank you for commissioning me!</h3>
-        <p>I will keep in touch with you soon!<br>Talk to me at <a href="mailto:eryndorcontact@gmail.com">eryndorcontact@gmail.com</a></p>
-        <p style="font-size: 0.7rem; color: #888;">Click anywhere outside to close.</p>
+<!-- VISITOR COUNTER -->
+<div id="visitor-counter">Visits: <span id="visit-count">0</span></div>
+
+<!-- POPUP (success) -->
+<div id="successPopup" class="popup-overlay">
+    <div class="popup-box">
+        <div class="checkmark">✓</div>
+        <p><strong>Thank you for commissioning me!</strong></p>
+        <p>I will keep in touch with you soon!</p>
+        <p class="contact-email">contacteryndor@gmail.com</p>
+        <button class="popup-close-btn" onclick="closePopup()">Close</button>
     </div>
 </div>
 
@@ -1038,8 +1139,8 @@
         }
     }
 
-    // --- PRICING LOGIC ---
-    let orderTotals = {
+    // --- ADD / DELETE / TOTAL LOGIC ---
+    const itemQuantities = {
         bust: 0,
         halfbody: 0,
         kneeup: 0,
@@ -1048,88 +1149,127 @@
         refsheet: 0
     };
 
-    function updatePrice(itemId, amount) {
-        if (orderTotals[itemId] + amount < 0) return;
+    const itemPrices = {
+        bust: 70,
+        halfbody: 80,
+        kneeup: 90,
+        fullbody: 100,
+        chibi: 70,
+        refsheet: 150
+    };
 
-        orderTotals[itemId] += amount;
-        document.getElementById('total-' + itemId).innerText = '$' + orderTotals[itemId];
+    const itemNames = {
+        bust: 'Bust',
+        halfbody: 'Half Body',
+        kneeup: 'Knee Up',
+        fullbody: 'Full Body',
+        chibi: 'Chibi',
+        refsheet: 'Character Ref Sheet'
+    };
 
-        const totalEl = document.getElementById('total-' + itemId);
-        if (orderTotals[itemId] > 0) {
-            totalEl.classList.add('active-total');
-        } else {
-            totalEl.classList.remove('active-total');
+    function adjustTotal(itemKey, delta, price) {
+        let qty = itemQuantities[itemKey] + delta;
+        if (qty < 0) qty = 0;
+        itemQuantities[itemKey] = qty;
+
+        // Update item total display
+        const totalSpan = document.getElementById('total-' + itemKey);
+        if (totalSpan) {
+            totalSpan.textContent = '$' + (qty * price);
         }
 
-        calculateGrandTotal();
+        updateGrandTotal();
+        updateOrderedItemsList();
     }
 
-    function calculateGrandTotal() {
-        let grandTotal = 0;
-        for (let key in orderTotals) {
-            grandTotal += orderTotals[key];
+    function updateGrandTotal() {
+        let total = 0;
+        for (let key in itemQuantities) {
+            total += itemQuantities[key] * itemPrices[key];
         }
-
-        const formGrandTotal = document.getElementById('formGrandTotal');
-        const hiddenInput = document.getElementById('hiddenTotalPrice');
-
-        if (formGrandTotal) formGrandTotal.innerText = '$' + grandTotal;
-        if (hiddenInput) hiddenInput.value = grandTotal;
+        document.getElementById('grandTotalValue').textContent = '$' + total;
+        document.getElementById('hiddenTotalPrice').value = total;
     }
 
-    // --- SUCCESS POPUP LOGIC (FIXED) ---
-    function showSuccessPopup(event) {
-        event.preventDefault();
+    function updateOrderedItemsList() {
+        const list = document.getElementById('orderedItemsList');
+        const hiddenInput = document.getElementById('hiddenOrderedItems');
+        let items = [];
+        let html = '';
 
-        const form = document.getElementById('commissionForm');
-        const formData = new FormData(form);
-
-        fetch(form.action, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (response.ok) {
-                form.reset();
-                // Reset totals
-                for (let key in orderTotals) {
-                    orderTotals[key] = 0;
-                    const el = document.getElementById('total-' + key);
-                    if (el) {
-                        el.innerText = '$0';
-                        el.classList.remove('active-total');
-                    }
-                }
-                calculateGrandTotal();
-                document.getElementById('successPopup').style.display = 'flex';
-            } else {
-                alert('There was an issue sending your request. Please try again or email me directly.');
+        for (let key in itemQuantities) {
+            if (itemQuantities[key] > 0) {
+                let lineTotal = itemQuantities[key] * itemPrices[key];
+                items.push(itemNames[key] + ' x' + itemQuantities[key] + ' ($' + lineTotal + ')');
+                html += `<li><span>${itemNames[key]} x${itemQuantities[key]}</span><span class="item-price-label">$${lineTotal}</span></li>`;
             }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('There was an error sending your request. Please check your connection or email me directly.');
-        });
-    }
-
-    function closeSuccessPopup(event) {
-        if (event.target.id === 'successPopup') {
-            document.getElementById('successPopup').style.display = 'none';
         }
+
+        if (items.length === 0) {
+            html = '<li style="color: #aaa; justify-content: center; border-bottom: none; font-style: italic;">No items added yet.</li>';
+        }
+
+        list.innerHTML = html;
+        hiddenInput.value = items.join('; ');
     }
 
-    // Attach the submit handler
+    // --- PRICE CALCULATION for hidden total (legacy, but now we use ordered items) ---
+    function updateHiddenTotal() {
+        // This function is no longer primary, but we keep it to avoid errors.
+        let total = 0;
+        for (let key in itemQuantities) {
+            total += itemQuantities[key] * itemPrices[key];
+        }
+        document.getElementById('hiddenTotalPrice').value = total;
+    }
+
+    // --- VISITOR COUNTER ---
+    function fetchVisitorCount() {
+        fetch('https://api.counterapi.dev/v1/eryn-portfolio/visits/up')
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.count) {
+                    document.getElementById('visit-count').textContent = data.count;
+                }
+            })
+            .catch(error => {
+                console.log('Visitor counter unavailable:', error);
+                document.getElementById('visit-count').textContent = 'N/A';
+            });
+    }
+
+    // --- POPUP ---
+    function showPopup() {
+        document.getElementById('successPopup').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePopup() {
+        document.getElementById('successPopup').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // --- FORM SUBMIT HANDLER ---
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('commissionForm');
         if (form) {
-            form.addEventListener('submit', showSuccessPopup);
+            form.addEventListener('submit', function(e) {
+                // Update hidden fields before submit
+                updateGrandTotal();
+                updateOrderedItemsList();
+                // Show popup
+                showPopup();
+                // Let the form submit normally
+            });
         }
     });
 
     // Initialize
     window.onload = function() {
         initSlideshow();
-        calculateGrandTotal();
+        updateGrandTotal();
+        updateOrderedItemsList();
+        fetchVisitorCount();
     };
 </script>
 
