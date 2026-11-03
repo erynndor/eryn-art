@@ -492,6 +492,20 @@
             text-align: center;
             margin-top: 10px;
         }
+
+        /* Thank-you notice */
+        .thankyou-note {
+            display: none;
+            background: #e8f5e9;
+            border: 1px solid #a5d6a7;
+            color: #2e7d32;
+            padding: 12px 15px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .thankyou-note.show { display: block; }
     </style>
 </head>
 <body>
@@ -503,7 +517,7 @@
 
     <!-- Social Icons (smaller) -->
     <div class="social-icons">
-        <a href="https://x.com/eryndor_artist" target="_blank" title="Twitter">
+        <a href="https://x.com/eryndor_0" target="_blank" title="Twitter">
             <svg class="icon-svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             <span class="tooltip-text">Twitter</span>
         </a>
@@ -799,10 +813,19 @@
         </ul>
     </div>
 
-    <!-- COMMISSION FORM (small font) -->
-    <form action="https://formsubmit.co/contacteryndor@gmail.com" method="POST" id="commissionForm" enctype="multipart/form-data">
+    <!-- THANK YOU NOTICE (shown after redirect) -->
+    <div class="thankyou-note" id="thankyouNote">
+        ✔ Thank you! Your commission request has been sent to <strong>contacteryndor@gmail.com</strong>. You will receive a reply soon.
+    </div>
+
+    <!-- COMMISSION FORM (fixed) -->
+    <form action="https://formsubmit.co/contacteryndor@gmail.com" method="POST" id="commissionForm">
         <input type="hidden" name="_subject" value="New Commission Request from Website!">
-        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://eryn-art.example.com/#thankyou">
+        <!-- Honeypot anti-spam (leave empty) -->
+        <input type="text" name="_honey" style="display:none">
         <input type="hidden" name="Calculated Total Price" id="hiddenTotalPrice" value="0">
 
         <h3 style="margin-bottom: 15px; font-size:1.2rem;">Commission Request Form</h3>
@@ -830,30 +853,30 @@
         <div class="form-group">
             <label>Finish</label>
             <select name="Finish" id="finishType" required onchange="updateHiddenTotal()">
-                <option value="Manga Color" data-price="1.0">Manga Color</option>
-                <option value="Flat Color" data-price="1.2">Flat Color</option>
-                <option value="Rendered" data-price="1.5">Rendered</option>
+                <option value="Manga Color" data-mult="1.0">Manga Color</option>
+                <option value="Flat Color" data-mult="1.2">Flat Color</option>
+                <option value="Rendered" data-mult="1.5">Rendered</option>
             </select>
         </div>
 
         <div class="form-group">
             <label>Background</label>
             <select name="Background" id="bgType" required onchange="updateHiddenTotal()">
-                <option value="None" data-price="0">No Background (+$0)</option>
-                <option value="Simple" data-price="10">Simple Background (+10%)</option>
-                <option value="Complex" data-price="50">Complex Background (+50%)</option>
+                <option value="None" data-pct="0">No Background (+$0)</option>
+                <option value="Simple" data-pct="10">Simple Background (+10%)</option>
+                <option value="Complex" data-pct="50">Complex Background (+50%)</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label style="font-size:0.8rem;">Add-ons & Themes (Select all that apply) — note these in your description</label>
-            <ul class="tos-small-list" style="font-size:0.75rem; margin-top:5px;">
-                <li>Extra Character (+50%)</li>
-                <li>Gore (+50%)</li>
-                <li>NSFW (+50%)</li>
-                <li>Commercial Use (+50%)</li>
-                <li>Commercial Merchandising (+100%)</li>
-            </ul>
+            <label style="font-size:0.8rem;">Add-ons & Themes (Select all that apply)</label>
+            <div class="checkbox-row" id="addonList">
+                <label><input type="checkbox" name="Addon: Extra Character" value="+50%" data-pct="50"> Extra Character (+50%)</label>
+                <label><input type="checkbox" name="Addon: Gore" value="+50%" data-pct="50"> Gore (+50%)</label>
+                <label><input type="checkbox" name="Addon: NSFW" value="+50%" data-pct="50"> NSFW (+50%)</label>
+                <label><input type="checkbox" name="Addon: Commercial Use" value="+50%" data-pct="50"> Commercial Use (+50%)</label>
+                <label><input type="checkbox" name="Addon: Commercial Merchandising" value="+100%" data-pct="100"> Commercial Merchandising (+100%)</label>
+            </div>
         </div>
 
         <div class="form-group">
@@ -868,9 +891,9 @@
         </div>
 
         <div class="form-group">
-            <label for="reference">Picture Reference (optional)</label>
-            <input type="file" id="reference" name="Reference Image" accept="image/*">
-            <p class="small-italic" style="margin-top: 4px;">One image is enough. If not, describe everything in the description box above.</p>
+            <label for="reference">Reference Image Link (optional)</label>
+            <input type="url" id="reference" name="Reference Link" placeholder="https://... (Imgur, Drive, Google Photos, etc.)">
+            <p class="small-italic" style="margin-top: 4px;">Paste a link to one or more reference images. If not, describe everything in the description box above.</p>
         </div>
 
         <div class="form-group" style="background: #f9f9f9; padding: 15px; border: 1px solid #eee;">
@@ -897,6 +920,8 @@
         });
         document.getElementById(pageId).classList.add('active');
         window.scrollTo(0, 0);
+        // Recalculate price when entering commissions page
+        if (pageId === 'commissions') updateHiddenTotal();
     }
 
     // --- SLIDESHOW ---
@@ -928,84 +953,79 @@
         img.classList.toggle('unblurred');
     }
 
-    // --- PRICE CALCULATION (hidden) ---
+    // --- PRICE CALCULATION (includes add-ons) ---
     function updateHiddenTotal() {
-        const baseTypeSelect = document.getElementById('baseType');
-        const basePrice = parseFloat(baseTypeSelect.options[baseTypeSelect.selectedIndex].getAttribute('data-price'));
-        
-        const finishSelect = document.getElementById('finishType');
-        const finishMultiplier = parseFloat(finishSelect.options[finishSelect.selectedIndex].getAttribute('data-price'));
-        
-        const bgSelect = document.getElementById('bgType');
-        const bgMultiplier = parseFloat(bgSelect.options[bgSelect.selectedIndex].getAttribute('data-price')) / 100;
-        
-        let finalPrice = basePrice * finishMultiplier;
-        finalPrice += basePrice * bgMultiplier;
+        const baseEl = document.getElementById('baseType');
+        const finishEl = document.getElementById('finishType');
+        const bgEl = document.getElementById('bgType');
+        if (!baseEl || !finishEl || !bgEl) return;
 
-        document.getElementById('hiddenTotalPrice').value = finalPrice.toFixed(2);
+        const base = parseFloat(baseEl.selectedOptions[0].dataset.price) || 0;
+        const finishMult = parseFloat(finishEl.selectedOptions[0].dataset.mult) || 1;
+        const bgPct = parseFloat(bgEl.selectedOptions[0].dataset.pct) || 0;
+
+        let addonPct = 0;
+        document.querySelectorAll('#addonList input[type="checkbox"]:checked').forEach(cb => {
+            addonPct += parseFloat(cb.dataset.pct) || 0;
+        });
+
+        const finished = base * finishMult;
+        const bgCost = finished * (bgPct / 100);
+        const addonCost = finished * (addonPct / 100);
+        const total = finished + bgCost + addonCost;
+
+        document.getElementById('hiddenTotalPrice').value = total.toFixed(2);
     }
 
-    // --- FORM SUBMISSION (no popup, direct to email) ---
-    const form = document.getElementById('commissionForm');
-
-    form.addEventListener('submit', function(e) {
-        // Let the form submit normally to FormSubmit.co
-        // After submission, FormSubmit will redirect to a thank you page or back
-        // We just reset the form after a short delay for when the user returns
-        setTimeout(() => {
-            form.reset();
-            document.getElementById('hiddenTotalPrice').value = '0';
-        }, 500);
+    // Recalculate when any add-on checkbox changes
+    document.querySelectorAll('#addonList input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', updateHiddenTotal);
     });
 
     // --- SWIPE GESTURES ---
     let touchStartX = 0;
     let touchEndX = 0;
 
-    // Gallery: swipe right → home
+    // Gallery: swipe right → home, swipe left → commissions
     const galleryPage = document.getElementById('gallery');
     galleryPage.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
     galleryPage.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
-        if (touchEndX - touchStartX > 80) {
-            if (galleryPage.classList.contains('active')) {
-                showPage('home');
-            }
-        }
-        // Swipe left → commissions
-        if (touchStartX - touchEndX > 80) {
-            if (galleryPage.classList.contains('active')) {
-                showPage('commissions');
-            }
+        if (galleryPage.classList.contains('active')) {
+            if (touchEndX - touchStartX > 80) showPage('home');
+            if (touchStartX - touchEndX > 80) showPage('commissions');
         }
     }, { passive: true });
 
-    // Commissions: swipe right → home
+    // Commissions: swipe right → home, swipe left → gallery
     const commissionsPage = document.getElementById('commissions');
     commissionsPage.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
     commissionsPage.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
-        if (touchEndX - touchStartX > 80) {
-            if (commissionsPage.classList.contains('active')) {
-                showPage('home');
-            }
-        }
-        // Swipe left → gallery
-        if (touchStartX - touchEndX > 80) {
-            if (commissionsPage.classList.contains('active')) {
-                showPage('gallery');
-            }
+        if (commissionsPage.classList.contains('active')) {
+            if (touchEndX - touchStartX > 80) showPage('home');
+            if (touchStartX - touchEndX > 80) showPage('gallery');
         }
     }, { passive: true });
+
+    // --- THANK YOU (after FormSubmit redirect) ---
+    function checkThankYou() {
+        if (window.location.hash === '#thankyou') {
+            const note = document.getElementById('thankyouNote');
+            if (note) note.classList.add('show');
+            showPage('commissions');
+        }
+    }
 
     // --- INITIALIZE ---
     window.onload = function() {
         initSlideshow();
         updateHiddenTotal();
+        checkThankYou();
     };
 </script>
 
