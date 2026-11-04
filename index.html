@@ -492,34 +492,6 @@
             text-align: center;
             margin-top: 10px;
         }
-
-        /* Thank-you notice */
-        .thankyou-note {
-            display: none;
-            background: #e8f5e9;
-            border: 1px solid #a5d6a7;
-            color: #2e7d32;
-            padding: 12px 15px;
-            font-size: 0.8rem;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .thankyou-note.show { display: block; }
-
-        /* Instant submission feedback */
-        .form-status {
-            display: none;
-            background: #e8f5e9;
-            border: 1px solid #a5d6a7;
-            color: #2e7d32;
-            padding: 12px 15px;
-            font-size: 0.8rem;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .form-status.show { display: block; }
     </style>
 </head>
 <body>
@@ -826,20 +798,11 @@
         </ul>
     </div>
 
-    <!-- INSTANT THANK-YOU MESSAGE (shown after successful submission) -->
-    <div class="form-status" id="formStatus">
-        ✔ Thank you! Your commission request has been sent to <strong>eryndorcontact@gmail.com</strong>. You will receive a reply soon.
-    </div>
-
-    <!-- THANK YOU NOTICE (for hash redirect fallback) -->
-    <div class="thankyou-note" id="thankyouNote">
-        ✔ Thank you! Your commission request has been sent to <strong>eryndorcontact@gmail.com</strong>. You will receive a reply soon.
-    </div>
-
-    <!-- COMMISSION FORM -->
-    <form action="https://formsubmit.co/ajax/eryndorcontact@gmail.com" method="POST" id="commissionForm">
+    <!-- COMMISSION FORM - DIRECT SUBMISSION, NO AJAX, NO THANK YOU -->
+    <form action="https://formsubmit.co/eryndorcontact@gmail.com" method="POST" id="commissionForm">
         <input type="hidden" name="_subject" value="New Commission Request from Website!">
-        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://yourwebsite.com/#thankyou">
         <input type="hidden" name="_template" value="table">
         <!-- Honeypot anti-spam (leave empty) -->
         <input type="text" name="_honey" style="display:none">
@@ -999,84 +962,10 @@
         cb.addEventListener('change', updateHiddenTotal);
     });
 
-    // --- INSTANT FORM SUBMISSION FEEDBACK (via JS with AJAX) ---
-    const commissionForm = document.getElementById('commissionForm');
-    const formStatus = document.getElementById('formStatus');
-    const submitBtn = document.getElementById('submitBtn');
-
-    // Set the AJAX endpoint (already in HTML, but ensure)
-    commissionForm.action = 'https://formsubmit.co/ajax/eryndorcontact@gmail.com';
-
-    commissionForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // prevent normal submit
-
-        // Show instant feedback
-        formStatus.innerHTML = '✔ Sending your request...';
-        formStatus.classList.add('show');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending...';
-
-        // Gather form data
-        const formData = new FormData(commissionForm);
-
-        // Send via fetch to AJAX endpoint
-        fetch(commissionForm.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json(); // optional, but we just need to know it succeeded
-            } else {
-                throw new Error('Network response was not ok');
-            }
-        })
-        .then(data => {
-            // Success: show thank you, reset form
-            formStatus.innerHTML = '✔ Thank you! Your commission request has been sent to <strong>eryndorcontact@gmail.com</strong>. You will receive a reply soon.';
-            formStatus.classList.add('show');
-            commissionForm.reset();
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit Request';
-            // Recalculate price after reset
-            updateHiddenTotal();
-            // Hide the message after 8 seconds
-            setTimeout(() => {
-                formStatus.classList.remove('show');
-            }, 8000);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            // Still show success message for user experience (FormSubmit usually works)
-            formStatus.innerHTML = '✔ Thank you! Your commission request has been sent to <strong>eryndorcontact@gmail.com</strong>. You will receive a reply soon.';
-            formStatus.classList.add('show');
-            commissionForm.reset();
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit Request';
-            updateHiddenTotal();
-            setTimeout(() => {
-                formStatus.classList.remove('show');
-            }, 8000);
-        });
-    });
-
-    // --- THANK YOU VIA HASH (for FormSubmit redirect if used) ---
-    function checkThankYou() {
-        if (window.location.hash === '#thankyou') {
-            const note = document.getElementById('thankyouNote');
-            if (note) note.classList.add('show');
-            showPage('commissions');
-        }
-    }
-
     // --- INITIALIZE ---
     window.onload = function() {
         initSlideshow();
         updateHiddenTotal();
-        checkThankYou();
     };
 </script>
 
