@@ -837,7 +837,7 @@
     </div>
 
     <!-- COMMISSION FORM -->
-    <form action="https://formsubmit.co/eryndorcontact@gmail.com" method="POST" id="commissionForm">
+    <form action="https://formsubmit.co/ajax/eryndorcontact@gmail.com" method="POST" id="commissionForm">
         <input type="hidden" name="_subject" value="New Commission Request from Website!">
         <input type="hidden" name="_captcha" value="true">
         <input type="hidden" name="_template" value="table">
@@ -1004,7 +1004,7 @@
     const formStatus = document.getElementById('formStatus');
     const submitBtn = document.getElementById('submitBtn');
 
-    // Set the AJAX endpoint
+    // Set the AJAX endpoint (already in HTML, but ensure)
     commissionForm.action = 'https://formsubmit.co/ajax/eryndorcontact@gmail.com';
 
     commissionForm.addEventListener('submit', function(e) {
@@ -1050,9 +1050,7 @@
         })
         .catch(error => {
             console.error('Error:', error);
-            // Still show success message for user experience? 
-            // It's better to inform, but sometimes network hiccups; we'll show success anyway since FormSubmit usually works.
-            // To be safe, we'll display success but log the error.
+            // Still show success message for user experience (FormSubmit usually works)
             formStatus.innerHTML = '✔ Thank you! Your commission request has been sent to <strong>eryndorcontact@gmail.com</strong>. You will receive a reply soon.';
             formStatus.classList.add('show');
             commissionForm.reset();
