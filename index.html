@@ -488,9 +488,25 @@
             color: #fff;
         }
 
+        .btn-submit-small:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
         .form-submit-center {
             text-align: center;
             margin-top: 10px;
+        }
+
+        /* Thank you block */
+        #thankyou {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        #thankyou h2 {
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -798,15 +814,14 @@
         </ul>
     </div>
 
-    <!-- COMMISSION FORM - DIRECT SUBMISSION, NO AJAX, NO THANK YOU -->
+    <!-- COMMISSION FORM - Submits to FormSubmit, emails eryndorcontact@gmail.com -->
     <form action="https://formsubmit.co/eryndorcontact@gmail.com" method="POST" id="commissionForm">
-        <input type="hidden" name="_subject" value="New Commission Request from Website!">
+        <input type="hidden" name="_subject" value="New Commission Request from ERYN Website">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://yourwebsite.com/#thankyou">
         <input type="hidden" name="_template" value="table">
         <!-- Honeypot anti-spam (leave empty) -->
         <input type="text" name="_honey" style="display:none">
-        <input type="hidden" name="Calculated Total Price" id="hiddenTotalPrice" value="0">
+        <input type="hidden" name="Calculated Total Price (USD)" id="hiddenTotalPrice" value="0">
 
         <h3 style="margin-bottom: 15px; font-size:1.2rem;">Commission Request Form</h3>
 
@@ -854,7 +869,7 @@
                 <label><input type="checkbox" name="Addon: Extra Character" value="+50%" data-pct="50"> Extra Character (+50%)</label>
                 <label><input type="checkbox" name="Addon: Gore" value="+100%" data-pct="100"> Gore (+100%)</label>
                 <label><input type="checkbox" name="Addon: NSFW" value="+50%" data-pct="50"> NSFW (+50%)</label>
-                <label><input type="checkbox" name="Addon: Commercial Use" value="+100%" data-pct="50"> Commercial Use (+100%)</label>
+                <label><input type="checkbox" name="Addon: Commercial Use" value="+100%" data-pct="100"> Commercial Use (+100%)</label>
                 <label><input type="checkbox" name="Addon: Commercial Merchandising" value="+200%" data-pct="200"> Commercial Merchandising (+200%)</label> 
             </div>
         </div>
@@ -880,11 +895,21 @@
             <p class="small-italic"><strong>Payment Note:</strong> Payments are processed via <strong>PayPal, Wise, and Kofi</strong>. If they're unavailable, we can/will rearrange an alternative method upon contact.</p>
         </div>
 
-        <!-- Small centered submit button -->
+        <!-- Small centered submit button + status -->
         <div class="form-submit-center">
             <button type="submit" class="btn-submit-small" id="submitBtn">Submit Request</button>
+            <p class="small-italic" id="formStatus" style="margin-top:8px;"></p>
         </div>
     </form>
+
+    <!-- Thank You block shown after successful submit -->
+    <div id="thankyou">
+        <h2>Thank You!</h2>
+        <p>Your commission request has been sent.<br>I'll reply to the contact you provided.</p>
+        <div class="nav-bottom" style="margin-top: 25px;">
+            <button class="btn-small" onclick="showPage('home')">← Back to Home</button>
+        </div>
+    </div>
 
     <!-- Small centered back to home button -->
     <div class="nav-bottom" style="margin-top: 25px;">
@@ -899,8 +924,10 @@
             page.classList.remove('active');
         });
         document.getElementById(pageId).classList.add('active');
+        // Hide thank-you if leaving commissions normally
+        const ty = document.getElementById('thankyou');
+        if (ty && pageId !== 'commissions') ty.style.display = 'none';
         window.scrollTo(0, 0);
-        // Recalculate price when entering commissions page
         if (pageId === 'commissions') updateHiddenTotal();
     }
 
@@ -954,13 +981,38 @@
         const addonCost = finished * (addonPct / 100);
         const total = finished + bgCost + addonCost;
 
-        document.getElementById('hiddenTotalPrice').value = total.toFixed(2);
+        const hidden = document.getElementById('hiddenTotalPrice');
+        if (hidden) hidden.value = total.toFixed(2);
     }
 
     // Recalculate when any add-on checkbox changes
     document.querySelectorAll('#addonList input[type="checkbox"]').forEach(cb => {
         cb.addEventListener('change', updateHiddenTotal);
     });
+
+    // --- SUBMIT GUARD ---
+    const formEl = document.getElementById('commissionForm');
+    if (formEl) {
+        formEl.addEventListener('submit', function (e) {
+            const btn = document.getElementById('submitBtn');
+            const status = document.getElementById('formStatus');
+            const contact = document.getElementById('contact').value.trim();
+            const desc = document.getElementById('description').value.trim();
+
+            if (!contact || !desc) {
+                e.preventDefault();
+                status.textContent = 'Please fill in your contact and description.';
+                status.style.color = '#b00';
+                return;
+            }
+
+            updateHiddenTotal();
+            btn.disabled = true;
+            btn.textContent = 'Sending…';
+            status.textContent = 'Sending your request…';
+            status.style.color = '#555';
+        });
+    }
 
     // --- INITIALIZE ---
     window.onload = function() {
